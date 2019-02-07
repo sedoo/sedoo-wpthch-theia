@@ -1,26 +1,31 @@
 /*
- Theme Name:   Theia child Janvier
- Theme URI:    http://example.com/twenty-fifteen-child/
- 
-Description:  Twenty Fifteen Child Theme
- Author:       Isabelle Biagiotti 4Theia
- Author URI:   
-http://example.com
- Template:     aeris-wordpress-theme
- Version:      1.0.0
- License:      
-GNU General Public License v2 or later
- License URI:  http://www.gnu.org/licenses/gpl-2.0.html
- 
-Tags:        light, dark, two-columns, right-sidebar, responsive-layout, accessibility-ready
- 
-Text Domain:  twenty-fifteen-child
+Theme Name:   Theia child
+Theme URI:    https://github.com/aeris-data/theia-wpth-child
+
+Description:  Theia, Aeris Child Theme
+Author:       Isabelle Biagiotti 4Theia // Pierre Vert Aeris
+Template:     aeris-wordpress-theme
+Version:      0.1.0
+License: Creative Commons, CC-by-nc-sa
+License URI: https://creativecommons.org/licenses/by-nc-sa/4.0/
+Text Domain: aeris-wordpress-theme
+Tags: 
+GitHub Theme URI: aeris-data/theia-wpth-child
+GitHub Branch: master
 */
+
+
+.tplTheia .wrapper-content {
+    max-width: 768px;
+    margin:0 auto;
+}
+
 
 /*****
 * main color orange theia: #e86D13. BACKGROUND #FFFFF
 */
 
+/*
 h1,
 h2,
 h3,
@@ -57,7 +62,12 @@ a:visited,
 	padding : 5px;
 }
 
+*/
+
 /** styles pour les articles **/
+
+/*
+
 .biblio {
 	color : #e86D13;
 	padding : 5px;

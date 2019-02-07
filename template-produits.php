@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: page Thématiques
+Template Name: page produits
 */
 ?>
 

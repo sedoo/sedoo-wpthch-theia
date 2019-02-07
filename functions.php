@@ -1,7 +1,7 @@
 <?php
 
-add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles' );
-function theme_enqueue_styles() {
+add_action( 'wp_enqueue_scripts', 'theia_wpthchild_enqueue_styles' );
+function theia_wpthchild_enqueue_styles() {
     wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
 
 
@@ -25,14 +25,13 @@ if ( function_exists('register_sidebar') ) {
  
 // Appel de Extend_Upload_Mimes sur le tableau des mimes
 // supportés :
-add_filter('upload_mimes', 'Extend_Upload_Mimes');
- 
+add_filter('upload_mimes', 'theia_wpthchild_Extend_Upload_Mimes');
 /* 
  * Fonction Extend_Upload_Mimes :
  * Prend en argument le tableau associatif des types mimes
  * supportés le modifie et le retourne modifié.
  */
-function Extend_Upload_Mimes ( $CurrentMimes=array() ) {
+function theia_wpthchild_Extend_Upload_Mimes ( $CurrentMimes=array() ) {
 //	Ajout de nouveaux types :
 		$CurrentMimes['zip'] = 'application/zip';
  
@@ -40,4 +39,78 @@ function Extend_Upload_Mimes ( $CurrentMimes=array() ) {
 	unset( $CurrentMimes['exe'] );
  
 	return $CurrentMimes;
+}
+
+/**
+ * Ajout des categories aux pages
+ */
+
+function theia_wpthchild_add_taxonomies_to_pages() {
+
+    register_taxonomy_for_object_type( 'category', 'page' );
+} 
+add_action( 'init', 'theia_wpthchild_add_taxonomies_to_pages' );
+
+// Enqueue Javascript files
+function theia_wpthchild_load_javascript_files() {
+	if ( is_page_template('template-bulletin.php') || is_page_template('template-ces.php') || is_page_template('template-produits.php') || is_page_template('template-thema.php')) {
+		wp_enqueue_script('theme_aeris_jquery_sticky', get_template_directory_uri() . '/js/jquery.sticky.js', array('jquery'), '', false );
+		wp_enqueue_script('theme_aeris_toc', get_template_directory_uri() . '/js/toc.js', array('jquery'), '', false );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'theia_wpthchild_load_javascript_files' );
+
+
+
+/**
+ * Affichage des contenus associés
+ */
+function theia_wpthchild_get_associate_content($postID, $posttype, $limit, $category, $template) {
+
+    // WP_Query
+    $categories = get_the_terms( $postID, $category);  // recup des terms de la taxonomie $category
+    //var_dump($categories);
+    $terms=array();
+    foreach ($categories as $term_slug) {
+        array_push($terms, $term_slug->slug);
+        //echo $term_slug->slug."<br>";
+    }
+    //var_dump($terms);
+    /**
+     * Affichage WP_Query
+     */
+        $args = array(
+            'post_type' => $posttype,
+            'post_status'           => array( 'publish' ),
+            'posts_per_page'        => $limit,                  // -1 pour liste sans limite
+            'post__not_in'          => array($postID),    //exclu le post courant
+            'tax_query' => array(
+                array(
+                    'taxonomy' => $category,
+                    'field'    => 'slug',
+                    'terms'    => $terms,
+                ),
+            ),
+            // 'meta_key' => '_wp_page_template',
+            // 'meta_value' => $template,
+        );
+        if ($template !== "") {
+            $arg['meta_key'] = '_wp_page_template';
+            $arg['meta_value'] = $template;
+        }
+    $the_query = new WP_Query( $args );
+
+    // The Loop
+    if ( $the_query->have_posts() ) {
+        echo '<ul>';
+        while ( $the_query->have_posts() ) {
+            $the_query->the_post();
+            ?><li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li><?php
+        }
+        echo '</ul>';
+        /* Restore original Post Data */
+        wp_reset_postdata();
+    } else {
+        // no posts found
+    }
 }
