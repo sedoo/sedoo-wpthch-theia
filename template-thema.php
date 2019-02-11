@@ -2,58 +2,28 @@
 /*
 Template Name: page Thématiques
 */
-?>
-
-
-<?php
 /**
- * template pour les pages des CES (affiche thématiques et produits liés)
- *
- *
- * @package aeris
+ * template pour les pages des thématiques (affiche actus / CES / produits liés)
  */
 
 get_header(); 
 
 while ( have_posts() ) : the_post();
 
-	get_template_part( 'template-parts/header-content', 'page' );
+   get_template_part( 'template-parts/header-content', 'theia-page' );
 ?>
 
 	<div id="content-area" class="wrapper sidebar toc-left">
-		<main id="main" class="site-main" role="main">
-         <article id="post-<?php the_ID(); ?>">
-
-            <div class="wrapper-content">
-            
-            <?php
-               the_content();
-
-               wp_link_pages( array(
-                  'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'theme-aeris' ),
-                  'after'  => '</div>',
-               ) );
-            ?>
-
-            </div><!-- wrapper-content -->
-         </article>
-
-
-		</main>
-
-      <aside> <!--sidebar droite-->
-         <nav role="sommaire">
-                     <ul id="tocList">
-                     </ul>
-                  </nav>
-            
-      </aside>
+      <?php
+      get_template_part( 'template-parts/content', 'tpl-page' );
+      ?>
+		
       <aside>
          <section>
             <?php
             $postID=get_the_id();
             ?>
-            <h3>Actualités</h3>
+            <h3><?=esc_html__( 'News', 'theme-aeris' )?></h3>
             
             <?php
             $posttype="post";
@@ -64,7 +34,7 @@ while ( have_posts() ) : the_post();
             ?>
          </section>
          <section>
-            <h3>CES</h3>
+            <h3><?=esc_html__( 'CES', 'theme-aeris' )?></h3>
             <?php
             $posttype="page";
             $limit=7;
@@ -74,7 +44,7 @@ while ( have_posts() ) : the_post();
             ?>
          </section>
          <section>
-            <h3>Produits</h3>
+            <h3><?=esc_html__( 'Products', 'theme-aeris' )?></h3>
             <?php
             $posttype="page";
             $limit=7;

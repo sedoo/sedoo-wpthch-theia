@@ -20,6 +20,51 @@ GitHub Branch: master
     margin:0 auto;
 }
 
+[class*="page-template-template-thema"] [id="breadcrumbs"] > div,
+[class*="page-template-template-produits"] [id="breadcrumbs"] > div,
+[class*="page-template-template-ces"] [id="breadcrumbs"] > div {
+    justify-content: flex-end;
+}
+
+[class*="page-template-template-thema"] [id="breadcrumbs"] > div::before,
+[class*="page-template-template-produits"] [id="breadcrumbs"] > div::before,
+[class*="page-template-template-ces"] [id="breadcrumbs"] > div::before,
+[class*="page-template-template-thema"] [id="breadcrumbs"] > div::after,
+[class*="page-template-template-produits"] [id="breadcrumbs"] > div::after,
+[class*="page-template-template-ces"] [id="breadcrumbs"] > div::after { 
+    display: none;
+}
+
+
+[class*="page-template-template-thema"] [id="content-area"].sidebar main,
+[class*="page-template-template-produits"] [id="content-area"].sidebar main,
+[class*="page-template-template-ces"] [id="content-area"].sidebar main { 
+    width: 100%;    
+    margin-right:0;
+}
+
+@media (min-width:768px) {
+    [class*="page-template-template-thema"] [id="content-area"].sidebar main,
+    [class*="page-template-template-produits"] [id="content-area"].sidebar main,
+    [class*="page-template-template-ces"] [id="content-area"].sidebar main { 
+        flex:1 1 500px;
+        order:1;
+    }
+}
+
+[class*="page-template-template-thema"] [id="content-area"].toc-left > div[id="stickyMenu-sticky-wrapper"],
+[class*="page-template-template-produits"] [id="content-area"].toc-left > div[id="stickyMenu-sticky-wrapper"],
+[class*="page-template-template-ces"] [id="content-area"].toc-left > div[id="stickyMenu-sticky-wrapper"] { 
+    flex:0 1 170px;
+    order:0;
+}
+
+[class*="page-template-template-thema"] [id="content-area"].sidebar aside,
+[class*="page-template-template-produits"] [id="content-area"].sidebar aside,
+[class*="page-template-template-ces"] [id="content-area"].sidebar aside { 
+    flex:0 1 290px;
+    order:2;
+}
 
 /*****
 * main color orange theia: #e86D13. BACKGROUND #FFFFF

@@ -6,18 +6,19 @@ function theia_wpthchild_enqueue_styles() {
 
 
 }
-if ( function_exists('register_sidebar') ) {
-    register_sidebar(array(
-        'name' => 'Association',
-		'id' => 'asso',
-		'description' => 'pour associer les contenus',
-        'before_widget' => '<div id="header">',
-        'after_widget' => '</div>',
-        'before_title' => '<h2>',
-        'after_title' => '</h2>',
-    ));
+
+// if ( function_exists('register_sidebar') ) {
+//     register_sidebar(array(
+//         'name' => 'Association',
+// 		'id' => 'asso',
+// 		'description' => 'pour associer les contenus',
+//         'before_widget' => '<div id="header">',
+//         'after_widget' => '</div>',
+//         'before_title' => '<h2>',
+//         'after_title' => '</h2>',
+//     ));
     
-}
+// }
 
 /* Autoriser l'upload de format zip dans les médias */
 
@@ -51,9 +52,11 @@ function theia_wpthchild_add_taxonomies_to_pages() {
 } 
 add_action( 'init', 'theia_wpthchild_add_taxonomies_to_pages' );
 
-// Enqueue Javascript files
+/**
+ * Enqueue Javascript files sur template theia
+ */
 function theia_wpthchild_load_javascript_files() {
-	if ( is_page_template('template-bulletin.php') || is_page_template('template-ces.php') || is_page_template('template-produits.php') || is_page_template('template-thema.php')) {
+	if ( is_page_template('template-ces.php') || is_page_template('template-produits.php') || is_page_template('template-thema.php')) {
 		wp_enqueue_script('theme_aeris_jquery_sticky', get_template_directory_uri() . '/js/jquery.sticky.js', array('jquery'), '', false );
 		wp_enqueue_script('theme_aeris_toc', get_template_directory_uri() . '/js/toc.js', array('jquery'), '', false );
 	}
@@ -61,43 +64,39 @@ function theia_wpthchild_load_javascript_files() {
 add_action( 'wp_enqueue_scripts', 'theia_wpthchild_load_javascript_files' );
 
 
-
 /**
  * Affichage des contenus associés
+ * 
  */
 function theia_wpthchild_get_associate_content($postID, $posttype, $limit, $category, $template) {
 
     // WP_Query
     $categories = get_the_terms( $postID, $category);  // recup des terms de la taxonomie $category
-    //var_dump($categories);
     $terms=array();
     foreach ($categories as $term_slug) {
         array_push($terms, $term_slug->slug);
-        //echo $term_slug->slug."<br>";
     }
-    //var_dump($terms);
     /**
      * Affichage WP_Query
      */
-        $args = array(
-            'post_type' => $posttype,
-            'post_status'           => array( 'publish' ),
-            'posts_per_page'        => $limit,                  // -1 pour liste sans limite
-            'post__not_in'          => array($postID),    //exclu le post courant
-            'tax_query' => array(
-                array(
-                    'taxonomy' => $category,
-                    'field'    => 'slug',
-                    'terms'    => $terms,
-                ),
+    $args = array(
+        'post_type' => $posttype,
+        'post_status'           => array( 'publish' ),
+        'posts_per_page'        => $limit,            // -1 pour liste sans limite
+        'post__not_in'          => array($postID),    //exclu le post courant
+        'tax_query' => array(
+            array(
+                'taxonomy' => $category,
+                'field'    => 'slug',
+                'terms'    => $terms,
             ),
-            // 'meta_key' => '_wp_page_template',
-            // 'meta_value' => $template,
-        );
-        if ($template !== "") {
-            $arg['meta_key'] = '_wp_page_template';
-            $arg['meta_value'] = $template;
-        }
+        ),
+    );
+    // Si le template est mentionné, on affine la requete sur le template utilisé (produits/ces/thematique/...)
+    if ($template !== "") {
+        $args['meta_key'] = '_wp_page_template';
+        $args['meta_value'] = $template;
+    }
     $the_query = new WP_Query( $args );
 
     // The Loop
@@ -105,7 +104,15 @@ function theia_wpthchild_get_associate_content($postID, $posttype, $limit, $cate
         echo '<ul>';
         while ( $the_query->have_posts() ) {
             $the_query->the_post();
-            ?><li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li><?php
+
+            $titleItem=mb_strimwidth(get_the_title(), 0, 40, '...');  
+            ?>
+            <li>
+                <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+                    <?php echo $titleItem; ?>
+                </a>
+            </li>
+            <?php
         }
         echo '</ul>';
         /* Restore original Post Data */
