@@ -23,34 +23,41 @@ while ( have_posts() ) : the_post();
             <?php
             $postID=get_the_id();
             ?>
-            <h3><?=esc_html__( 'News', 'theme-aeris' )?></h3>
+            <h3><?=esc_html__( 'News', 'aeris-wordpress-theme' )?></h3>
             
             <?php
             $posttype="post";
             $limit=7;
+            $orderby="date";
+            $order="DESC";
             $category="category";
             $template="";
-            theia_wpthchild_get_associate_content($postID, $posttype, $limit, $category, $template);
+            theia_wpthchild_get_associate_content($postID, $posttype, $limit, $orderby, $order, $category, $template);
             ?>
          </section>
          <section>
-            <h3><?=esc_html__( 'CES', 'theme-aeris' )?></h3>
+            <h3><?=esc_html__( 'SEC', 'aeris-wordpress-theme' )?></h3>
             <?php
             $posttype="page";
-            $limit=7;
+            $limit="-1";
+            $orderby="title";
+            $order="ASC";
             $category="category";
             $template="template-ces.php";
-            theia_wpthchild_get_associate_content($postID, $posttype, $limit, $category, $template);
+            theia_wpthchild_get_associate_content($postID, $posttype, $limit, $orderby, $order, $category, $template);
             ?>
          </section>
          <section>
-            <h3><?=esc_html__( 'Products', 'theme-aeris' )?></h3>
+            <h3><?=esc_html__( 'Products', 'aeris-wordpress-theme' )?></h3>
             <?php
             $posttype="page";
             $limit=7;
+            $orderby="title";
+            $order="ASC";
             $category="category";
             $template="template-produits.php";
-            theia_wpthchild_get_associate_content($postID, $posttype, $limit, $category, $template);
+            $exclude=array('donnees-satellitaires');
+            theia_wpthchild_get_associate_content($postID, $posttype, $limit, $orderby, $order, $category, $template, $exclude);
             ?>
          </section>
       </aside>

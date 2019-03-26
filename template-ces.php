@@ -19,40 +19,46 @@ while ( have_posts() ) : the_post();
       ?>
 				
       <aside>
-         <section>
-            <?php
-            $postID=get_the_id();
-            ?>
-            <h3><?=esc_html__( 'News', 'theme-aeris' )?></h3>
-            
-            <?php
-            $posttype="post";
-            $limit=7;
-            $category="category";
-            $template="";
-            theia_wpthchild_get_associate_content($postID, $posttype, $limit, $category, $template);
-            ?>
-         </section>
-         <section>
-            <h3><?=esc_html__( 'Themes', 'theme-aeris' )?></h3>
-            <?php
-            $posttype="page";
-            $limit=7;
-            $category="category";
-            $template="template-thema.php";
-            theia_wpthchild_get_associate_content($postID, $posttype, $limit, $category, $template);
-            ?>
-         </section>
-         <section>
-            <h3><?=esc_html__( 'Products', 'theme-aeris' )?></h3>
-            <?php
-            $posttype="page";
-            $limit=7;
-            $category="category";
-            $template="template-produits.php";
-            theia_wpthchild_get_associate_content($postID, $posttype, $limit, $category, $template);
-            ?>
-         </section>
+         <?php
+         $postID=get_the_id();
+         ?>
+         <!-- NEWS --> 
+         <?php
+         $sectionTitle="News";
+         $posttype="post";
+         $limit=7;
+         $orderby="date";
+         $order="DESC";
+         $category="category";
+         $template="";
+         theia_wpthchild_get_associate_content($sectionTitle, $postID, $posttype, $limit, $orderby, $order, $category, $template, $exclude);
+         ?>
+
+         <!-- Themes --> 
+         <?php
+         $sectionTitle="Themes";
+         $posttype="page";
+         $limit=7;
+         $orderby="title";
+         $order="ASC";
+         $category="category";
+         $template="template-thema.php";
+         theia_wpthchild_get_associate_content($sectionTitle, $postID, $posttype, $limit, $orderby, $order, $category, $template, $exclude);
+         ?>
+         <!-- Products --> 
+         <?php
+         $sectionTitle="Products";
+         $posttype ="page";
+         $limit =7; // Limite à définir
+         $orderby="title";
+         $order="ASC";
+         $category ="category";
+         $template ="template-produits.php";
+         $taxQueryType="exclude";
+         $exclude=array('donnees-satellitaires');
+         
+         theia_wpthchild_get_associate_content($sectionTitle, $postID, $posttype, $limit, $orderby, $order, $category, $template, $exclude);
+         ?>
       </aside>
 
 

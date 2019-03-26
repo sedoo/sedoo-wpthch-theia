@@ -6,7 +6,7 @@
  *
  * @package aeris
  */
-$categories = get_the_terms( $post->ID, 'category');  
+$categories = get_the_terms( $post->ID, 'theme');  
 ?>
 
 <article id="post-<?php the_ID(); ?>">

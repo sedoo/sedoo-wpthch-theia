@@ -1,9 +1,6 @@
 <?php
-/*
-Template Name: page produits
-*/
 /**
- * template pour les pages des Produits (affiche thématiques et produits liés)
+ * template pour les CPT des Produits (affiche thématiques et produits liés)
  * 
  */
 
@@ -32,7 +29,7 @@ while ( have_posts() ) : the_post();
                'limit'           => 7,
                'orderby'         => "date",
                'order'           => "DESC",
-               'category'        => "category",
+               'category'        => "theme",
                'template'        => "",
                'taxQueryType'    => "",
                'taxQueryCondTerm'  => "",
@@ -43,16 +40,19 @@ while ( have_posts() ) : the_post();
             ?>
          <!-- SEC --> 
             <?php
-            $sectionTitle="SEC";
-            $posttype="page";
-            $limit="-1";
-            $orderby="title";
-            $order="ASC";
-            $category="category";
-            $template="template-ces.php";
-            $taxQueryType="";
-            $taxQueryCondTerm="";
-            theia_wpthchild_get_associate_content($sectionTitle, $postID, $posttype, $limit, $orderby, $order, $category, $template, $taxQueryType, $taxQueryCondTerm);
+            $parameters=array(
+                'sectionTitle'    => "SEC",
+                'posttype'        => "ces",
+                'limit'           => "-1",
+                'orderby'         => "title",
+                'order'           => "ASC",
+                'category'        => "theme",
+                'template'        => "",
+                'taxQueryType'    => "",
+                'taxQueryCondTerm'  => "",
+             );
+             theia_wpthchild_get_associate_content($parameters, $postID);
+            
             ?>
          <!-- Themes --> 
             <?php
@@ -69,16 +69,19 @@ while ( have_posts() ) : the_post();
             ?>
          <!-- Products --> 
             <?php
-            $sectionTitle="Products";
-            $posttype ="page";
-            $limit = "-1"; // Limite à définir
-            $orderby="title";
-            $order="ASC";
-            $category ="category";
-            $template ="template-produits.php";
-            $taxQueryType="exclude";
-            $taxQueryCondTerm=array('donnees-satellitaires, produits');
-            theia_wpthchild_get_associate_content($sectionTitle, $postID, $posttype, $limit, $orderby, $order, $category, $template, $taxQueryType, $taxQueryCondTerm);
+                      // faire double taxo query
+            $parameters=array(
+                'sectionTitle'    => "Products",
+                'posttype'        => "products",
+                'limit'           => "-1",
+                'orderby'         => "title",
+                'order'           => "ASC",
+                'category'        => "theme",
+                'template'        => "",
+                'taxQueryType'    => "exclude",
+                'taxQueryCondTerm'  => "donnees-satellitaires",
+             );
+             theia_wpthchild_get_associate_content($parameters, $postID);
             ?>
 
       </aside>
