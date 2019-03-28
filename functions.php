@@ -55,98 +55,89 @@ add_action( 'wp_enqueue_scripts', 'theia_wpthchild_load_javascript_files' );
  * 
  */
 
-function theia_wpthchild_get_associate_content($parameters, $postID) {
-
-    $sectionTitle=$parameters['sectionTitle'];
-    $posttype=$parameters['posttype'];
-    $limit=$parameters['limit'];
-    $orderby=$parameters['orderby'];
-    $order=$parameters['order'];
-    $category=$parameters['category'];
-    $template=$parameters['template'];
-    $taxQueryType=$parameters['taxQueryType'];
-    $taxQueryCondTerm=$parameters['taxQueryCondTerm'];
-    
+function theia_wpthchild_get_associate_content($parameters, $args) {
+   
     // WP_Query
-    $categories = get_the_terms( $postID, $category);  // recup des terms de la taxonomie $category
-    $terms=array();
-    foreach ($categories as $term_slug) {        
-        array_push($terms, $term_slug->slug);
-    }
+    // $categories = get_the_terms( $postID, $parameters['category']);  // recup des terms de la taxonomie $parameters['category']
+    // $terms=array();
+    // foreach ($categories as $term_slug) {        
+    //     array_push($terms, $term_slug->slug);
+    // }
     /**
      * Affichage WP_Query
      */
-    if ($taxQueryType == "include") {
-        $taxQuery=array(
-            'relation' => 'AND',
-            array(
-                'taxonomy' => $category,
-                'field'    => 'slug',
-                'terms'    => $terms,
-            ),
-            array(
-                'taxonomy' => $category,
-                'field'    => 'slug',
-                'terms'    => $taxQueryCondTerm,
-                'operator' => 'IN',
-            ),
-        );
-    }
-    if ($taxQueryType == "exclude") {
-        $taxQuery=array(
-            'relation' => 'AND',
-            array(
-                'taxonomy' => $category,
-                'field'    => 'slug',
-                'terms'    => $terms,
-            ),
-            array(
-                'taxonomy' => $category,
-                'field'    => 'slug',
-                'terms'    => $taxQueryCondTerm,
-                'operator' => 'NOT IN',
-            ),
-        );
-    }
-    if ($taxQueryType == "") {
-        $taxQuery=array(
-            array(
-                'taxonomy' => $category,
-                'field'    => 'slug',
-                'terms'    => $terms,
-            ),
-        );
-    }
+    // if ($parameters['taxQueryType'] == "include") {
+    //     $taxQuery=array(
+    //         'relation' => 'AND',
+    //         array(
+    //             'taxonomy' => $parameters['category'],
+    //             'field'    => 'slug',
+    //             'terms'    => $terms,
+    //         ),
+    //         array(
+    //             'taxonomy' => $parameters['taxQueryTaxo'],
+    //             'field'    => 'slug',
+    //             'terms'    => $parameters['taxQueryCondTerm'],
+    //             'operator' => 'IN',
+    //         ),
+    //     );
+    // }
+    // if ($parameters['taxQueryType'] == "exclude") {
+    //     $taxQuery=array(
+    //         'relation' => 'AND',
+    //         array(
+    //             'taxonomy' => $parameters['category'],
+    //             'field'    => 'slug',
+    //             'terms'    => $terms,
+    //         ),
+    //         array(
+    //             'taxonomy' => $parameters['taxQueryTaxo'],
+    //             'field'    => 'slug',
+    //             'terms'    => $parameters['taxQueryCondTerm'],
+    //             'operator' => 'NOT IN',
+    //         ),
+    //     );
+    // }
+    // if ($parameters['taxQueryType'] == "") {
+    //     $taxQuery=array(
+    //         array(
+    //             'taxonomy' => $parameters['category'],
+    //             'field'    => 'slug',
+    //             'terms'    => $terms,
+    //         ),
+    //     );
+    // }
 
-
-    $args = array(
-        'post_type' => $posttype,
-        'post_status'           => array( 'publish' ),
-        'posts_per_page'        => $limit,            // -1 pour liste sans limite
-        'post__not_in'          => array($postID),    //exclu le post courant
-        'orderby'               => $orderby,
-        'order'                 => $order,
-        'tax_query'             => $taxQuery,
+    // $args = array(
+    //     'post_type' => $parameters['posttype'],
+    //     'post_status'           => array( 'publish' ),
+    //     'posts_per_page'        => $parameters['limit'],            // -1 pour liste sans limite
+    //     'post__not_in'          => array($postID),    //exclu le post courant
+    //     'orderby'               => $parameters['orderby'],
+    //     'order'                 => $parameters['order'],
+    //     'lang'                  => $currentLanguage,    // use language slug in the query
+    //     'tax_query'             => $taxQuery,
         // 'tax_query' => array(
         //     'relation' => 'AND',
         //     array(
-        //         'taxonomy' => $category,
+        //         'taxonomy' => $parameters['category'],
         //         'field'    => 'slug',
         //         'terms'    => $terms,
         //     ),
         //     array(
-        //         'taxonomy' => $category,
+        //         'taxonomy' => $parameters['category'],
         //         'field'    => 'slug',
-        //         'terms'    => $taxQueryCondTerm,
+        //         'terms'    => $parameters['taxQueryCondTerm'],
         //         'operator' => 'NOT IN',
         //     ),
         // ),
-    );
+    // );
     // Si le template est mentionné, on affine la requete sur le template utilisé (produits/ces/thematique/...)
-    if ($template !== "") {
-        $args['meta_key'] = '_wp_page_template';
-        $args['meta_value'] = $template;
-    }
+    // if ($parameters['template'] !== "") {
+    //     $args['meta_key'] = '_wp_page_template';
+    //     $args['meta_value'] = $parameters['template'];
+    // }
+    // var_dump($args);
     $the_query = new WP_Query( $args );
     
     // The Loop
@@ -232,11 +223,12 @@ function theia_wpthchild_custom_taxonomy() {
         'show_in_rest'               => true,
     );
     register_taxonomy( 'theme', array( 'page' ), $argsTheme );
+    register_taxonomy_for_object_type( 'theme', 'post' );
 
     $labelsProducts = array(
-        'name'                       => _x( 'Types', 'Taxonomy General Name', 'aeris-wordpress-theme' ),
-        'singular_name'              => _x( 'Type', 'Taxonomy Singular Name', 'aeris-wordpress-theme' ),
-        'menu_name'                  => __( 'Type', 'aeris-wordpress-theme' ),
+        'name'                       => _x( 'Types of products', 'Taxonomy General Name', 'aeris-wordpress-theme' ),
+        'singular_name'              => _x( 'Type of products', 'Taxonomy Singular Name', 'aeris-wordpress-theme' ),
+        'menu_name'                  => __( 'Types of products', 'aeris-wordpress-theme' ),
         'all_items'                  => __( 'All types', 'aeris-wordpress-theme' ),
         'parent_item'                => __( 'Parent type', 'aeris-wordpress-theme' ),
         'parent_item_colon'          => __( 'Parent type:', 'aeris-wordpress-theme' ),
@@ -272,11 +264,40 @@ function theia_wpthchild_custom_taxonomy() {
         'show_in_rest'               => true,
     );
     register_taxonomy( 'typeproduct', array( 'products' ), $argsProducts );
+    register_taxonomy_for_object_type( 'typeproduct', 'page' );
 
 }
 add_action( 'init', 'theia_wpthchild_custom_taxonomy', 0 );
 
 }
+
+/******************************************************************
+ * Afficher les archives des custom taxonomies
+ * $categories = get_the_terms( $post->ID, 'category');  
+ */
+
+function theia_wpthchild_show_categories($categories, $slugRewrite) {
+ 
+    if( $categories ) {
+    ?>
+    <div class="tag">
+    <?php
+        foreach( $categories as $categorie ) { 
+            if ($categorie->slug !== "non-classe") {
+            echo '<a href="'.site_url().'/'.$slugRewrite.'/'.$categorie->slug.'" class="'.$categorie->slug.'">';
+  
+                  echo $categorie->name; 
+                ?>                    
+            </a>
+    <?php 
+            }
+        }
+    ?>
+    </div>
+  <?php
+      } 
+  }
+
 
 /* ------------------------------------------------------------------------------------------------- */
 /**

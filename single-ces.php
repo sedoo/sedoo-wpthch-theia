@@ -7,6 +7,12 @@ get_header();
 
 while ( have_posts() ) : the_post();
 
+   $categories = get_the_terms( get_the_id(), 'theme');  // recup des terms de la taxonomie $parameters['category']
+   $terms=array();
+   foreach ($categories as $term_slug) {        
+      array_push($terms, $term_slug->slug);
+   }
+
    get_template_part( 'template-parts/header-content', 'theia-page' );
 ?>
 
@@ -16,55 +22,60 @@ while ( have_posts() ) : the_post();
       ?>
 				
       <aside>
-         <?php
-         $postID=get_the_id();
-         ?>
          <!-- NEWS --> 
          <?php
-         $parameters=array(
-            'sectionTitle'    => "News",
-            'posttype'        => "post",
-            'limit'           => 7,
-            'orderby'         => "date",
-            'order'           => "DESC",
-            'category'        => "theme",
-            'template'        => "",
-            'taxQueryType'    => "",
-            'taxQueryCondTerm'  => "",
-         );
-         theia_wpthchild_get_associate_content($parameters, $postID);
+            $parameters = array(
+               'sectionTitle'    => "News",
+            );            
+            $args = array(
+              'post_type'             => 'post',
+              'post_status'           => array( 'publish' ),
+              'posts_per_page'        => '7',            // -1 pour liste sans limite
+              'post__not_in'          => array(get_the_id()),    //exclu le post courant
+              'orderby'               => 'date',
+              'order'                 => 'DESC',
+              'lang'                  => pll_current_language(),    // use language slug in the query
+              'tax_query'             => array(
+                                      array(
+                                         'taxonomy' => 'theme',
+                                         'field'    => 'slug',
+                                         'terms'    => $terms,
+                                      ),
+                                   ),
+              // 'meta_key'              => '_wp_page_template',
+              // 'meta_value'            => '', // template-name.php
+           );            
+           theia_wpthchild_get_associate_content($parameters, $args);
          ?>
 
-         <!-- Themes --> 
-         <?php
-         $sectionTitle="Themes";
-         $posttype="page";
-         $limit=7;
-         $orderby="title";
-         $order="ASC";
-         $category="category";
-         $template="template-thema.php";
-         //theia_wpthchild_get_associate_content($sectionTitle, $postID, $posttype, $limit, $orderby, $order, $category, $template, $exclude);
-        
-         
-         ?>
          <!-- Products --> 
          <?php
-        // faire double taxo query
-        $parameters=array(
-        'sectionTitle'    => "Products",
-        'posttype'        => "products",
-        'limit'           => "-1",
-        'orderby'         => "title",
-        'order'           => "ASC",
-        'category'        => "theme",
-        'template'        => "",
-        'taxQueryType'    => "exclude",
-        'taxQueryCondTerm'  => "donnees-satellitaires",
-        );
-        theia_wpthchild_get_associate_content($parameters, $postID);
-         
-         ?>
+            // faire double taxo query
+            $parameters = array(
+                'sectionTitle'    => "Products",
+             );
+             
+             $args = array(
+               'post_type'             => 'products',
+               'post_status'           => array( 'publish' ),
+               'posts_per_page'        => '-1',            // -1 pour liste sans limite
+               'post__not_in'          => array(get_the_id()),    //exclu le post courant
+               'orderby'               => 'title',
+               'order'                 => 'ASC',
+               'lang'                  => pll_current_language(),    // use language slug in the query
+               'tax_query'             => array(
+                                       array(
+                                          'taxonomy' => 'theme',
+                                          'field'    => 'slug',
+                                          'terms'    => $terms,
+                                       ),
+                                    ),
+               // 'meta_key'              => '_wp_page_template',
+               // 'meta_value'            => '', // template-name.php
+            );
+    
+             theia_wpthchild_get_associate_content($parameters, $args);
+            ?>
       </aside>
 
 
