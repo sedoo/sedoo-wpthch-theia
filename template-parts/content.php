@@ -3,10 +3,10 @@
  * Template part for displaying embed page 
  *
  */
-$categories = get_the_terms( $post->ID, 'category');  
-$themes = get_the_terms( $post->ID, 'theme');  
+$categories = get_the_terms( $post->ID, 'category');
+$themes = get_the_terms( $post->ID, 'theme');
 $themeSlugRewrite = "theme";
-$typeProduits = get_the_terms( $post->ID, 'typeproduct');  
+$typeProduits = get_the_terms( $post->ID, 'typeproduct');
 $typeProduitsSlugRewrite = "typeofproduct";
 ?>
 
