@@ -57,87 +57,6 @@ add_action( 'wp_enqueue_scripts', 'theia_wpthchild_load_javascript_files' );
 
 function theia_wpthchild_get_associate_content($parameters, $args) {
    
-    // WP_Query
-    // $categories = get_the_terms( $postID, $parameters['category']);  // recup des terms de la taxonomie $parameters['category']
-    // $terms=array();
-    // foreach ($categories as $term_slug) {        
-    //     array_push($terms, $term_slug->slug);
-    // }
-    /**
-     * Affichage WP_Query
-     */
-    // if ($parameters['taxQueryType'] == "include") {
-    //     $taxQuery=array(
-    //         'relation' => 'AND',
-    //         array(
-    //             'taxonomy' => $parameters['category'],
-    //             'field'    => 'slug',
-    //             'terms'    => $terms,
-    //         ),
-    //         array(
-    //             'taxonomy' => $parameters['taxQueryTaxo'],
-    //             'field'    => 'slug',
-    //             'terms'    => $parameters['taxQueryCondTerm'],
-    //             'operator' => 'IN',
-    //         ),
-    //     );
-    // }
-    // if ($parameters['taxQueryType'] == "exclude") {
-    //     $taxQuery=array(
-    //         'relation' => 'AND',
-    //         array(
-    //             'taxonomy' => $parameters['category'],
-    //             'field'    => 'slug',
-    //             'terms'    => $terms,
-    //         ),
-    //         array(
-    //             'taxonomy' => $parameters['taxQueryTaxo'],
-    //             'field'    => 'slug',
-    //             'terms'    => $parameters['taxQueryCondTerm'],
-    //             'operator' => 'NOT IN',
-    //         ),
-    //     );
-    // }
-    // if ($parameters['taxQueryType'] == "") {
-    //     $taxQuery=array(
-    //         array(
-    //             'taxonomy' => $parameters['category'],
-    //             'field'    => 'slug',
-    //             'terms'    => $terms,
-    //         ),
-    //     );
-    // }
-
-    // $args = array(
-    //     'post_type' => $parameters['posttype'],
-    //     'post_status'           => array( 'publish' ),
-    //     'posts_per_page'        => $parameters['limit'],            // -1 pour liste sans limite
-    //     'post__not_in'          => array($postID),    //exclu le post courant
-    //     'orderby'               => $parameters['orderby'],
-    //     'order'                 => $parameters['order'],
-    //     'lang'                  => $currentLanguage,    // use language slug in the query
-    //     'tax_query'             => $taxQuery,
-        // 'tax_query' => array(
-        //     'relation' => 'AND',
-        //     array(
-        //         'taxonomy' => $parameters['category'],
-        //         'field'    => 'slug',
-        //         'terms'    => $terms,
-        //     ),
-        //     array(
-        //         'taxonomy' => $parameters['category'],
-        //         'field'    => 'slug',
-        //         'terms'    => $parameters['taxQueryCondTerm'],
-        //         'operator' => 'NOT IN',
-        //     ),
-        // ),
-    // );
-    // Si le template est mentionné, on affine la requete sur le template utilisé (produits/ces/thematique/...)
-    // if ($parameters['template'] !== "") {
-    //     $args['meta_key'] = '_wp_page_template';
-    //     $args['meta_value'] = $parameters['template'];
-    // }
-    // var_dump($args);
     $the_query = new WP_Query( $args );
     
     // The Loop
@@ -175,14 +94,13 @@ add_post_type_support( 'page', 'excerpt' );
  * CUSTOM TAXONOMIES
  */
 
-
- /**
-  * THEMES (Research & expertise)
-  */
-
 if ( ! function_exists( 'theia_wpthchild_custom_taxonomy' ) ) {
 // Register Custom Taxonomy
 function theia_wpthchild_custom_taxonomy() {
+
+    /**
+     * THEMES (Research & expertise)
+    */
 
     $labelsTheme = array(
         'name'                       => _x( 'Themes', 'Taxonomy General Name', 'aeris-wordpress-theme' ),
@@ -225,6 +143,56 @@ function theia_wpthchild_custom_taxonomy() {
     register_taxonomy( 'theme', array( 'page' ), $argsTheme );
     register_taxonomy_for_object_type( 'theme', 'post' );
 
+    /**
+     * CES
+    */
+
+    $labelsCESTag = array(
+        'name'                       => _x( 'CES Tags', 'Taxonomy General Name', 'aeris-wordpress-theme' ),
+        'singular_name'              => _x( 'CES Tag', 'Taxonomy Singular Name', 'aeris-wordpress-theme' ),
+        'menu_name'                  => __( 'CES Tag', 'aeris-wordpress-theme' ),
+        'all_items'                  => __( 'All CES Tag', 'aeris-wordpress-theme' ),
+        'parent_item'                => __( 'Parent CES Tag', 'aeris-wordpress-theme' ),
+        'parent_item_colon'          => __( 'Parent CES Tag:', 'aeris-wordpress-theme' ),
+        'new_item_name'              => __( 'New CES Tag', 'aeris-wordpress-theme' ),
+        'add_new_item'               => __( 'Add New CES Tag', 'aeris-wordpress-theme' ),
+        'edit_item'                  => __( 'Edit CES Tag', 'aeris-wordpress-theme' ),
+        'update_item'                => __( 'Update CES Tag', 'aeris-wordpress-theme' ),
+        'view_item'                  => __( 'View theme', 'aeris-wordpress-theme' ),
+        'separate_items_with_commas' => __( 'Separate CES Tag with commas', 'aeris-wordpress-theme' ),
+        'add_or_remove_items'        => __( 'Add or remove CES Tag', 'aeris-wordpress-theme' ),
+        'choose_from_most_used'      => __( 'Choose from the most used', 'aeris-wordpress-theme' ),
+        'popular_items'              => __( 'Popular CES Tag', 'aeris-wordpress-theme' ),
+        'search_items'               => __( 'Search CES Tag', 'aeris-wordpress-theme' ),
+        'not_found'                  => __( 'Not Found', 'aeris-wordpress-theme' ),
+        'no_terms'                   => __( 'No CES Tag', 'aeris-wordpress-theme' ),
+        'items_list'                 => __( 'CES Tag list', 'aeris-wordpress-theme' ),
+        'items_list_navigation'      => __( 'CES Tag list navigation', 'aeris-wordpress-theme' ),
+    );
+    $rewriteCESTag = array(
+        'slug'                       => 'ces',
+        'with_front'                 => true,
+        'hierarchical'               => false,
+    );
+    $argsCESTag = array(
+        'labels'                     => $labelsCESTag,
+        'hierarchical'               => true,
+        'public'                     => true,
+        'show_ui'                    => true,
+        'show_admin_column'          => true,
+        'show_in_nav_menus'          => true,
+        'show_tagcloud'              => true,
+        'rewrite'                    => $rewriteCESTag,
+        'show_in_rest'               => true,
+    );
+    register_taxonomy( 'cesTag', array( 'page' ), $argsCESTag );
+    register_taxonomy_for_object_type( 'cesTag', 'post' );
+    register_taxonomy_for_object_type( 'cesTag', 'ces' );
+    register_taxonomy_for_object_type( 'cesTag', 'products' );
+
+    /**
+     * Type de produit
+    */
     $labelsProducts = array(
         'name'                       => _x( 'Types of products', 'Taxonomy General Name', 'aeris-wordpress-theme' ),
         'singular_name'              => _x( 'Type of products', 'Taxonomy Singular Name', 'aeris-wordpress-theme' ),
@@ -244,8 +212,8 @@ function theia_wpthchild_custom_taxonomy() {
         'search_items'               => __( 'Search types', 'aeris-wordpress-theme' ),
         'not_found'                  => __( 'Not Found', 'aeris-wordpress-theme' ),
         'no_terms'                   => __( 'No type', 'aeris-wordpress-theme' ),
-        'items_list'                 => __( 'Themes list', 'aeris-wordpress-theme' ),
-        'items_list_navigation'      => __( 'Themes list navigation', 'aeris-wordpress-theme' ),
+        'items_list'                 => __( 'Type of products list', 'aeris-wordpress-theme' ),
+        'items_list_navigation'      => __( 'Type of products list navigation', 'aeris-wordpress-theme' ),
     );
     $rewriteProducts = array(
         'slug'                       => 'typeofproduct',
@@ -298,7 +266,6 @@ function theia_wpthchild_show_categories($categories, $slugRewrite) {
       } 
   }
 
-
 /* ------------------------------------------------------------------------------------------------- */
 /**
  * CUSTOM POSTS
@@ -343,7 +310,7 @@ if ( ! function_exists('theia_wpthchild_custom_post') ) {
             'filter_items_list'     => __( 'Filter items list', 'aeris-wordpress-theme' ),
         );
         $rewriteCES = array(
-            'slug'                  => 'ces',
+            'slug'                  => 'ceslist',
             'with_front'            => true,
             'pages'                 => true,
             'feeds'                 => true,
@@ -353,7 +320,7 @@ if ( ! function_exists('theia_wpthchild_custom_post') ) {
             'description'           => __( 'Post Type Description', 'aeris-wordpress-theme' ),
             'labels'                => $labelsCES,
             'supports'              => array( 'title', 'editor', 'thumbnail', 'revisions' ),
-            'taxonomies'            => array( 'category', 'theme' ),
+            'taxonomies'            => array( 'category', 'theme', 'cesTag' ),
             'hierarchical'          => false,
             'public'                => true,
             'show_ui'               => true,
@@ -415,7 +382,7 @@ if ( ! function_exists('theia_wpthchild_custom_post') ) {
             'description'           => __( 'Post Type Description', 'aeris-wordpress-theme' ),
             'labels'                => $labelsProducts,
             'supports'              => array( 'title', 'editor', 'thumbnail', 'revisions' ),
-            'taxonomies'            => array( 'category', 'theme', 'typeproduct' ),
+            'taxonomies'            => array( 'category', 'theme', 'typeproduct', 'cesTag' ),
             'hierarchical'          => false,
             'public'                => true,
             'show_ui'               => true,
@@ -436,4 +403,57 @@ if ( ! function_exists('theia_wpthchild_custom_post') ) {
     }
     add_action( 'init', 'theia_wpthchild_custom_post', 0 );
     
+}
+
+
+/* ------------------------------------------------------------------------------------------------- */
+/**
+ * AJOUT DES FILTRES DES CUSTOM TAXONOMIES DANS LES LISTES DE POST / CUSTOM POST
+ */
+
+function theia_wpthchild_filter_by_custom_taxonomies( $post_type, $which ) {
+
+	// Apply this only on a specific post type
+	// if ( 'products' !== $post_type )
+	// 	return;
+
+    // A list of taxonomy slugs to filter by
+    if ( 'products' == $post_type) {
+	    $taxonomies = array( 'theme', 'cestag', 'typeproduct' );
+    } else {
+        $taxonomies = array( 'theme', 'cestag' );
     }
+
+	foreach ( $taxonomies as $taxonomy_slug ) {
+
+		// Retrieve taxonomy data
+		$taxonomy_obj = get_taxonomy( $taxonomy_slug );
+		$taxonomy_name = $taxonomy_obj->labels->name;
+
+		// Retrieve taxonomy terms
+		$terms = get_terms( $taxonomy_slug );
+
+		// Display filter HTML
+		echo "<select name='{$taxonomy_slug}' id='{$taxonomy_slug}' class='postform'>";
+		echo '<option value="">' . sprintf( esc_html__( 'Show All %s', 'text_domain' ), $taxonomy_name ) . '</option>';
+		foreach ( $terms as $term ) {
+			printf(
+				'<option value="%1$s" %2$s>%3$s</option>',
+				$term->slug,
+				( ( isset( $_GET[$taxonomy_slug] ) && ( $_GET[$taxonomy_slug] == $term->slug ) ) ? ' selected="selected"' : '' ),
+				$term->name
+            );
+            /* Avec le compteur, mais qui est faux car il prend en compte tous les types de post
+             printf(
+				'<option value="%1$s" %2$s>%3$s (%4$s)</option>',
+				$term->slug,
+				( ( isset( $_GET[$taxonomy_slug] ) && ( $_GET[$taxonomy_slug] == $term->slug ) ) ? ' selected="selected"' : '' ),
+				$term->name,
+				$term->count
+            );
+            */
+		}
+		echo '</select>';
+    }
+}
+add_action( 'restrict_manage_posts', 'theia_wpthchild_filter_by_custom_taxonomies' , 10, 2);
