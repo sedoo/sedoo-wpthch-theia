@@ -5,15 +5,18 @@ Theme URI:    https://github.com/aeris-data/theia-wpth-child
 Description:  Theia, Aeris Child Theme
 Author:       Isabelle Biagiotti 4Theia // Pierre Vert Aeris
 Template:     aeris-wordpress-theme
-Version:      0.1.0
+Version:      0.2.0
 License: Creative Commons, CC-by-nc-sa
 License URI: https://creativecommons.org/licenses/by-nc-sa/4.0/
-Text Domain: aeris-wordpress-theme
+Text Domain: theia_wpthchild_aeris-wordpress-theme
 Tags: 
 GitHub Theme URI: aeris-data/theia-wpth-child
 GitHub Branch: master
 */
 
+body > svg {
+    display: none;
+}
 
 .tplTheia .wrapper-content {
     max-width: 768px;
