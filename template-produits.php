@@ -19,52 +19,36 @@ while ( have_posts() ) : the_post();
       get_template_part( 'template-parts/content', 'tpl-page' );
       ?>
 		
-      <aside>
-         <section>
-            <?php
-            $postID=get_the_id();
+      <!-- <aside> -->
+
+         <!-- Products --> 
+         <?php
+            $parameters = array(
+                'sectionTitle'    => "Products",
+             );
+             
+             $args = array(
+               'post_type'             => 'products',
+               'post_status'           => array( 'publish' ),
+               'posts_per_page'        => '-1',            // -1 pour liste sans limite
+               'post__not_in'          => array(get_the_id()),    //exclu le post courant
+               'orderby'               => 'title',
+               'order'                 => 'ASC',
+               'lang'                  => pll_current_language(),    // use language slug in the query
+               'tax_query'             => array(
+                                       array(
+                                          'taxonomy' => 'typeproduct',
+                                          'field'    => 'slug',
+                                          'terms'    => array('donnees-satellitaires-fr',),
+                                          'operator' => 'NOT IN',
+                                       ),
+                                    ),
+            );
+    
+             //theia_wpthchild_get_associate_content($parameters, $args);
             ?>
-            <h3><?=esc_html__( 'News', 'theme-aeris' )?></h3>
-            
-            <?php
-            $posttype="post";
-            $limit=7;
-            $category="category";
-            $template="";
-            theia_wpthchild_get_associate_content($postID, $posttype, $limit, $category, $template);
-            ?>
-         </section>
-         <section>
-            <h3><?=esc_html__( 'CES', 'theme-aeris' )?></h3>
-            <?php
-            $posttype="page";
-            $limit=7;
-            $category="category";
-            $template="template-ces.php";
-            theia_wpthchild_get_associate_content($postID, $posttype, $limit, $category, $template);
-            ?>
-         </section>
-         <section>
-            <h3><?=esc_html__( 'Themes', 'theme-aeris' )?></h3>
-            <?php
-            $posttype="page";
-            $limit=7;
-            $category="category";
-            $template="template-thema.php";
-            theia_wpthchild_get_associate_content($postID, $posttype, $limit, $category, $template);
-            ?>
-         </section>
-         <section>
-            <h3><?=esc_html__( 'Produits', 'theme-aeris' )?></h3>
-            <?php
-            $posttype="page";
-            $limit=7; // Limite à définir
-            $category="category";
-            $template="template-produits.php";
-            theia_wpthchild_get_associate_content($postID, $posttype, $limit, $category, $template);
-            ?>
-         </section>
-      </aside>
+
+      <!-- </aside> -->
 
 
 	</div><!-- #content-area -->
