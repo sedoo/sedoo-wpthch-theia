@@ -1,21 +1,29 @@
 <?php
-/*
-Template Name: page Thématiques
-*/
 /**
- * template pour les pages des thématiques (affiche actus / CES / produits liés)
+ * template pour les CPT des Produits (affiche thématiques et produits liés)
+ * 
  */
 
 get_header(); 
 
 while ( have_posts() ) : the_post();
-   $postID=get_the_id();
+
    $categories = get_the_terms( get_the_id(), 'theme');  // recup des terms de la taxonomie $parameters['category']
    $terms=array();
-   foreach ($categories as $term_slug) {        
-       array_push($terms, $term_slug->slug);
+   if (is_array($categories) || is_object($categories))
+   {
+      foreach ($categories as $term_slug) {        
+         array_push($terms, $term_slug->slug);
+      }
    }
-
+    $cestags = get_the_terms( get_the_id(), 'cesTag');  // recup des terms de la taxonomie $parameters['category']
+    $cesTerms=array();
+    if (is_array($cestags) || is_object($cestags))
+    {
+      foreach ($cestags as $cesTerm_slug) {        
+         array_push($cesTerms, $cesTerm_slug->slug);
+      }
+    }
    get_template_part( 'template-parts/header-content', 'theia-page' );
 ?>
 
@@ -25,8 +33,8 @@ while ( have_posts() ) : the_post();
       ?>
 		
       <aside>
-        <!-- NEWS --> 
-        <?php
+         <!-- NEWS --> 
+            <?php
             $parameters = array(
                'sectionTitle'    => "News",
             );            
@@ -40,17 +48,17 @@ while ( have_posts() ) : the_post();
               'lang'                  => pll_current_language(),    // use language slug in the query
               'tax_query'             => array(
                                       array(
-                                         'taxonomy' => 'theme',
+                                         'taxonomy' => 'cesTag',
                                          'field'    => 'slug',
-                                         'terms'    => $terms,
+                                         'terms'    => $cesTerms,
                                       ),
                                    ),
               // 'meta_key'              => '_wp_page_template',
               // 'meta_value'            => '', // template-name.php
            );            
            theia_wpthchild_get_associate_content($parameters, $args);
-          
-            ?>
+         
+         ?>
          <!-- SEC --> 
             <?php
             $parameters = array(
@@ -67,9 +75,9 @@ while ( have_posts() ) : the_post();
               'lang'                  => pll_current_language(),    // use language slug in the query
               'tax_query'             => array(
                                       array(
-                                         'taxonomy' => 'theme',
+                                         'taxonomy' => 'cesTag',
                                          'field'    => 'slug',
-                                         'terms'    => $terms,
+                                         'terms'    => $cesTerms,
                                       ),
                                    ),
               // 'meta_key'              => '_wp_page_template',
@@ -81,7 +89,6 @@ while ( have_posts() ) : the_post();
             ?>
          <!-- Products --> 
             <?php
-            // faire double taxo query
             $parameters = array(
                 'sectionTitle'    => "Products",
              );
@@ -104,16 +111,15 @@ while ( have_posts() ) : the_post();
                                        array(
                                           'taxonomy' => 'typeproduct',
                                           'field'    => 'slug',
-                                          'terms'    => array('donnees-satellitaires',),
+                                          'terms'    => array('donnees-satellitaires-fr',),
                                           'operator' => 'NOT IN',
                                        ),
                                     ),
-               // 'meta_key'              => '_wp_page_template',
-               // 'meta_value'            => '', // template-name.php
             );
     
              theia_wpthchild_get_associate_content($parameters, $args);
             ?>
+
       </aside>
 
 
