@@ -19,9 +19,9 @@ $cesTagsSlugRewrite = "ces";
 
 <article id="post-<?php the_ID(); ?>">
     <div class="wrapper-content">
-	<?php theia_wpthchild_show_categories($themes, $themeSlugRewrite);?><hr>
+	<?php theia_wpthchild_show_categories($themes, $themeSlugRewrite);?>
 	<?php //theia_wpthchild_show_categories($cesTags, $cesTagsSlugRewrite);?>
-	<?php theia_wpthchild_show_categories($products, $productsSlugRewrite);?>
+	<?php //theia_wpthchild_show_categories($products, $productsSlugRewrite);?>
 	<?php
 		the_content();
 

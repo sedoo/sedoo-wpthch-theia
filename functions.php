@@ -42,7 +42,7 @@ add_action( 'init', 'theia_wpthchild_add_taxonomies_to_pages' );
  * Enqueue Javascript files sur template theia
  */
 function theia_wpthchild_load_javascript_files() {
-	if ( is_singular('ces') || is_singular('products') || is_page_template('template-thema.php') || is_page_template('template-produits.php')) {
+	if ( is_singular('ces') || is_singular('products') || is_singular('art') || is_page_template('template-thema.php') || is_page_template('template-produits.php')) {
 		wp_enqueue_script('theme_aeris_jquery_sticky', get_template_directory_uri() . '/js/jquery.sticky.js', array('jquery'), '', false );
 		wp_enqueue_script('theme_aeris_toc', get_template_directory_uri() . '/js/toc.js', array('jquery'), '', false );
 	}
@@ -150,7 +150,7 @@ function theia_wpthchild_custom_taxonomy() {
     $labelsCESTag = array(
         'name'                       => _x( 'CES Tags', 'Taxonomy General Name', 'aeris-wordpress-theme' ),
         'singular_name'              => _x( 'CES Tag', 'Taxonomy Singular Name', 'aeris-wordpress-theme' ),
-        'menu_name'                  => __( 'CES Tag', 'aeris-wordpress-theme' ),
+        'menu_name'                  => __( 'CES Tags', 'aeris-wordpress-theme' ),
         'all_items'                  => __( 'All CES Tag', 'aeris-wordpress-theme' ),
         'parent_item'                => __( 'Parent CES Tag', 'aeris-wordpress-theme' ),
         'parent_item_colon'          => __( 'Parent CES Tag:', 'aeris-wordpress-theme' ),
@@ -190,6 +190,51 @@ function theia_wpthchild_custom_taxonomy() {
     register_taxonomy_for_object_type( 'cesTag', 'ces' );
     register_taxonomy_for_object_type( 'cesTag', 'products' );
 
+    /**
+     * ART
+    */
+    $labelsART = array(
+        'name'                       => _x( 'ART Tags', 'Taxonomy General Name', 'aeris-wordpress-theme' ),
+        'singular_name'              => _x( 'ART Tag', 'Taxonomy Singular Name', 'aeris-wordpress-theme' ),
+        'menu_name'                  => __( 'ART Tags', 'aeris-wordpress-theme' ),
+        'all_items'                  => __( 'All types', 'aeris-wordpress-theme' ),
+        'parent_item'                => __( 'Parent type', 'aeris-wordpress-theme' ),
+        'parent_item_colon'          => __( 'Parent type:', 'aeris-wordpress-theme' ),
+        'new_item_name'              => __( 'New type', 'aeris-wordpress-theme' ),
+        'add_new_item'               => __( 'Add New type', 'aeris-wordpress-theme' ),
+        'edit_item'                  => __( 'Edit type', 'aeris-wordpress-theme' ),
+        'update_item'                => __( 'Update type', 'aeris-wordpress-theme' ),
+        'view_item'                  => __( 'View type', 'aeris-wordpress-theme' ),
+        'separate_items_with_commas' => __( 'Separate types with commas', 'aeris-wordpress-theme' ),
+        'add_or_remove_items'        => __( 'Add or remove types', 'aeris-wordpress-theme' ),
+        'choose_from_most_used'      => __( 'Choose from the most used', 'aeris-wordpress-theme' ),
+        'popular_items'              => __( 'Popular types', 'aeris-wordpress-theme' ),
+        'search_items'               => __( 'Search types', 'aeris-wordpress-theme' ),
+        'not_found'                  => __( 'Not Found', 'aeris-wordpress-theme' ),
+        'no_terms'                   => __( 'No type', 'aeris-wordpress-theme' ),
+        'items_list'                 => __( 'ART list', 'aeris-wordpress-theme' ),
+        'items_list_navigation'      => __( 'ART list navigation', 'aeris-wordpress-theme' ),
+    );
+    $rewriteART = array(
+        'slug'                       => 'art',
+        'with_front'                 => true,
+        'hierarchical'               => false,
+    );
+    $argsART = array(
+        'labels'                     => $labelsART,
+        'hierarchical'               => true,
+        'public'                     => true,
+        'show_ui'                    => true,
+        'show_admin_column'          => true,
+        'show_in_nav_menus'          => true,
+        'show_tagcloud'              => true,
+        'rewrite'                    => $rewriteART,
+        'show_in_rest'               => true,
+    );
+    register_taxonomy( 'artTag', array( 'art' ), $argsART );
+    register_taxonomy_for_object_type( 'artTag', 'post' );
+    register_taxonomy_for_object_type( 'artTag', 'page' );
+    
     /**
      * Type de produit
     */
@@ -400,6 +445,68 @@ if ( ! function_exists('theia_wpthchild_custom_post') ) {
         );
         register_post_type( 'products', $argsProducts );
 
+        //
+        // CUSTOM POST ART 
+        //
+
+        $labelsART = array(
+            'name'                  => _x( 'ART', 'Post Type General Name', 'aeris-wordpress-theme' ),
+            'singular_name'         => _x( 'ART', 'Post Type Singular Name', 'aeris-wordpress-theme' ),
+            'menu_name'             => __( 'ART', 'aeris-wordpress-theme' ),
+            'name_admin_bar'        => __( 'ART', 'aeris-wordpress-theme' ),
+            'archives'              => __( 'Item Archives', 'aeris-wordpress-theme' ),
+            'attributes'            => __( 'Item Attributes', 'aeris-wordpress-theme' ),
+            'parent_item_colon'     => __( 'Parent Item:', 'aeris-wordpress-theme' ),
+            'all_items'             => __( 'All Items', 'aeris-wordpress-theme' ),
+            'add_new_item'          => __( 'Add New Item', 'aeris-wordpress-theme' ),
+            'add_new'               => __( 'Add New', 'aeris-wordpress-theme' ),
+            'new_item'              => __( 'New Item', 'aeris-wordpress-theme' ),
+            'edit_item'             => __( 'Edit Item', 'aeris-wordpress-theme' ),
+            'update_item'           => __( 'Update Item', 'aeris-wordpress-theme' ),
+            'view_item'             => __( 'View Item', 'aeris-wordpress-theme' ),
+            'view_items'            => __( 'View Items', 'aeris-wordpress-theme' ),
+            'search_items'          => __( 'Search Item', 'aeris-wordpress-theme' ),
+            'not_found'             => __( 'Not found', 'aeris-wordpress-theme' ),
+            'not_found_in_trash'    => __( 'Not found in Trash', 'aeris-wordpress-theme' ),
+            'featured_image'        => __( 'Featured Image', 'aeris-wordpress-theme' ),
+            'set_featured_image'    => __( 'Set featured image', 'aeris-wordpress-theme' ),
+            'remove_featured_image' => __( 'Remove featured image', 'aeris-wordpress-theme' ),
+            'use_featured_image'    => __( 'Use as featured image', 'aeris-wordpress-theme' ),
+            'insert_into_item'      => __( 'Insert into item', 'aeris-wordpress-theme' ),
+            'uploaded_to_this_item' => __( 'Uploaded to this item', 'aeris-wordpress-theme' ),
+            'items_list'            => __( 'Items list', 'aeris-wordpress-theme' ),
+            'items_list_navigation' => __( 'Items list navigation', 'aeris-wordpress-theme' ),
+            'filter_items_list'     => __( 'Filter items list', 'aeris-wordpress-theme' ),
+        );
+        $rewriteART = array(
+            'slug'                  => 'artlist',
+            'with_front'            => true,
+            'pages'                 => true,
+            'feeds'                 => true,
+        );
+        $argsART = array(
+            'label'                 => __( 'ART', 'aeris-wordpress-theme' ),
+            'description'           => __( 'Post Type Description', 'aeris-wordpress-theme' ),
+            'labels'                => $labelsART,
+            'supports'              => array( 'title', 'editor', 'thumbnail', 'revisions' ),
+            'taxonomies'            => array( 'category', 'theme', 'artTag' ),
+            'hierarchical'          => false,
+            'public'                => true,
+            'show_ui'               => true,
+            'show_in_menu'          => true,
+            'menu_position'         => 20,
+            'menu_icon'             => 'dashicons-location-alt',
+            'show_in_admin_bar'     => true,
+            'show_in_nav_menus'     => true,
+            'can_export'            => true,
+            'has_archive'           => true,
+            'exclude_from_search'   => false,
+            'publicly_queryable'    => true,
+            'rewrite'               => $rewriteART,
+            'capability_type'       => 'page',
+        );
+        register_post_type( 'art', $argsART );
+
     }
     add_action( 'init', 'theia_wpthchild_custom_post', 0 );
     
@@ -419,9 +526,9 @@ function theia_wpthchild_filter_by_custom_taxonomies( $post_type, $which ) {
 
     // A list of taxonomy slugs to filter by
     if ( 'products' == $post_type) {
-	    $taxonomies = array( 'theme', 'cestag', 'typeproduct' );
+	    $taxonomies = array( 'theme', 'cesTag', 'typeproduct' );
     } else {
-        $taxonomies = array( 'theme', 'cestag' );
+        $taxonomies = array( 'theme', 'cesTag', 'artTag' );
     }
 
 	foreach ( $taxonomies as $taxonomy_slug ) {

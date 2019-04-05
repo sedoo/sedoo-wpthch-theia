@@ -19,69 +19,36 @@ while ( have_posts() ) : the_post();
       get_template_part( 'template-parts/content', 'tpl-page' );
       ?>
 		
-      <aside>
-            <?php
-            $postID=get_the_id();
-            ?>
-         <!-- NEWS --> 
-            <?php
+      <!-- <aside> -->
 
-            $parameters=array(
-               'sectionTitle'    => "News",
-               'posttype'        => "post",
-               'limit'           => 7,
-               'orderby'         => "date",
-               'order'           => "DESC",
-               'category'        => "category",
-               'template'        => "",
-               'taxQueryType'    => "",
-               'taxQueryCondTerm'  => "",
-            );
-            theia_wpthchild_get_associate_content($parameters, $postID);
-            
-           
-            ?>
-         <!-- SEC --> 
-            <?php
-            $sectionTitle="SEC";
-            $posttype="page";
-            $limit="-1";
-            $orderby="title";
-            $order="ASC";
-            $category="category";
-            $template="template-ces.php";
-            $taxQueryType="";
-            $taxQueryCondTerm="";
-            theia_wpthchild_get_associate_content($sectionTitle, $postID, $posttype, $limit, $orderby, $order, $category, $template, $taxQueryType, $taxQueryCondTerm);
-            ?>
-         <!-- Themes --> 
-            <?php
-            $sectionTitle="Themes";
-            $posttype="page";
-            $limit=7;
-            $orderby="title";
-            $order="ASC";
-            $category="category";
-            $template="template-thema.php";
-            $taxQueryType="";
-            $taxQueryCondTerm="";
-            //theia_wpthchild_get_associate_content($sectionTitle, $postID, $posttype, $limit, $orderby, $order, $category, $template, $taxQueryType, $taxQueryCondTerm);
-            ?>
          <!-- Products --> 
-            <?php
-            $sectionTitle="Products";
-            $posttype ="page";
-            $limit = "-1"; // Limite à définir
-            $orderby="title";
-            $order="ASC";
-            $category ="category";
-            $template ="template-produits.php";
-            $taxQueryType="exclude";
-            $taxQueryCondTerm=array('donnees-satellitaires, produits');
-            theia_wpthchild_get_associate_content($sectionTitle, $postID, $posttype, $limit, $orderby, $order, $category, $template, $taxQueryType, $taxQueryCondTerm);
+         <?php
+            $parameters = array(
+                'sectionTitle'    => "Products",
+             );
+             
+             $args = array(
+               'post_type'             => 'products',
+               'post_status'           => array( 'publish' ),
+               'posts_per_page'        => '-1',            // -1 pour liste sans limite
+               'post__not_in'          => array(get_the_id()),    //exclu le post courant
+               'orderby'               => 'title',
+               'order'                 => 'ASC',
+               'lang'                  => pll_current_language(),    // use language slug in the query
+               'tax_query'             => array(
+                                       array(
+                                          'taxonomy' => 'typeproduct',
+                                          'field'    => 'slug',
+                                          'terms'    => array('donnees-satellitaires-fr',),
+                                          'operator' => 'NOT IN',
+                                       ),
+                                    ),
+            );
+    
+             //theia_wpthchild_get_associate_content($parameters, $args);
             ?>
 
-      </aside>
+      <!-- </aside> -->
 
 
 	</div><!-- #content-area -->

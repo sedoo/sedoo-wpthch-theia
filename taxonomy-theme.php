@@ -23,7 +23,7 @@ $term = get_queried_object();
             $args = array(
                 'post_type' => array('post', 'page', 'ces', 'products'),
                 'post_status'           => array( 'publish' ),
-                'posts_per_page'        => 10,            // -1 pour liste sans limite
+                'posts_per_page'        => 9,            // -1 pour liste sans limite
                 // 'post__not_in'          => array($postID),    //exclu le post courant
                 'tax_query' => array(
                     array(

@@ -57,8 +57,8 @@ while ( have_posts() ) : the_post();
               // 'meta_value'            => '', // template-name.php
            );            
            theia_wpthchild_get_associate_content($parameters, $args);
-          
-            ?>
+         
+         ?>
          <!-- SEC --> 
             <?php
             $parameters = array(
@@ -89,7 +89,6 @@ while ( have_posts() ) : the_post();
             ?>
          <!-- Products --> 
             <?php
-            // faire double taxo query
             $parameters = array(
                 'sectionTitle'    => "Products",
              );
@@ -116,8 +115,6 @@ while ( have_posts() ) : the_post();
                                           'operator' => 'NOT IN',
                                        ),
                                     ),
-               // 'meta_key'              => '_wp_page_template',
-               // 'meta_value'            => '', // template-name.php
             );
     
              theia_wpthchild_get_associate_content($parameters, $args);
