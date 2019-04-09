@@ -4,7 +4,7 @@ Theme URI:    https://github.com/aeris-data/theia-wpth-child
 Description:  Theia, Aeris Child Theme
 Author:       Isabelle Biagiotti 4Theia // Pierre Vert Aeris
 Template:     aeris-wordpress-theme
-Version:      0.3.1
+Version:      0.3.2
 License: Creative Commons, CC-by-nc-sa
 License URI: https://creativecommons.org/licenses/by-nc-sa/4.0/
 Text Domain: theia_wpthchild_aeris-wordpress-theme
@@ -94,13 +94,6 @@ body .site-branding h1 a, body .site-branding h1 span {
     background: rgba(255,255,255,0.8);
 }
 
-[role="theme-embed-page"] .post-excerpt {
-    font-family: 'Open Sans',Arial,sans-serif;
-    font-size:1.3rem;
-    /* font-style: italic; */
-}
-
-
 [class*="page-template-template-thema"] main ~ aside > section > h3,
 [class*="page-template-template-produits"] main ~ aside > section > h3,
 [class*="page-template-template-ces"] main ~ aside > section > h3,
@@ -110,15 +103,45 @@ body .site-branding h1 a, body .site-branding h1 span {
     font-size:1.1rem;
 }
 
-[role="theme-embed-page"] svg {
-    display: block;
-    width: 70px;
-    height: 70px;
+[role="theme-embed-page"] > article > section > div {
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
 
-[id="agriculture"] {
-    fill:#e86d13;
+@media (max-width:1023px) {
+    [role="theme-embed-page"] > article > section > div {
+        flex-wrap: wrap;
+    }
 }
+
+[role="theme-embed-page"] svg {
+    display: block;
+    max-width: 170px;
+    height: 170px;
+}
+
+[role="theme-embed-page"] .post-excerpt {
+    font-family: 'Open Sans',Arial,sans-serif;
+    font-size:1.5rem;
+}
+
+[role="theme-embed-page"] .post-excerpt > p + p {
+    font-size: 1.3rem;
+}
+
+ellipse,
+path,
+circle,
+rect,
+polygon,
+line {
+    fill: #e86d13;
+}
+
+/* [id="agriculture"] {
+    fill:#e86d13;
+} */
 
 /*****
 * main color orange theia: #e86D13. BACKGROUND #FFFFF
