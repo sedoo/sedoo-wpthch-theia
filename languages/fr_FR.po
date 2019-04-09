@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Theia child\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-09 09:13+0000\n"
-"PO-Revision-Date: 2019-04-09 09:13+0000\n"
+"PO-Revision-Date: 2019-04-09 09:53+0000\n"
 "Last-Translator: wwwadm <pvert@mel2.obs-mip.fr>\n"
 "Language-Team: Français\n"
 "Language: fr_FR\n"
@@ -40,7 +40,7 @@ msgstr "Produits"
 
 #: template-thema.php:34
 msgid "Regional Animation Networks"
-msgstr "Animation régionale Theia "
+msgstr "Animation Régionale Theia "
 
 #. Name of the theme
 msgid "Theia child"

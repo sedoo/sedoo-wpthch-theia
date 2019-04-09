@@ -4,7 +4,7 @@ Theme URI:    https://github.com/aeris-data/theia-wpth-child
 Description:  Theia, Aeris Child Theme
 Author:       Isabelle Biagiotti 4Theia // Pierre Vert Aeris
 Template:     aeris-wordpress-theme
-Version:      0.3.0
+Version:      0.3.1
 License: Creative Commons, CC-by-nc-sa
 License URI: https://creativecommons.org/licenses/by-nc-sa/4.0/
 Text Domain: theia_wpthchild_aeris-wordpress-theme
@@ -98,6 +98,16 @@ body .site-branding h1 a, body .site-branding h1 span {
     font-family: 'Open Sans',Arial,sans-serif;
     font-size:1.3rem;
     /* font-style: italic; */
+}
+
+
+[class*="page-template-template-thema"] main ~ aside > section > h3,
+[class*="page-template-template-produits"] main ~ aside > section > h3,
+[class*="page-template-template-ces"] main ~ aside > section > h3,
+[class*="single-products"] main ~ aside > section > h3,
+[class*="single-ces"] main ~ aside > section > h3,
+[class*="single-art"] main ~ aside > section > h3 {
+    font-size:1.1rem;
 }
 
 [role="theme-embed-page"] svg {
