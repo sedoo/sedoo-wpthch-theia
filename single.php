@@ -44,20 +44,7 @@ while ( have_posts() ) : the_post();
 						<?php the_author();?> - <?php theme_aeris_meta();?>
 					</p>
 					<?php 
-					// if ( get_edit_post_link() ) : 
-					// 	edit_post_link(
-					// 		sprintf(
-					// 			/* translators: %s: Name of current post */
-					// 			esc_html__( 'Edit %s', 'theme-aeris' ),
-					// 			the_title( '<span class="screen-reader-text">"', '"</span>', false )
-					// 		),
-					// 		'<span class="edit-link">',
-					// 		'</span>'
-					// 	);
-					// endif; 
-
 					the_post_navigation();
-
 					?>
 				</footer><!-- .entry-meta -->
 			</article>
