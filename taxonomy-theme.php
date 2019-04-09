@@ -63,28 +63,26 @@ while ( $the_query->have_posts() ) {
 	<main id="main" class="site-main" role="main">
 
 		<section role="theme-embed-page">
-			
-		
+			<?php
+			$tax_slug = get_query_var( 'theme' );
+			$svgID=theia_wpthchild_svg_id($tax_slug);
+			?>
 			<article  id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-				<header>
-					<?php //theia_wpthchild_show_categories($themes, $themeSlugRewrite);?>
-					<?php //theme_aeris_show_categories($categories);?>
-					<?php //theia_wpthchild_show_categories($typeProduits, $typeProduitsSlugRewrite);?>
-					
-				</header>
 				<section>
-					<!-- <svg>
-						<use xlink:href="agriculture">
-					</svg> -->
-					<?php if($post->post_content != "") : ?>			
-					<div class="post-excerpt">	    		            			            	                                                                                            
-						<?php the_excerpt(); ?>
+					<div>
+						<svg>
+							<use xlink:href="#<?php echo $svgID;?>">
+						</svg>			
+					
+						<?php if($post->post_content != "") : ?>			
+						<div class="post-excerpt">	    		            			            	                                                                                            
+							<?php the_excerpt();?>
+							<p><a href="<?php the_permalink(); ?>" title="<?php echo __( 'More information about ', 'theia_wpthchild_aeris-wordpress-theme' )?><?php the_title();?>"><?php echo __( 'More information about ', 'theia_wpthchild_aeris-wordpress-theme' )?><?php the_title();?></a></p>
+						</div>
+						
+						<?php endif; ?>
 					</div>
-					<p><a href="<?php the_permalink(); ?>" title="<?php the_title();?>">Lire la suite</a></p>
-					<?php endif; ?>
 				</section>
-				<!-- <footer>
-				</footer> -->
 			</article>
 			<?php
 			} // End of the loop.

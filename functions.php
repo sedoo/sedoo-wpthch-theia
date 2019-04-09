@@ -6,7 +6,7 @@ function theia_wpthchild_enqueue_styles() {
 
 
 }
-
+add_theme_support( 'post-thumbnails' );
 /* 
 * LOAD TEXT DOMAIN FOR TRANSLATION
 */
@@ -71,11 +71,7 @@ function theia_wpthchild_get_associate_content($parameters, $args) {
     
     // The Loop
     if ( $the_query->have_posts() ) {
-        /**
-         * SI trop galère, switch case sur la lang et le txt SEC / news / products
-         */
 
-        // echo '<section><h3>'.$parameters['sectionTitle'].'</h3>';
         echo '<section><h3>'.__( $parameters['sectionTitle'], 'theia_wpthchild_aeris-wordpress-theme' ).'</h3>';
         echo '<ul>';
         while ( $the_query->have_posts() ) {
@@ -585,3 +581,30 @@ function theia_wpthchild_filter_by_custom_taxonomies( $post_type, $which ) {
     }
 }
 add_action( 'restrict_manage_posts', 'theia_wpthchild_filter_by_custom_taxonomies' , 10, 2);
+
+// Renvoie le slug du term de la taxo "theme" modifié pour l'appel du bon id sur le SVG
+function theia_wpthchild_svg_id($slug) {
+    $svgID=array(
+        "agriculture" => "agriculture",
+        "agriculture-en" => "agriculture",
+        "biodiversite" => "biodiversite",
+        "biodiversity" => "biodiversite",
+        "algorithmes" => "algorithmes",
+        "algosprocessings" => "algorithmes",
+        "eau" => "eau",
+        "water" => "eau",
+        "foret" => "foret",
+        "forest" => "foret",
+        "littoral" => "littoral",
+        "coastline" => "littoral",
+        "neigeglace" => "neigeglace",
+        "snowice" => "neigeglace",
+        "risques" => "risques",
+        "naturalrisks" => "risques",
+        "sante" => "sante",
+        "health" => "sante",
+        "urbain" => "urbain",
+        "urban" => "urbain",
+    );
+    return $svgID[$slug];
+}
