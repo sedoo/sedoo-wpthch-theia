@@ -1,14 +1,14 @@
 /*
 Theme Name:   Theia child
 Theme URI:    https://github.com/aeris-data/theia-wpth-child
-
 Description:  Theia, Aeris Child Theme
 Author:       Isabelle Biagiotti 4Theia // Pierre Vert Aeris
 Template:     aeris-wordpress-theme
-Version:      0.2.0
+Version:      0.3.0
 License: Creative Commons, CC-by-nc-sa
 License URI: https://creativecommons.org/licenses/by-nc-sa/4.0/
 Text Domain: theia_wpthchild_aeris-wordpress-theme
+Domain Path: /languages
 Tags: 
 GitHub Theme URI: aeris-data/theia-wpth-child
 GitHub Branch: master
@@ -87,6 +87,27 @@ body > svg {
 [class*="single-art"] [id="content-area"].sidebar aside { 
     flex:0 1 290px;
     order:2;
+}
+
+body .site-branding h1 a, body .site-branding h1 span {
+    color: #333;
+    background: rgba(255,255,255,0.8);
+}
+
+[role="theme-embed-page"] .post-excerpt {
+    font-family: 'Open Sans',Arial,sans-serif;
+    font-size:1.3rem;
+    /* font-style: italic; */
+}
+
+[role="theme-embed-page"] svg {
+    display: block;
+    width: 70px;
+    height: 70px;
+}
+
+[id="agriculture"] {
+    fill:#e86d13;
 }
 
 /*****

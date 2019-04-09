@@ -32,16 +32,7 @@ while ( have_posts() ) : the_post();
 				<?php theia_wpthchild_show_categories($typeProduits, $typeProduitsSlugRewrite);?>
 				</header>			
 			
-			<?php			
-			if (get_the_post_thumbnail()) {
-		    ?>
-		        <figure>
-		        <?php the_post_thumbnail( 'single-article' ); ?>
-		        </figure>
-  
-			<?php 
-			}
-			?>
+			
 				<section class="wrapper-content">
 					<?php 
 					the_content();

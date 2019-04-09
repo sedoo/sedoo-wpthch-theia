@@ -1,0 +1,59 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Theia child\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-04-09 09:13+0000\n"
+"PO-Revision-Date: 2019-04-09 09:13+0000\n"
+"Last-Translator: wwwadm <pvert@mel2.obs-mip.fr>\n"
+"Language-Team: Français\n"
+"Language: fr_FR\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.2.2; wp-5.1.1"
+
+#. Name of the template
+msgid "page CES"
+msgstr ""
+
+#. Name of the template
+msgid "page produits"
+msgstr ""
+
+#. Name of the template
+msgid "page Thématiques"
+msgstr ""
+
+#: template-thema.php:31
+msgid "News"
+msgstr "Actualités"
+
+#: template-thema.php:32
+msgid "Scientific Expertise Centres"
+msgstr "Centres d'Expertise Scientifique"
+
+#: template-thema.php:33
+msgid "Products"
+msgstr "Produits"
+
+#: template-thema.php:34
+msgid "Regional Animation Networks"
+msgstr "Animation régionale Theia "
+
+#. Name of the theme
+msgid "Theia child"
+msgstr ""
+
+#. Description of the theme
+msgid "Theia, Aeris Child Theme"
+msgstr ""
+
+#. URI of the theme
+msgid "https://github.com/aeris-data/theia-wpth-child"
+msgstr ""
+
+#. Author of the theme
+msgid "Isabelle Biagiotti 4Theia // Pierre Vert Aeris"
+msgstr ""

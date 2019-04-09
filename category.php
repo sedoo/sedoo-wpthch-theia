@@ -21,10 +21,12 @@ $term = get_queried_object();
             /**
              * WP_Query pour lister les posts ET les pages
              */
+			$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
             $args = array(
                 'post_type' => array('post', 'page'),
                 'post_status'           => array( 'publish' ),
-                'posts_per_page'        => 10,            // -1 pour liste sans limite
+				'posts_per_page'        => 10,            // -1 pour liste sans limite
+				'paged'					=> $paged,
                 // 'post__not_in'          => array($postID),    //exclu le post courant
                 'tax_query' => array(
                     array(

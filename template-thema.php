@@ -16,7 +16,7 @@ while ( have_posts() ) : the_post();
        array_push($terms, $term_slug->slug);
    }
 
-   get_template_part( 'template-parts/header-content', 'theia-page' );
+   get_template_part( 'template-parts/header-content', 'page' );
 ?>
 
 	<div id="content-area" class="wrapper sidebar toc-left">
@@ -26,9 +26,14 @@ while ( have_posts() ) : the_post();
 		
       <aside>
         <!-- NEWS --> 
+        
         <?php
+         $langNews=__( 'News', 'theia_wpthchild_aeris-wordpress-theme' );
+         $langSec=__( 'Scientific Expertise Centres', 'theia_wpthchild_aeris-wordpress-theme' );
+         $langProducts=__( 'Products', 'theia_wpthchild_aeris-wordpress-theme' );
+         $langART=__( 'Regional Animation Networks', 'theia_wpthchild_aeris-wordpress-theme' );
             $parameters = array(
-               'sectionTitle'    => "News",
+               'sectionTitle'    => 'News',
             );            
             $args = array(
               'post_type'             => 'post',
@@ -52,9 +57,10 @@ while ( have_posts() ) : the_post();
           
             ?>
          <!-- SEC --> 
+
             <?php
             $parameters = array(
-               'sectionTitle'    => "SEC",
+               'sectionTitle'    => 'Scientific Expertise Centres',
             );
             
             $args = array(
@@ -83,7 +89,7 @@ while ( have_posts() ) : the_post();
             <?php
             // faire double taxo query
             $parameters = array(
-                'sectionTitle'    => "Products",
+                'sectionTitle'    => 'Products',
              );
              
              $args = array(
