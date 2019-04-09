@@ -24,7 +24,7 @@ while ( have_posts() ) : the_post();
          array_push($cesTerms, $cesTerm_slug->slug);
       }
     }
-   get_template_part( 'template-parts/header-content', 'theia-page' );
+   get_template_part( 'template-parts/header-content', 'page' );
 ?>
 
 	<div id="content-area" class="wrapper sidebar toc-left">
@@ -62,13 +62,13 @@ while ( have_posts() ) : the_post();
          <!-- SEC --> 
             <?php
             $parameters = array(
-               'sectionTitle'    => "SEC",
+               'sectionTitle'    => "Scientific Expertise Centres",
             );
             
             $args = array(
               'post_type'             => 'ces',
               'post_status'           => array( 'publish' ),
-              'posts_per_page'        => '-1',            // -1 pour liste sans limite
+              'posts_per_page'        => '-1',                    // -1 pour liste sans limite
               'post__not_in'          => array(get_the_id()),    //exclu le post courant
               'orderby'               => 'title',
               'order'                 => 'ASC',
@@ -92,6 +92,15 @@ while ( have_posts() ) : the_post();
             $parameters = array(
                 'sectionTitle'    => "Products",
              );
+            
+             $typeproducttags = get_the_terms( get_the_id(), 'typeproduct');  // recup des terms de la taxonomie $parameters['category']
+             $typeproductTerms=array();
+             if (is_array($typeproducttags) || is_object($typeproducttags))
+             {
+               foreach ($typeproducttags as $typeproductTerm_slug) {        
+                  array_push($typeproductTerms, $typeproductTerm_slug->slug);
+               }
+             }
              
              $args = array(
                'post_type'             => 'products',
@@ -111,8 +120,7 @@ while ( have_posts() ) : the_post();
                                        array(
                                           'taxonomy' => 'typeproduct',
                                           'field'    => 'slug',
-                                          'terms'    => array('donnees-satellitaires-fr',),
-                                          'operator' => 'NOT IN',
+                                          'terms'    => $typeproductTerms,
                                        ),
                                     ),
             );

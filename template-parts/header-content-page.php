@@ -1,12 +1,7 @@
 <?php
 /**
- * Template part for displaying a Banner / title & breadcrumbs on specifics template page
- * template-thema.php
- * template-produits.php
- * template-ces.php
+ * Template part for displaying a title & breadcrumbs on page
  *
- * Modification du fichier header-content-page.php du thème parent Aeris
- * 
  * @package aeris
  */
 
@@ -35,3 +30,5 @@
         <h1 class="site-title" rel="bookmark" style="<?php ?>"><span><?php the_title(); ?></span></h1>
     </div>
 </div><!-- .site-branding -->
+
+

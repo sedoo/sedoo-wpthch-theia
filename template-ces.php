@@ -10,7 +10,7 @@ get_header();
 
 while ( have_posts() ) : the_post();
 
-   get_template_part( 'template-parts/header-content', 'theia-page' );
+   get_template_part( 'template-parts/header-content', 'page' );
 ?>
 
 	<div id="content-area" class="wrapper sidebar toc-left">
@@ -22,7 +22,7 @@ while ( have_posts() ) : the_post();
          <!-- NEWS -->
          <?php
             $parameters = array(
-               'sectionTitle'    => "ART",
+               'sectionTitle'    => "Regional Animation Networks",
             );            
             $args = array(
               'post_type'             => 'post',
@@ -45,34 +45,6 @@ while ( have_posts() ) : the_post();
            theia_wpthchild_get_associate_content($parameters, $args);
          
             ?>
-
-         <!-- Themes --> 
-         <?php
-         // $sectionTitle="Themes";
-         // $posttype="page";
-         // $limit=7;
-         // $orderby="title";
-         // $order="ASC";
-         // $category="category";
-         // $template="template-thema.php";
-         // theia_wpthchild_get_associate_content($sectionTitle, $postID, $posttype, $limit, $orderby, $order, $category, $template, $exclude);
-         
-         
-         ?>
-         <!-- Products --> 
-         <?php
-         // $sectionTitle="Products";
-         // $posttype ="page";
-         // $limit =7; // Limite à définir
-         // $orderby="title";
-         // $order="ASC";
-         // $category ="category";
-         // $template ="template-produits.php";
-         // $taxQueryType="exclude";
-         // $exclude=array('donnees-satellitaires');
-         
-         // theia_wpthchild_get_associate_content($sectionTitle, $postID, $posttype, $limit, $orderby, $order, $category, $template, $exclude);
-         ?>
       </aside>
 
 
