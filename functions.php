@@ -7,6 +7,16 @@ function theia_wpthchild_enqueue_styles() {
 
 }
 
+/* 
+* LOAD TEXT DOMAIN FOR TRANSLATION
+*/
+
+function theia_wpthchild_load_theme_textdomain() {
+    load_child_theme_textdomain( 'theia_wpthchild_aeris-wordpress-theme', get_stylesheet_directory() . '/languages' );
+    }
+    add_action( 'after_setup_theme', 'theia_wpthchild_load_theme_textdomain' );
+
+
 /* Autoriser l'upload de format zip dans les médias */
 // GESTION DES FORMATS DE FICHIERS DE LA MÉDIATHÈQUE
  
@@ -61,7 +71,12 @@ function theia_wpthchild_get_associate_content($parameters, $args) {
     
     // The Loop
     if ( $the_query->have_posts() ) {
-        echo '<section><h3>'.esc_html__( $parameters['sectionTitle'], 'aeris-wordpress-theme' ).'</h3>';
+        /**
+         * SI trop galère, switch case sur la lang et le txt SEC / news / products
+         */
+
+        // echo '<section><h3>'.$parameters['sectionTitle'].'</h3>';
+        echo '<section><h3>'.__( $parameters['sectionTitle'], 'theia_wpthchild_aeris-wordpress-theme' ).'</h3>';
         echo '<ul>';
         while ( $the_query->have_posts() ) {
             $the_query->the_post();
@@ -297,9 +312,12 @@ function theia_wpthchild_show_categories($categories, $slugRewrite) {
     <?php
         foreach( $categories as $categorie ) { 
             if ($categorie->slug !== "non-classe") {
-            echo '<a href="'.site_url().'/'.$slugRewrite.'/'.$categorie->slug.'" class="'.$categorie->slug.'">';
-  
-                  echo $categorie->name; 
+                if ( "en" == pll_current_language()) {
+                    echo '<a href="'.site_url().'/'.pll_current_language().'/'.$slugRewrite.'/'.$categorie->slug.'" class="'.$categorie->slug.'">';
+                } else {
+                    echo '<a href="'.site_url().'/'.$slugRewrite.'/'.$categorie->slug.'" class="'.$categorie->slug.'">';
+                }
+                echo $categorie->name; 
                 ?>                    
             </a>
     <?php 
@@ -364,7 +382,7 @@ if ( ! function_exists('theia_wpthchild_custom_post') ) {
             'label'                 => __( 'CES', 'aeris-wordpress-theme' ),
             'description'           => __( 'Post Type Description', 'aeris-wordpress-theme' ),
             'labels'                => $labelsCES,
-            'supports'              => array( 'title', 'editor', 'thumbnail', 'revisions' ),
+            'supports'              => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions' ),
             'taxonomies'            => array( 'category', 'theme', 'cesTag' ),
             'hierarchical'          => false,
             'public'                => true,
@@ -380,6 +398,7 @@ if ( ! function_exists('theia_wpthchild_custom_post') ) {
             'publicly_queryable'    => true,
             'rewrite'               => $rewriteCES,
             'capability_type'       => 'page',
+            'show_in_rest'          => true,
         );
         register_post_type( 'ces', $argsCES );
 
@@ -426,7 +445,7 @@ if ( ! function_exists('theia_wpthchild_custom_post') ) {
             'label'                 => __( 'Product', 'aeris-wordpress-theme' ),
             'description'           => __( 'Post Type Description', 'aeris-wordpress-theme' ),
             'labels'                => $labelsProducts,
-            'supports'              => array( 'title', 'editor', 'thumbnail', 'revisions' ),
+            'supports'              => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions' ),
             'taxonomies'            => array( 'category', 'theme', 'typeproduct', 'cesTag' ),
             'hierarchical'          => false,
             'public'                => true,
@@ -442,6 +461,7 @@ if ( ! function_exists('theia_wpthchild_custom_post') ) {
             'publicly_queryable'    => true,
             'rewrite'               => $rewriteProducts,
             'capability_type'       => 'page',
+            'show_in_rest'          => true,
         );
         register_post_type( 'products', $argsProducts );
 
@@ -488,7 +508,7 @@ if ( ! function_exists('theia_wpthchild_custom_post') ) {
             'label'                 => __( 'ART', 'aeris-wordpress-theme' ),
             'description'           => __( 'Post Type Description', 'aeris-wordpress-theme' ),
             'labels'                => $labelsART,
-            'supports'              => array( 'title', 'editor', 'thumbnail', 'revisions' ),
+            'supports'              => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions' ),
             'taxonomies'            => array( 'category', 'theme', 'artTag' ),
             'hierarchical'          => false,
             'public'                => true,
@@ -504,6 +524,7 @@ if ( ! function_exists('theia_wpthchild_custom_post') ) {
             'publicly_queryable'    => true,
             'rewrite'               => $rewriteART,
             'capability_type'       => 'page',
+            'show_in_rest'          => true,
         );
         register_post_type( 'art', $argsART );
 

@@ -11,7 +11,7 @@ get_header();
 
 while ( have_posts() ) : the_post();
 
-   get_template_part( 'template-parts/header-content', 'theia-page' );
+   get_template_part( 'template-parts/header-content', 'page' );
 ?>
 
 	<div id="content-area" class="wrapper sidebar toc-left">
