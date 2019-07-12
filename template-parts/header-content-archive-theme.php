@@ -8,7 +8,7 @@
 ?>
 <div id="breadcrumbs">
 	<div class="wrapper">
-		<h1 rel="bookmark">
+		<h1 rel="bookmark">YO
 			<?php the_archive_title(); ?>
 		</h1>
 		<?php 
