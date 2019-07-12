@@ -4,6 +4,7 @@
  *
  */
 $categories = get_the_terms( $post->ID, 'category');
+$categoriesSlugRewrite = "category";
 $themes = get_the_terms( $post->ID, 'theme');
 $themeSlugRewrite = "theme";
 $typeProduits = get_the_terms( $post->ID, 'typeproduct');
