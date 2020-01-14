@@ -23,7 +23,8 @@ $term = get_queried_object();
              */
 			$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
             $args = array(
-                'post_type' => array('post', 'page'),
+				// 'post_type' => array('post', 'page'),
+				'post_type' 			=> 'any',
                 'post_status'           => array( 'publish' ),
 				'posts_per_page'        => 10,            // -1 pour liste sans limite
 				'paged'					=> $paged,
