@@ -139,212 +139,90 @@ line {
     fill: #e86d13;
 }
 
-/* [id="agriculture"] {
-    fill:#e86d13;
-} */
+/***************************************    OVERRIDE ************************/
 
-/*****
-* main color orange theia: #e86D13. BACKGROUND #FFFFF
-*/
+[id="masterhead"] {
+    background: #FFF;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 15;
+}
 
-/*
-h1,
+#page {
+    margin-top:85px;
+}
+
+
+.site-branding h1 a, .site-branding h1 span, #cookie-notice .button:hover {
+    color: #333;
+    background: rgba(255,255,255,0.9);
+}
+[role="theme-embed-page"] .post-excerpt {
+    font-family: 'Open Sans',Arial,sans-serif;
+    font-size: 1.5rem;
+    flex: 0 1 1000px;
+}
+
+[id="page"] > footer, [id="page"] > footer a, [id="page"] > footer h2 {
+    font-size: .9rem;
+}
 h2,
-h3,
-blockquote,
-.main-navigation ul ul li:first-child,
-.main-navigation .nav-menu > .current_page_item > a,
-.main-navigation .nav-menu > .current-menu-item > a,
-.main-navigation .nav-menu > .current_page_ancestor > a,
-.main-navigation .nav-menu > .current-menu-ancestor > a {
-	border-color: #e86D13; 
-}
-
-a,
-a:visited,
-.main-navigation .nav-menu > li > a:hover,
-.main-navigation .nav-menu > li > a:focus,
-.main-navigation .nav-menu > .current_page_item > a,
-.main-navigation .nav-menu > .current-menu-item > a,
-.main-navigation .nav-menu > .current_page_ancestor > a,
-.main-navigation .nav-menu > .current-menu-ancestor > a
- {
-	color: #e86D13;
-}
-
-
-.fond-orange h3 {color: #FFFFFF;}
-.fond-orange a {color: #FFFFFF;
-}
-
-.fond-orange {
-	background: #e86D13;
-	border-radius: 10px;
-	color: #FFFFFF;
-	padding : 5px;
-}
-
-*/
-
-/** styles pour les articles **/
-
-/*
-
-.biblio {
-	color : #e86D13;
-	padding : 5px;
-	border-left : 1px solid #E86D13;
-}
-
-.auteur {
-	color :#333132;}
-	
-	
-	
-.encadre  figcaption {
-	text-align:justify;}
-
-	
-	
-
-
-aside .widget-title {
-	background: #333132;
-}
-
-a:hover,
-a:focus,
-a:active {
-	color: #e86D13;
-}
-
-.site-branding h1 {
-	background-color: rgba(232, 109, 19, 0.5);
-}
-
-body .tag a {
-    display: block;
-    margin-right: 5px;
-    margin-bottom: 5px;
-    padding: 3px 10px;
-    float: left;
-    border-radius: 3px;
-    background:#e86D13;
-    font-size: .8em;
-    color: #FFF;
-    text-decoration: none;
-}
-
-body {
-	background:#FFFFFF;
-}
-
-[id="breadcrumbs"] {
-    background: #333132;
-    border-bottom: 1px solid #e86d13;
-   }
-
-[id="breadcrumbs"] h1 {color: #ffffff;}   
-
-[id="breadcrumbs"] > div::before {
-    border-color: #333132 transparent transparent;
-}
-
-[id="breadcrumbs"] > div::after {
-    border-color: #333132 transparent transparent;
-}
-
-.sidebar:not(.archives)[id="content-area"] main,
-.default[id="content-area"] main,
-aside > section,
-.home main > article,
-[role="listNews"] article,
-[role="homepage-mdleft-widget-area"] > section,
-.widget[class*="feed"] ul,
-.widget.widget_media_image figure {
-	background: #FFFFFF none repeat scroll 0 0;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-}
-
-.sidebar[id="content-area"] main,
-.default[id="content-area"] main  {
-    margin-bottom: 20px;
-    margin-top: 20px;
-}
-
-.default[id="content-area"] main  {
-    padding-bottom: 40px;
-}
-
-article > figure,
-[role="listNews"] article > header > figure
- {
-	margin:0;
-}
-
-article > footer {
-	margin-top: 20px;
-	padding: 20px; 
-	border-top: 1px solid #E86D13;
-	background: #333132;
-	
-}
-
-
-.wrapper-content,
-.textwidget {
-    padding: 20px 50px;
-}
-
-aside > section {
-    padding: 0 0 20px;
-}
-
-aside > section > *:not(h2),
-.widget > ul {
-    padding-left:20px;
-    padding-right: 20px;
-}
-
-section.widget_calendar {
-	padding-bottom: 0;
-}
-
-aside > section .calendar_wrap,
-[role="listNews"] article > header > :not(figure),
-.post-excerpt,
-[role="homepage-mdleft-widget-area"] > section > h2{
-	padding:20px;
-}
-
-.widget[class*="feed"] ul {
-	padding:10px;
-}
-
-[role="listNews"] article {
+h2.widget-title,
+.sidebar main ~ aside section h3{
 	border:none;
-	padding: 0;
+}
+h2::after,
+h2.widget-title::after,
+.sidebar main ~ aside section h3::after{
+	content:"";
+	display:block;
+	width:50px;
+	height:3px;
+	margin-top:5px;
+	background:#666;
 }
 
-[role="listNews"] article[role="short-embed-post"]:not(:last-child) {
-    border:none;
+.sidebar main ~ aside section h3::after{
+	height:2px;
 }
 
-[role="listNews"] article[role="short-embed-post"] header > figure ~ * {
-    padding: 0 0 0 10px;
-}
-[role="listNews"] article[role="short-embed-post"] {
-    margin-bottom:20px;
-    padding: 10px;
+aside .widget-title::after,
+.tag-paroles-de-theia h2::after {
+	display:none;
 }
 
-[role="listNews"] article > header > h3 {
-	margin-bottom:0; 
+h3 {
+	border:none;
+	margin-top: 30px;
 }
 
-[role="listNews"] article.format-quote > header > blockquote {
-    margin:0;
-    box-shadow: none;
-    color: white;
-    font-size: 1.2em;
+h2,h3 {
+	line-height:1.4;
+}
+
+.tag-paroles-de-theia h2 {
+	font-size: 1.2rem;
+}
+
+
+
+/**********  POST LIST BLOCKS ****/
+
+.post-wrapper {
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+
+}
+
+.post-wrapper .post {
+    width: auto;
+    flex: 1 0 330px;
+    padding: 20px;
+    position: relative;
+    background:#fff;
+    border-top: 4px solid var(--main-color);
 }
