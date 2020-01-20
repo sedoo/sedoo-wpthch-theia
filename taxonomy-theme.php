@@ -61,7 +61,11 @@ while ( $the_query->have_posts() ) {
 
 <div id="content-area" class="wrapper archives">
 	<main id="main" class="site-main" role="main">
-
+	<?php
+			if (get_the_archive_description()) {
+				the_archive_description( '<div class="archive-description">', '</div>' );
+			}
+		?>
 		<section role="theme-embed-page">
 			<?php
 			$tax_slug = get_query_var( 'theme' );
