@@ -34,19 +34,19 @@ if (has_post_thumbnail() ) {
         <?php
         if (!is_front_page()) {
         ?>
-        <p>
+        
         <?php     $categories = get_the_category();
             if ( ! empty( $categories ) ) {
-            echo esc_html( $categories[0]->name );   
-        }; ?>
-        </p>
+            //echo "<p>".esc_html( $categories[0]->name )."</p>";   
+            }; ?>
+        
         <?php
         }
         ?>
 	</header><!-- .entry-header -->
     <div class="group-content">
         <div class="entry-content">
-            <h2><?php the_title(); ?></h2>
+            <h3><?php the_title(); ?></h3>
             <?php the_excerpt(); ?>
         </div><!-- .entry-content -->
         <footer class="entry-footer">
