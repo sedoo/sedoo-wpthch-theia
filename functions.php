@@ -630,3 +630,8 @@ function theia_wpthchild_archive_title( $title ) {
 }
  
 add_filter( 'get_the_archive_title', 'theia_wpthchild_archive_title' );
+
+
+require 'inc/theia-acf-config.php';
+require 'inc/theia-acf-block.php';
+require 'inc/theia-displays.php';

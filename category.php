@@ -16,7 +16,11 @@ $term = get_queried_object();
 
 	<div id="content-area" class="wrapper archives">
 		<main id="main" class="site-main" role="main">
-
+		<?php
+			if (get_the_archive_description()) {
+				the_archive_description( '<div class="archive-description">', '</div>' );
+			}
+		?>
             <?php
             /**
              * WP_Query pour lister les posts ET les pages
