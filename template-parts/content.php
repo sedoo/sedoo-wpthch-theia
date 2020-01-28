@@ -44,7 +44,9 @@ $typeProduitsSlugRewrite = "typeofproduct";
 			<?php the_excerpt(); ?>
         </div>
         <?php endif; ?>
-        <?php theme_aeris_meta(); ?>
+        <p class="post-meta">
+        <?php the_date('d.m.Y'); ?>
+        </p>
     </section>
     <!-- <footer>
 	</footer> -->
