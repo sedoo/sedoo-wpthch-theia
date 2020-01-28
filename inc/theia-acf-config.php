@@ -1,6 +1,7 @@
 <?php
 if( function_exists('acf_add_local_field_group') ):
 
+// Taxonomies options
 acf_add_local_field_group(array(
 	'key' => 'group_5dbaa7f4d6dac',
 	'title' => 'Taxonomies options',
@@ -74,6 +75,7 @@ acf_add_local_field_group(array(
 	'description' => '',
 ));
 
+//Block : Post list with layout
 acf_add_local_field_group(array(
 	'key' => 'group_5dd2c81d8ff6f',
 	'title' => 'Block : Post list with layout',
@@ -244,7 +246,7 @@ acf_add_local_field_group(array(
 	'description' => '',
 ));
 
-
+//Meta homepage
 acf_add_local_field_group(array(
 	'key' => 'group_5ddee2d993490',
 	'title' => 'Meta homepage',
@@ -318,6 +320,7 @@ acf_add_local_field_group(array(
 	'description' => '',
 ));
 
+// Meta poles
 acf_add_local_field_group(array(
 	'key' => 'group_5ddedea8135a9',
 	'title' => 'Meta poles',
@@ -387,6 +390,172 @@ acf_add_local_field_group(array(
 				'param' => 'page_template',
 				'operator' => '==',
 				'value' => 'template-pole.php',
+			),
+		),
+	),
+	'menu_order' => 0,
+	'position' => 'normal',
+	'style' => 'default',
+	'label_placement' => 'top',
+	'instruction_placement' => 'label',
+	'hide_on_screen' => '',
+	'active' => true,
+	'description' => '',
+));
+
+//Custom block Related Content
+acf_add_local_field_group(array(
+	'key' => 'group_5d80ab6e372f7',
+	'title' => 'Custom block Related Content',
+	'fields' => array(
+		array(
+			'key' => 'field_5d80ab6e4602c',
+			'label' => 'Titre de la zone',
+			'name' => 'relatedContentTitle',
+			'type' => 'text',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+			'maxlength' => '',
+		),
+		array(
+			'key' => 'field_5d80ab6e46017',
+			'label' => 'Type de contenu',
+			'name' => 'relatedContentTypeOfContent',
+			'type' => 'select',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'choices' => array(
+				'ces' => 'CES',
+				'products' => 'Products',
+				'art'	=>	'ART',
+			),
+			'default_value' => array(
+			),
+			'allow_null' => 0,
+			'multiple' => 0,
+			'ui' => 0,
+			'return_format' => 'value',
+			'ajax' => 0,
+			'placeholder' => '',
+		),
+		array(
+			'key' => 'field_5d80ab6e46031',
+			'label' => 'Taxonomie',
+			'name' => 'relatedContentTaxonomies',
+			'type' => 'select',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'choices' => array(
+				'event-categories' => 'Catégories',
+				'theme' => 'Thématiques',
+				'cesTag' => 'CES Tags',
+				'typeproduct' => 'Types of products',
+				'artTag'	=> 'ART Tags',
+			),
+			'default_value' => array(
+			),
+			'allow_null' => 0,
+			'multiple' => 0,
+			'ui' => 0,
+			'return_format' => 'value',
+			'ajax' => 0,
+			'placeholder' => '',
+		),
+		array(
+			'key' => 'field_5d80ab6e46036',
+			'label' => 'Nombre de posts',
+			'name' => 'post_number',
+			'type' => 'range',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'min' => '',
+			'max' => 12,
+			'step' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_5d80ab6e4603c',
+			'label' => 'Offset',
+			'name' => 'post_offset',
+			'type' => 'number',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => 0,
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+			'min' => '',
+			'max' => '',
+			'step' => '',
+		),
+		array(
+			'key' => 'field_5dd2cdab2dce9',
+			'label' => 'Layout',
+			'name' => 'post_list_layout',
+			'type' => 'radio',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'choices' => array(
+				'list' => 'List',
+				'grid' => 'Grid',
+				'grid-noimage' => 'Grid without image',
+			),
+			'allow_null' => 0,
+			'other_choice' => 0,
+			'default_value' => 'list',
+			'layout' => 'horizontal',
+			'return_format' => 'value',
+			'save_other_choice' => 0,
+		),
+	),
+	'location' => array(
+		array(
+			array(
+				'param' => 'block',
+				'operator' => '==',
+				'value' => 'acf/theia-relatedblock',
 			),
 		),
 	),
