@@ -218,11 +218,24 @@ h2,h3 {
 
 }
 
-.post-wrapper .post {
+.post-wrapper .post,
+.post-wrapper [class*="post"] {
     width: auto;
     flex: 1 0 330px;
     padding: 20px;
     position: relative;
     background:#fff;
     border-top: 4px solid var(--main-color);
+}
+
+.content-list,
+.post-wrapper {
+    margin-bottom:20px;
+}
+
+.content-list .ces .date {
+	display:none;
+}
+.post-wrapper .ces .date {
+	display:none;
 }
