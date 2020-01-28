@@ -30,7 +30,7 @@
     ?>
     <div class="group-content">
         <div class="entry-content">
-            <h2><?php the_title(); ?></h2>
+            <h3><?php the_title(); ?></h3>
             <?php the_excerpt(); ?>
         </div><!-- .entry-content -->
         <footer class="entry-footer">
