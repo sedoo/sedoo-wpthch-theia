@@ -136,7 +136,7 @@ function theia_get_associate_content($parameters, $args, $type_of_content, $layo
     $the_query = new WP_Query( $args );
 
     // Check layout
-    switch ($parameters['layout']) {
+    switch ($layout) {
         case "grid" :
             $listingClass = "post-wrapper";
             break;
