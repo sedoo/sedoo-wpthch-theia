@@ -12,6 +12,7 @@ get_header();
 get_template_part( 'template-parts/header-content', 'archive' );
 // recup le slug du term courant
 $term = get_queried_object();
+// var_dump($term);
 ?>
 
 	<div id="content-area" class="wrapper archives">
@@ -20,10 +21,26 @@ $term = get_queried_object();
 			if (get_the_archive_description()) {
 				the_archive_description( '<div class="archive-description">', '</div>' );
 			}
+
+			// get Sub categories for Actualités & news
+			$args = array('parent' => $term->term_id);
+			$categories = get_categories( $args );
+			if ($categories) {
+				?>
+				<div class="tag">
+				<?php
+				foreach($categories as $category) { 
+					echo '<a href="' . get_category_link( $category->term_id ) . '" title="'. $category->description . '" ' . '>' . $category->name.' ('. $category->count . ')</a>';
+				}
+				?>
+				</div>
+				<?php
+			}
 		?>
+
             <?php
             /**
-             * WP_Query pour lister les posts ET les pages
+             * WP_Query pour lister tous les types de posts
              */
 			$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
             $args = array(
