@@ -80,11 +80,7 @@ function theia_wpthchild_postlist_by_term($title, $term, $layout, $limit, $offse
  * 
  */
 function theia_get_associate_content_arguments($title, $type_of_content, $taxonomy, $post_number, $post_offset, $layout) {
-<<<<<<< HEAD
-     
-=======
     global $post; 
->>>>>>> release/0.6.1
     $categories_field = get_the_terms( get_the_id(), $taxonomy);  // recup des terms de la taxonomie $parameters['category']
     $terms_fields=array();
     if (is_array($categories_field) || is_object($categories_field))
