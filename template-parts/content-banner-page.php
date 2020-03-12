@@ -20,11 +20,7 @@ $cestagsSlugRewrite = "ces";
 <article id="post-<?php the_ID(); ?>">
     <div class="wrapper-content">
 	<?php //theia_wpthchild_show_categories($themes, $themeSlugRewrite);?>
-<<<<<<< HEAD
-	<?php //theia_wpthchild_show_categories($cesTags, $cesTagsSlugRewrite);?>
-=======
 	<?php //theia_wpthchild_show_categories($cestags, $cestagsSlugRewrite);?>
->>>>>>> release/0.6.1
 	<?php //theia_wpthchild_show_categories($products, $productsSlugRewrite);?>
 	<?php
 		the_content();
