@@ -55,7 +55,11 @@ if (has_post_thumbnail() ) {
                 ?>
                 <p><?php the_date('M / d / Y') ?></p>
             <?php endif; ?>
+<<<<<<< HEAD
             <a href="<?php the_permalink(); ?>"><?php echo __('See more', 'sedoo-wpth-labs'); ?> →</a>
+=======
+            <a href="<?php the_permalink(); ?>"><?php echo __('Read more', 'theia_wpthchild_aeris-wordpress-theme'); ?> →</a>
+>>>>>>> release/0.6.1
         </footer><!-- .entry-footer -->
     </div>
 </article><!-- #post-->
