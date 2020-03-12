@@ -16,7 +16,7 @@ while ( have_posts() ) : the_post();
          array_push($terms, $term_slug->slug);
       }
    }
-    $cestags = get_the_terms( get_the_id(), 'cesTag');  // recup des terms de la taxonomie $parameters['category']
+    $cestags = get_the_terms( get_the_id(), 'cestag');  // recup des terms de la taxonomie $parameters['category']
     $cesTerms=array();
     if (is_array($cestags) || is_object($cestags))
     {
@@ -48,7 +48,7 @@ while ( have_posts() ) : the_post();
               'lang'                  => pll_current_language(),    // use language slug in the query
               'tax_query'             => array(
                                       array(
-                                         'taxonomy' => 'cesTag',
+                                         'taxonomy' => 'cestag',
                                          'field'    => 'slug',
                                          'terms'    => $cesTerms,
                                       ),
@@ -75,7 +75,7 @@ while ( have_posts() ) : the_post();
               'lang'                  => pll_current_language(),    // use language slug in the query
               'tax_query'             => array(
                                       array(
-                                         'taxonomy' => 'cesTag',
+                                         'taxonomy' => 'cestag',
                                          'field'    => 'slug',
                                          'terms'    => $cesTerms,
                                       ),

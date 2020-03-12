@@ -470,9 +470,15 @@ acf_add_local_field_group(array(
 			'choices' => array(
 				'event-categories' => 'Catégories',
 				'theme' => 'Thématiques',
+<<<<<<< HEAD
 				'cesTag' => 'CES Tags',
 				'typeproduct' => 'Types of products',
 				'artTag'	=> 'ART Tags',
+=======
+				'cestag' => 'CES Tags',
+				'typeproduct' => 'Types of products',
+				'arttag'	=> 'ART Tags',
+>>>>>>> release/0.6.1
 			),
 			'default_value' => array(
 			),

@@ -16,7 +16,7 @@ while ( have_posts() ) : the_post();
          array_push($terms, $term_slug->slug);
       }
    }
-    $arttags = get_the_terms( get_the_id(), 'artTag');  // recup des terms de la taxonomie $parameters['category']
+    $arttags = get_the_terms( get_the_id(), 'arttag');  // recup des terms de la taxonomie $parameters['category']
     $artTerms=array();
     if (is_array($arttags) || is_object($arttags))
     {
@@ -48,7 +48,7 @@ while ( have_posts() ) : the_post();
               'lang'                  => pll_current_language(),    // use language slug in the query
               'tax_query'             => array(
                                       array(
-                                         'taxonomy' => 'artTag',
+                                         'taxonomy' => 'arttag',
                                          'field'    => 'slug',
                                          'terms'    => $artTerms,
                                       ),
@@ -73,7 +73,7 @@ while ( have_posts() ) : the_post();
               'lang'                  => pll_current_language(),    // use language slug in the query
             //   'tax_query'             => array(
             //                           array(
-            //                              'taxonomy' => 'cesTag',
+            //                              'taxonomy' => 'cestag',
             //                              'field'    => 'slug',
             //                              'terms'    => $cesTerms,
             //                           ),
