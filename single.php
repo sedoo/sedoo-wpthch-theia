@@ -36,6 +36,10 @@ while ( have_posts() ) : the_post();
 				<section class="wrapper-content">
 					<?php 
 					the_content();
+					wp_link_pages( array(
+						'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'theme-aeris' ),
+						'after'  => '</div>',
+					) );
 					?>
 		        </section>
 

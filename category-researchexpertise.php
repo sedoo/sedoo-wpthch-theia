@@ -46,19 +46,21 @@ $term = get_queried_object();
 
 			// var_dump($paged);
             $args = array(
-				// 'post_type' => array('post'),
+				// 'post_type' => array('ces'),
 				'post_type' 			=> 'any',
                 'post_status'           => array( 'publish' ),
-				'posts_per_page'        => 9,            // -1 pour liste sans limite
-				'paged'					=> $paged,
+				'posts_per_page'        => -1,          // -1 pour liste sans limite
+                'paged'					=> $paged,
+                'lang'                  => pll_current_language(),    // use language slug in the query
+                'category_name'         => $term->slug,
                 // 'post__not_in'          => array($postID),    //exclu le post courant
-                'tax_query' => array(
-                    array(
-                        'taxonomy' => 'category',
-                        'field'    => 'slug',
-                        'terms'    => $term->slug,
-                    ),
-                ),
+                // 'tax_query' => array(
+                //     array(
+                //         'taxonomy' => 'category',
+                //         'field'    => 'slug',
+                //         'terms'    => $term->slug,
+                //     ),
+                // ),
             );
             $the_query = new WP_Query( $args );
 
@@ -96,7 +98,16 @@ $term = get_queried_object();
 			} 
 			
             ?>
-			
+			<?php
+						$big = 999999999; // need an unlikely integer
+ 
+			echo paginate_links( array(
+				'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+				'format' => '?paged=%#%',
+				'current' => max( 1, get_query_var('paged') ),
+				'total' => $the_query->max_num_pages
+			) );
+			?>
 		</main><!-- #main -->
 		<?php 
 		// get_sidebar();
