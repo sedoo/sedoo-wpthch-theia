@@ -111,21 +111,40 @@ while ( have_posts() ) : the_post();
                'order'                 => 'ASC',
                'lang'                  => pll_current_language(),    // use language slug in the query
                'tax_query'             => array(
-                                       'relation' => 'AND',
+                                       // 'relation' => 'AND',
                                        array(
-                                          'taxonomy' => 'theme',
+                                          'taxonomy' => 'cestag',
                                           'field'    => 'slug',
-                                          'terms'    => $terms,
+                                          'terms'    => $cesTerms,
                                        ),
-                                       array(
-                                          'taxonomy' => 'typeproduct',
-                                          'field'    => 'slug',
-                                          'terms'    => $typeproductTerms,
-                                       ),
+                                       // array(
+                                       //    'taxonomy' => 'typeproduct',
+                                       //    'field'    => 'slug',
+                                       //    'terms'    => $typeproductTerms,
+                                       // ),
                                     ),
             );
-    
-             theia_wpthchild_get_associate_content($parameters, $args);
+            
+            // Test if there are some results on query filtered by cestag
+            $the_query = new WP_Query( $args );    
+            // The Loop
+            if ( !$the_query->have_posts() ) {
+               $args['tax_query']=array(
+                  'relation' => 'AND',
+                  array(
+                     'taxonomy' => 'theme',
+                     'field'    => 'slug',
+                     'terms'    => $terms,
+                  ),
+                  array(
+                     'taxonomy' => 'typeproduct',
+                     'field'    => 'slug',
+                     'terms'    => $typeproductTerms,
+                  ),
+               );
+            }
+
+            theia_wpthchild_get_associate_content($parameters, $args);
             ?>
 
       </aside>
