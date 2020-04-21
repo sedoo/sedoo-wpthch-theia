@@ -2,9 +2,9 @@
 Theme Name:   Theia child
 Theme URI:    https://github.com/aeris-data/theia-wpth-child
 Description:  Theia, Aeris Child Theme
-Author:       Isabelle Biagiotti 4Theia // Pierre Vert Aeris
+Author:       Pierre VERT - SEDOO DATA CENTER
 Template:     aeris-wordpress-theme
-Version:      0.6.2
+Version:      0.7.0
 License: Creative Commons, CC-by-nc-sa
 License URI: https://creativecommons.org/licenses/by-nc-sa/4.0/
 Text Domain: theia_wpthchild_aeris-wordpress-theme
@@ -65,7 +65,7 @@ body > svg {
     [class*="single-ces"] [id="content-area"].sidebar main,
     [class*="single-art"] [id="content-area"].sidebar main { 
         flex:1 1 500px;
-        order:1;
+        /* order:1; */
     }
 }
 
@@ -76,7 +76,7 @@ body > svg {
 [class*="single-ces"] [id="content-area"].toc-left > div[id="stickyMenu-sticky-wrapper"],
 [class*="single-art"] [id="content-area"].toc-left > div[id="stickyMenu-sticky-wrapper"] { 
     flex:0 1 170px;
-    order:0;
+    /* order:0; */
 }
 
 [class*="page-template-template-thema"] [id="content-area"].sidebar aside,
@@ -86,7 +86,7 @@ body > svg {
 [class*="single-ces"] [id="content-area"].sidebar aside,
 [class*="single-art"] [id="content-area"].sidebar aside { 
     flex:0 1 290px;
-    order:2;
+    /* order:2; */
 }
 
 body .site-branding h1 a, body .site-branding h1 span {
