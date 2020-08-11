@@ -649,6 +649,6 @@ function theia_wpthchild_pagination_bar( $custom_query ) {
     }
 }
 
-require 'inc/theia-acf-config.php';
-require 'inc/theia-acf-block.php';
-require 'inc/theia-displays.php';
+//require 'inc/theia-acf-config.php';
+//require 'inc/theia-acf-block.php';
+//require 'inc/theia-displays.php';
