@@ -12,7 +12,7 @@ add_theme_support( 'post-thumbnails' );
 */
 
 function theia_wpthchild_load_theme_textdomain() {
-    load_child_theme_textdomain( 'theia_wpthchild_aeris-wordpress-theme', get_stylesheet_directory() . '/languages' );
+    load_child_theme_textdomain( 'sedoo-wpthch-theia', get_stylesheet_directory() . '/languages' );
     }
     add_action( 'after_setup_theme', 'theia_wpthchild_load_theme_textdomain' );
 
@@ -72,7 +72,7 @@ function theia_wpthchild_get_associate_content($parameters, $args) {
     // The Loop
     if ( $the_query->have_posts() ) {
 
-        echo '<section><h3>'.__( $parameters['sectionTitle'], 'theia_wpthchild_aeris-wordpress-theme' ).'</h3>';
+        echo '<section><h3>'.__( $parameters['sectionTitle'], 'sedoo-wpthch-theia' ).'</h3>';
         echo '<ul>';
         while ( $the_query->have_posts() ) {
             $the_query->the_post();
