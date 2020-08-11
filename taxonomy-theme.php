@@ -81,7 +81,7 @@ while ( $the_query->have_posts() ) {
 						<?php if($post->post_content != "") : ?>			
 						<div class="post-excerpt">	    		            			            	                                                                                            
 							<?php the_excerpt();?>
-							<p><a href="<?php the_permalink(); ?>" title="<?php echo __( 'More information about ', 'theia_wpthchild_aeris-wordpress-theme' )?><?php the_title();?>"><?php echo __( 'More information about ', 'theia_wpthchild_aeris-wordpress-theme' )?><?php the_title();?></a></p>
+							<p><a href="<?php the_permalink(); ?>" title="<?php echo __( 'More information about ', 'sedoo-wpthch-theia' )?><?php the_title();?>"><?php echo __( 'More information about ', 'sedoo-wpthch-theia' )?><?php the_title();?></a></p>
 						</div>
 						
 						<?php endif; ?>

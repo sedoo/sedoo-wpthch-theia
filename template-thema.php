@@ -28,10 +28,10 @@ while ( have_posts() ) : the_post();
         <!-- NEWS --> 
         
         <?php
-         $langNews=__( 'News', 'theia_wpthchild_aeris-wordpress-theme' );
-         $langSec=__( 'Scientific Expertise Centres', 'theia_wpthchild_aeris-wordpress-theme' );
-         $langProducts=__( 'Products', 'theia_wpthchild_aeris-wordpress-theme' );
-         $langART=__( 'Regional Animation Networks', 'theia_wpthchild_aeris-wordpress-theme' );
+         $langNews=__( 'News', 'sedoo-wpthch-theia' );
+         $langSec=__( 'Scientific Expertise Centres', 'sedoo-wpthch-theia' );
+         $langProducts=__( 'Products', 'sedoo-wpthch-theia' );
+         $langART=__( 'Regional Animation Networks', 'sedoo-wpthch-theia' );
             $parameters = array(
                'sectionTitle'    => 'News',
             );            
