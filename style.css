@@ -15,7 +15,7 @@ GitHub Branch: master
 */
 
 body > svg {
-    display: none;
+/*    display: none;  */
 }
 
 .tplTheia .wrapper-content {
