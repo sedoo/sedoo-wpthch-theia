@@ -24,7 +24,6 @@ while ( have_posts() ) : the_post();
         array_push($cesTerms, $cesTerm_slug->slug);
      }
    }
-   get_template_part( 'template-parts/header-content', 'page' );
 ?>
 
 
