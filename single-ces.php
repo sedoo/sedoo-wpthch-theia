@@ -27,70 +27,100 @@ while ( have_posts() ) : the_post();
    get_template_part( 'template-parts/header-content', 'page' );
 ?>
 
-	<div id="content-area" class="wrapper sidebar toc-left">
-      <?php
-      get_template_part( 'template-parts/content', 'tpl-page' );
-      ?>
-				
-      <aside>
-         <!-- NEWS --> 
-         <?php
-            $parameters = array(
-               'sectionTitle'    => 'News',
-            );            
-            $args = array(
-              'post_type'             => 'post',
-              'post_status'           => array( 'publish' ),
-              'posts_per_page'        => '7',            // -1 pour liste sans limite
-              'post__not_in'          => array(get_the_id()),    //exclu le post courant
-              'orderby'               => 'date',
-              'order'                 => 'DESC',
-              'lang'                  => pll_current_language(),    // use language slug in the query
-              'tax_query'             => array(
-                                      array(
-                                         'taxonomy' => 'cestag',
-                                         'field'    => 'slug',
-                                         'terms'    => $cesTerms,
-                                      ),
-                                   ),
-              // 'meta_key'              => '_wp_page_template',
-              // 'meta_value'            => '', // template-name.php
-           );            
-           theia_wpthchild_get_associate_content($parameters, $args);
-         ?>
 
-         <!-- Products --> 
-         <?php
-            $parameters = array(
-                'sectionTitle'    => "Products",
-             );
-             
-             $args = array(
-               'post_type'             => 'products',
-               'post_status'           => array( 'publish' ),
-               'posts_per_page'        => '-1',            // -1 pour liste sans limite
-               'post__not_in'          => array(get_the_id()),    //exclu le post courant
-               'orderby'               => 'title',
-               'order'                 => 'ASC',
-               'lang'                  => pll_current_language(),    // use language slug in the query
-               'tax_query'             => array(
-                                       array(
-                                          'taxonomy' => 'cestag',
-                                          'field'    => 'slug',
-                                          'terms'    => $cesTerms,
-                                       ),
-                                    ),
-               // 'meta_key'              => '_wp_page_template',
-               // 'meta_value'            => '', // template-name.php
-            );
-    
-             theia_wpthchild_get_associate_content($parameters, $args);
-            ?>
-      </aside>
+<div id="primary" class="content-area <?php echo esc_html( $categories[0]->slug );?>">
+        <?php
+            if ( has_post_thumbnail() ) {
+        ?>
+            <header id="cover">
+                <?php the_post_thumbnail('cover'); ?>
+            </header>
+        <?php 
+        }
+        ?>
+        <div class="wrapper-layout">
+            <main id="main" class="site-main">
+                <article id="post-<?php the_ID();?>">	
+                    <header>
+                        <h1><?php the_title(); ?></h1>
+                        <div>
+                            <?php 
+                            // $categories = get_the_category();
+                            //     if ( ! empty( $categories ) ) {
+                            //     echo esc_html( $categories[0]->name );   
+                            // }; 
+                            ?>
+                            <?php 
+                            if( function_exists('sedoo_show_categories') ){
+                                sedoo_show_categories($themes, $themeSlugRewrite);
+                            }
+                            ?>
+                        </div>
+                    </header>
+                     <div id="content-area" class="wrapper sidebar toc-left">
+                        <?php
+                        get_template_part( 'template-parts/content', 'tpl-page' );
+                        ?>
+                        
+                        <aside>
+                            <!-- NEWS --> 
+                           <?php
+                              $parameters = array(
+                                 'sectionTitle'    => 'News',
+                              );            
+                              $args = array(
+                              'post_type'             => 'post',
+                              'post_status'           => array( 'publish' ),
+                              'posts_per_page'        => '7',            // -1 pour liste sans limite
+                              'post__not_in'          => array(get_the_id()),    //exclu le post courant
+                              'orderby'               => 'date',
+                              'order'                 => 'DESC',
+                              'lang'                  => pll_current_language(),    // use language slug in the query
+                              'tax_query'             => array(
+                                                      array(
+                                                         'taxonomy' => 'cestag',
+                                                         'field'    => 'slug',
+                                                         'terms'    => $cesTerms,
+                                                      ),
+                                                   ),
+                              // 'meta_key'              => '_wp_page_template',
+                              // 'meta_value'            => '', // template-name.php
+                           );            
+                           theia_wpthchild_get_associate_content($parameters, $args);
+                           ?>
 
-
-	</div><!-- #content-area -->
-
+                           <!-- Products --> 
+                           <?php
+                              $parameters = array(
+                                 'sectionTitle'    => "Products",
+                              );
+                              
+                              $args = array(
+                                 'post_type'             => 'products',
+                                 'post_status'           => array( 'publish' ),
+                                 'posts_per_page'        => '-1',            // -1 pour liste sans limite
+                                 'post__not_in'          => array(get_the_id()),    //exclu le post courant
+                                 'orderby'               => 'title',
+                                 'order'                 => 'ASC',
+                                 'lang'                  => pll_current_language(),    // use language slug in the query
+                                 'tax_query'             => array(
+                                                         array(
+                                                            'taxonomy' => 'cestag',
+                                                            'field'    => 'slug',
+                                                            'terms'    => $cesTerms,
+                                                         ),
+                                                      ),
+                                 // 'meta_key'              => '_wp_page_template',
+                                 // 'meta_value'            => '', // template-name.php
+                              );
+                     
+                              theia_wpthchild_get_associate_content($parameters, $args);
+                              ?>
+                        </aside>
+                     </div><!-- #content-area -->
+                  </article>              
+            </main>
+                        </div>
 
 <?php
 endwhile; // End of the loop.
