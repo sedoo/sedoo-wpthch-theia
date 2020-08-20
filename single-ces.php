@@ -56,7 +56,7 @@ while ( have_posts() ) : the_post();
                             ?>
                         </div>
                     </header>
-                     <div id="content-area" class="wrapper sidebar toc-left">
+                     <div id="content-area" class="cestoc wrapper sidebar toc-left">
                         <?php
                         get_template_part( 'template-parts/content', 'tpl-page' );
                         ?>

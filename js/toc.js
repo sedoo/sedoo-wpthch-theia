@@ -3,7 +3,6 @@
 */
 
 jQuery(document).ready(function(){
-    
 	// création du nav Sommaire
     var i=0;
     var navSommaire = '<nav role="sommaire"></nav>';
@@ -12,7 +11,7 @@ jQuery(document).ready(function(){
     //jQuery('.navLeft .current-menu-item').after(navSommaire);
 
 	// Sur chaque :header
-	jQuery('.wrapper-layout article > .entry-content > h2, .wrapper-layout article > .entry-content > h3, .wrapper-content article > .entry-content > h2, .wrapper-content article > .entry-content > h3').each(function(){
+	jQuery('.cestoc h2, .cestoc h3, .wrapper-layout article > .entry-content > h2, .wrapper-layout article > .entry-content > h3, .wrapper-content article > .entry-content > h2, .wrapper-content article > .entry-content > h3').each(function(){
 
         // création des ancres, insertion avant les headers
         jQuery( '<a id="toc' + i + '"></a>' ).insertBefore( jQuery(this) );
