@@ -49,18 +49,6 @@ function theia_wpthchild_add_taxonomies_to_pages() {
 add_action( 'init', 'theia_wpthchild_add_taxonomies_to_pages' );
 
 /**
- * Enqueue Javascript files sur template theia
- */
-function theia_wpthchild_load_javascript_files() {
-	if ( is_singular('ces') || is_singular('products') || is_singular('art') || is_page_template('template-thema.php') || is_page_template('template-produits.php')) {
-		wp_enqueue_script('theme_aeris_jquery_sticky', get_template_directory_uri() . '/js/jquery.sticky.js', array('jquery'), '', false );
-		wp_enqueue_script('theme_aeris_toc', get_template_directory_uri() . '/js/toc.js', array('jquery'), '', false );
-	}
-}
-add_action( 'wp_enqueue_scripts', 'theia_wpthchild_load_javascript_files' );
-
-
-/**
  * Affichage des contenus associés
  * 
  */
