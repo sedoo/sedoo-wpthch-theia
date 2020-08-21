@@ -231,3 +231,10 @@ h2,h3 {
     display: flex;
 }
 
+/* contact form */
+.wpcf7-form-control {
+    width: 100%;
+    min-height: 40px;
+    border-radius: 2px;
+    border: 1px solid #a6a6a6;
+}
