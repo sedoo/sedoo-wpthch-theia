@@ -59,9 +59,6 @@ sedoo_wpth_labs_display_sommaire('Sommaire');
 
 <div class="wrapper-content">
     <?php
-    while ( have_posts() ) :
-        the_post();
-
         get_template_part( 'template-parts/content', 'page' );
       ?>
          <aside>
@@ -125,12 +122,11 @@ sedoo_wpth_labs_display_sommaire('Sommaire');
             comments_template();
         endif;
 
-    endwhile; // End of the loop.
     ?>
 </div>
 </main><!-- #main -->
 
 </div><!-- #primary -->
 <?php
-
+endwhile; // End of the loop.
 get_footer();
