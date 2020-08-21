@@ -24,104 +24,113 @@ while ( have_posts() ) : the_post();
         array_push($cesTerms, $cesTerm_slug->slug);
      }
    }
+
+
+if(get_field('sedoo_img_defaut_yesno', 'option') == true) { // if default cover is in option
+    echo '<header id="cover">';
+    if (get_the_post_thumbnail()) {// if default cover but cover special for this page
+        the_post_thumbnail('cover'); 
+    }
+    else {
+        echo '<img src="'.get_field('sedoo_labs_default_cover_url', 'option').'" class="attachment-cover size-cover wp-post-image">';
+    }
+    echo '</header>';
+} else { // if no default
+    if (get_the_post_thumbnail()) {  // if no default cover but special cover for this one
+        echo '<header id="cover">';
+            the_post_thumbnail('cover'); 
+        echo '</header>';
+    }
+}
 ?>
+</header>
+<?php 
+// Show title first on mobile
+if (get_field( 'table_content' )) {
+sedoo_wpth_labs_display_title_on_top_on_mobile();
+}
+?>
+<div id="primary" class="content-area wrapper <?php if (get_field( 'table_content' )) {echo " tocActive";}?> <?php echo esc_html( $categories[0]->slug );?>">
+<?php // table_content ( value ) 
+if (get_field( 'table_content' )) {
+sedoo_wpth_labs_display_sommaire('Sommaire');
+} ?>
+<main id="main" class="site-main">
 
+<div class="wrapper-content">
+    <?php
+    while ( have_posts() ) :
+        the_post();
 
-<div id="primary" class="content-area <?php echo esc_html( $categories[0]->slug );?>">
-        <?php
-            if ( has_post_thumbnail() ) {
-        ?>
-            <header id="cover">
-                <?php the_post_thumbnail('cover'); ?>
-            </header>
-        <?php 
-        }
-        ?>
-        <div class="wrapper-layout">
-            <main id="main" class="site-main">
-                <article id="post-<?php the_ID();?>">	
-                    <header>
-                        <h1><?php the_title(); ?></h1>
-                        <div>
-                            <?php 
-                            // $categories = get_the_category();
-                            //     if ( ! empty( $categories ) ) {
-                            //     echo esc_html( $categories[0]->name );   
-                            // }; 
-                            ?>
-                            <?php 
-                            if( function_exists('sedoo_show_categories') ){
-                                sedoo_show_categories($themes, $themeSlugRewrite);
-                            }
-                            ?>
-                        </div>
-                    </header>
-                     <div id="content-area" class="cestoc wrapper sidebar toc-left">
-                        <?php
-                        get_template_part( 'template-parts/content', 'tpl-page' );
-                        ?>
-                        
-                        <aside>
-                            <!-- NEWS --> 
-                           <?php
-                              $parameters = array(
-                                 'sectionTitle'    => 'News',
-                              );            
-                              $args = array(
-                              'post_type'             => 'post',
-                              'post_status'           => array( 'publish' ),
-                              'posts_per_page'        => '7',            // -1 pour liste sans limite
-                              'post__not_in'          => array(get_the_id()),    //exclu le post courant
-                              'orderby'               => 'date',
-                              'order'                 => 'DESC',
-                              'lang'                  => pll_current_language(),    // use language slug in the query
-                              'tax_query'             => array(
-                                                      array(
-                                                         'taxonomy' => 'cestag',
-                                                         'field'    => 'slug',
-                                                         'terms'    => $cesTerms,
-                                                      ),
-                                                   ),
-                              // 'meta_key'              => '_wp_page_template',
-                              // 'meta_value'            => '', // template-name.php
-                           );            
-                           theia_wpthchild_get_associate_content($parameters, $args);
-                           ?>
+        get_template_part( 'template-parts/content', 'page' );
+      ?>
+         <aside>
+               <!-- NEWS --> 
+            <?php
+               $parameters = array(
+                  'sectionTitle'    => 'News',
+               );            
+               $args = array(
+               'post_type'             => 'post',
+               'post_status'           => array( 'publish' ),
+               'posts_per_page'        => '7',            // -1 pour liste sans limite
+               'post__not_in'          => array(get_the_id()),    //exclu le post courant
+               'orderby'               => 'date',
+               'order'                 => 'DESC',
+               'lang'                  => pll_current_language(),    // use language slug in the query
+               'tax_query'             => array(
+                                       array(
+                                          'taxonomy' => 'cestag',
+                                          'field'    => 'slug',
+                                          'terms'    => $cesTerms,
+                                       ),
+                                    ),
+               // 'meta_key'              => '_wp_page_template',
+               // 'meta_value'            => '', // template-name.php
+            );            
+            theia_wpthchild_get_associate_content($parameters, $args);
+            ?>
 
-                           <!-- Products --> 
-                           <?php
-                              $parameters = array(
-                                 'sectionTitle'    => "Products",
-                              );
-                              
-                              $args = array(
-                                 'post_type'             => 'products',
-                                 'post_status'           => array( 'publish' ),
-                                 'posts_per_page'        => '-1',            // -1 pour liste sans limite
-                                 'post__not_in'          => array(get_the_id()),    //exclu le post courant
-                                 'orderby'               => 'title',
-                                 'order'                 => 'ASC',
-                                 'lang'                  => pll_current_language(),    // use language slug in the query
-                                 'tax_query'             => array(
-                                                         array(
-                                                            'taxonomy' => 'cestag',
-                                                            'field'    => 'slug',
-                                                            'terms'    => $cesTerms,
-                                                         ),
-                                                      ),
-                                 // 'meta_key'              => '_wp_page_template',
-                                 // 'meta_value'            => '', // template-name.php
-                              );
-                     
-                              theia_wpthchild_get_associate_content($parameters, $args);
-                              ?>
-                        </aside>
-                     </div><!-- #content-area -->
-                  </article>              
-            </main>
-                        </div>
+            <!-- Products --> 
+            <?php
+               $parameters = array(
+                  'sectionTitle'    => "Products",
+               );
+               
+               $args = array(
+                  'post_type'             => 'products',
+                  'post_status'           => array( 'publish' ),
+                  'posts_per_page'        => '-1',            // -1 pour liste sans limite
+                  'post__not_in'          => array(get_the_id()),    //exclu le post courant
+                  'orderby'               => 'title',
+                  'order'                 => 'ASC',
+                  'lang'                  => pll_current_language(),    // use language slug in the query
+                  'tax_query'             => array(
+                                          array(
+                                             'taxonomy' => 'cestag',
+                                             'field'    => 'slug',
+                                             'terms'    => $cesTerms,
+                                          ),
+                                       ),
+                  // 'meta_key'              => '_wp_page_template',
+                  // 'meta_value'            => '', // template-name.php
+               );
+      
+               theia_wpthchild_get_associate_content($parameters, $args);
+               ?>
+         </aside>
+      <?php 
+        // If comments are open or we have at least one comment, load up the comment template.
+        if ( comments_open() || get_comments_number() ) :
+            comments_template();
+        endif;
 
+    endwhile; // End of the loop.
+    ?>
+</div>
+</main><!-- #main -->
+
+</div><!-- #primary -->
 <?php
-endwhile; // End of the loop.
-// get_sidebar();
+
 get_footer();
