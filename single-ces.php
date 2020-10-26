@@ -31,7 +31,7 @@ while ( have_posts() ) : the_post();
         <?php
             if ( has_post_thumbnail() ) {
         ?>
-            <header id="cover">ghj
+            <header id="cover">
                 <?php the_post_thumbnail('cover'); ?>
             </header>
         <?php 
@@ -43,7 +43,7 @@ while ( have_posts() ) : the_post();
                     <header class="ces_header">
                         <?php
                            $image_url_en = array('incubating' => '/Logo-CES-EN_incubating-SEC.svg', 'prototyping' => '/Logo-CES-EN_CES-en-proto-Orange-copie-3.svg', 'producing' => '/Logo-CES-EN_CES-en-production-COULEUR-copie.svg');
-                           $image_url_fr = array('incubating' => '/Logo-CES_CES-en-INCUBATION.svg', 'prototyping' => '/Logo-CES_CES-en-prototypage.svg', 'producing' => '/Logo-CES_CES-en-production.svg');
+                           $image_url_fr = array('incubating' => '/logo_misva.png', 'prototyping' => '/Logo-CES_CES-en-prototypage.svg', 'producing' => '/Logo-CES_CES-en-production.svg');
                         ?>
                         <h1><?php the_title(); ?></h1>
                         <?php 
