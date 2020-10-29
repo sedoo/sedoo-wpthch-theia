@@ -12,12 +12,17 @@ get_header();
 get_template_part( 'template-parts/header-content', 'archive' );
 // recup le slug du term courant
 $term = get_queried_object();
+$affichage_portfolio = get_field('sedoo_affichage_en_portfolio', $term);
+
 // var_dump($term);
 ?>
 
 	<div id="content-area" class="wrapper archives">
 		<main id="main" class="site-main" role="main">
+		
 		<?php
+		if($affichage_portfolio != true) { // if portfolio then display it, if not just do the normal script
+
 			if (get_the_archive_description()) {
 				the_archive_description( '<div class="archive-description">', '</div>' );
 			}
@@ -107,6 +112,24 @@ $term = get_queried_object();
 				'current' => max( 1, get_query_var('paged') ),
 				'total' => $the_query->max_num_pages
 			) );
+		}
+		else {
+			?>
+			<script>
+				ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
+			</script>
+			<style>
+				.sedoo_port_action_btn li:hover {
+					background-color: <?php echo $code_color; ?> !important;
+				}
+
+				.sedoo_port_action_btn li.active {
+					background-color: <?php echo $code_color; ?> !important;
+				}
+			</style>
+			<?php 
+			archive_do_portfolio_display($term);
+		}
 			?>
 		</main><!-- #main -->
 		<?php 
