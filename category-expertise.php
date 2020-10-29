@@ -111,6 +111,7 @@ $affichage_portfolio = get_field('sedoo_affichage_en_portfolio', $term);
 				'current' => max( 1, get_query_var('paged') ),
 				'total' => $the_query->max_num_pages
 			) );
+			}
 			else {
 			?>
 			<script>
