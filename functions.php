@@ -637,6 +637,74 @@ function theia_wpthchild_pagination_bar( $custom_query ) {
     }
 }
 
+
+/* Use the second logo on non-home page if filled */
+add_filter( 'get_custom_logo', 'sedoo_replace_logo_by_secondary' );
+function sedoo_replace_logo_by_secondary( $html ) {
+    $logo_secondaire = get_field('secondaire_logo_image', 'option');
+    if(!is_front_page() && $logo_secondaire != NULL) {
+           $html = '<a href="'.home_url().'" class="custom-logo-link" rel="home" aria-current="page"><img src="'.$logo_secondaire.'" class="custom-logo" alt="theia2" width="150" height="98"></a>';
+    }
+    return $html;
+}
+
+
+// Add secondary logo field on the options page
+acf_add_local_field_group(array(
+	'key' => 'group_5fa94ea4129fa',
+	'title' => 'Logo secondaire',
+	'fields' => array(
+		array(
+			'key' => 'field_5fa94eab13249',
+			'label' => 'Image',
+			'name' => 'secondaire_logo_image',
+			'type' => 'image',
+			'instructions' => 'Cette image sera utilisée sur les pages secondaire, pas sur l\'accueil.',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'return_format' => 'url',
+			'preview_size' => 'medium',
+			'library' => 'all',
+			'min_width' => '',
+			'min_height' => '',
+			'min_size' => '',
+			'max_width' => '',
+			'max_height' => '',
+			'max_size' => '',
+			'mime_types' => '',
+		),
+	),
+	'location' => array(
+		array(
+			array(
+				'param' => 'options_page',
+				'operator' => '==',
+				'value' => 'acf-options-theme-options',
+			),
+		),
+	),
+	'menu_order' => 0,
+	'position' => 'normal',
+	'style' => 'default',
+	'label_placement' => 'top',
+	'instruction_placement' => 'label',
+	'hide_on_screen' => '',
+	'active' => true,
+	'description' => '',
+));
+
+// Insert a js file to reduce height of the header on scroll
+function sedoo_theia_load_js() {
+    wp_enqueue_script('js-file', get_stylesheet_directory_uri().'/js/main.js', array('jquery'), '', false);
+}
+  
+add_action('wp_enqueue_scripts', 'sedoo_theia_load_js');
+
 //require 'inc/theia-acf-config.php';
 //require 'inc/theia-acf-block.php';
 //require 'inc/theia-displays.php';
