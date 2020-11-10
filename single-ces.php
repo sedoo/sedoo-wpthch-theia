@@ -42,19 +42,19 @@ while ( have_posts() ) : the_post();
                 <article id="post-<?php the_ID();?>">	
                     <header class="ces_header">
                         <?php
-                           $image_url_en = array('incubating' => '/Logo-CES-EN_incubating-SEC.svg', 'prototyping' => '/Logo-CES-EN_CES-en-proto-Orange-copie-3.svg', 'producing' => '/Logo-CES-EN_CES-en-production-COULEUR-copie.svg');
-                           $image_url_fr = array('incubating' => '/Logo-CES_CES-en-INCUBATION.svg', 'prototyping' => '/Logo-CES_CES-en-prototypage.svg', 'producing' => '/Logo-CES_CES-en-production.svg');
+                           $image_url_en = array('incubating' => '/svgces/en/incubating-sec.svg', 'prototyping' => '/svgces/en/prototyping-sec.svg', 'producing' => '/svgces/en/producing-sec.svg');
+                           $image_url_fr = array('incubating' => '/svgces/fr/ces-en-incubation.svg', 'prototyping' => '/svgces/fr/ces-en-prototypage.svg', 'producing' => '/svgces/fr/ces-en-production.svg');
                         ?>
                         <h1><?php the_title(); ?></h1>
                         <?php 
                             // if incubating (fr)
                             if(has_category(704)) {
-                               echo '<figure><img src="'.wp_upload_dir()['url'].$image_url_fr['incubating'].'"></figure';
+                               echo '<figure><img src="'.get_stylesheet_directory_uri().$image_url_fr['incubating'].'"></figure';
                             }
 
                             // if incubating (en)
                             if(has_category(706)) {
-                               echo '<figure><img src="'.wp_upload_dir()['url'].$image_url_en['incubating'].'"></figure';
+                               echo '<figure><img src="'.get_stylesheet_directory_uri().$image_url_en['incubating'].'"></figure';
                             }
 
 
