@@ -41,54 +41,58 @@ while ( have_posts() ) : the_post();
             <main id="main" class="site-main">
                 <article id="post-<?php the_ID();?>">	
                     <header class="ces_header">
-                        <?php
+                        <div>
+                           <h1><?php the_title(); ?></h1>
+                           <?php 
+                              $taxonomy = 'category';
+                              $themes = get_the_terms( $post->ID, $taxonomy);
+                              ?>
+                              <div class="tag">
+                                 <?php 
+                                 foreach($themes as $category) {
+                                    echo '<a href="'.esc_url(get_term_link( $category )).'" class="non-classe-fr">'.$category->name.'</a>';   
+                                 }
+                                 ?>
+                              </div>    
+                        </div>
+                       
+                        <?php 
                            $image_url_en = array('incubating' => '/svgces/en/incubating-sec.svg', 'prototyping' => '/svgces/en/prototyping-sec.svg', 'producing' => '/svgces/en/producing-sec.svg');
                            $image_url_fr = array('incubating' => '/svgces/fr/ces-en-incubation.svg', 'prototyping' => '/svgces/fr/ces-en-prototypage.svg', 'producing' => '/svgces/fr/ces-en-production.svg');
-                        ?>
-                        <h1><?php the_title(); ?></h1>
-                        <?php 
-                            // if incubating (fr)
+
+                            // if incubating (fr) 
                             if(has_category(704)) {
-                               echo '<figure><img src="'.get_stylesheet_directory_uri().$image_url_fr['incubating'].'"></figure';
+                               echo '<a href="'.get_category_link(704).'"><figure><img src="'.get_stylesheet_directory_uri().$image_url_fr['incubating'].'"></figure></a>';
                             }
 
                             // if incubating (en)
                             if(has_category(706)) {
-                               echo '<figure><img src="'.get_stylesheet_directory_uri().$image_url_en['incubating'].'"></figure';
+                               echo '<a href="'.get_category_link(706).'"><figure><img src="'.get_stylesheet_directory_uri().$image_url_en['incubating'].'"></figure></a>';
                             }
-
-
 
                             // if prototyping (fr)
                             if(has_category(702)) {
-                               echo'<figure><img src="'.get_stylesheet_directory_uri().$image_url_fr['prototyping'].'"></figure'; 
+                               echo'<a href="'.get_category_link(702).'"><figure><img src="'.get_stylesheet_directory_uri().$image_url_fr['prototyping'].'"></figure></a>'; 
                             }
 
                             // if prototyping (en)
                             if(has_category(708)) { 
-                               echo '<figure><img src="'.get_stylesheet_directory_uri().$image_url_en['prototyping'].'"></figure';
+                               echo '<a href="'.get_category_link(708).'"><figure><img src="'.get_stylesheet_directory_uri().$image_url_en['prototyping'].'"></figure></a>';
                             }
-
-
 
                             // if producing (fr)
                             if(has_category(700)) {
-                               echo '<figure><img src="'.get_stylesheet_directory_uri().$image_url_fr['producing'].'"></figure';
+                               echo '<a href="'.get_category_link(700).'"><figure><img src="'.get_stylesheet_directory_uri().$image_url_fr['producing'].'"></figure></a>';
                             }
 
                             // if producing (en)
                             if(has_category(710)) {
-                               echo '<figure><img src="'.get_stylesheet_directory_uri().$image_url_en['producing'].'"></figure';
+                               echo '<a href="'.get_category_link(710).'"><figure><img src="'.get_stylesheet_directory_uri().$image_url_en['producing'].'"></figure></a>';
                             }
 
 
                             ?>
                         <div>
-                            <?php 
-                            if( function_exists('sedoo_show_categories') ){
-                                sedoo_show_categories($themes, $themeSlugRewrite);
-                            }
-                            ?>
                         </div>
                     </header>
                      <div id="content-area" class="cestoc wrapper sidebar toc-left">
