@@ -61,24 +61,24 @@ while ( have_posts() ) : the_post();
 
                             // if prototyping (fr)
                             if(has_category(702)) {
-                               echo'<figure><img src="'.wp_upload_dir()['url'].$image_url_fr['prototyping'].'"></figure'; 
+                               echo'<figure><img src="'.get_stylesheet_directory_uri().$image_url_fr['prototyping'].'"></figure'; 
                             }
 
                             // if prototyping (en)
                             if(has_category(708)) { 
-                               echo '<figure><img src="'.wp_upload_dir()['url'].$image_url_en['prototyping'].'"></figure';
+                               echo '<figure><img src="'.get_stylesheet_directory_uri().$image_url_en['prototyping'].'"></figure';
                             }
 
 
 
                             // if producing (fr)
                             if(has_category(700)) {
-                               echo '<figure><img src="'.wp_upload_dir()['url'].$image_url_fr['producing'].'"></figure';
+                               echo '<figure><img src="'.get_stylesheet_directory_uri().$image_url_fr['producing'].'"></figure';
                             }
 
                             // if producing (en)
                             if(has_category(710)) {
-                               echo '<figure><img src="'.wp_upload_dir()['url'].$image_url_en['producing'].'"></figure';
+                               echo '<figure><img src="'.get_stylesheet_directory_uri().$image_url_en['producing'].'"></figure';
                             }
 
 
