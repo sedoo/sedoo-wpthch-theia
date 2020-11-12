@@ -14,7 +14,7 @@
     
 
     if( function_exists('sedoo_labtools_show_categories') ){
-        $taxonomy = 'sedoo-theme-labo';
+        $taxonomy = 'theme';
         $themes = get_the_terms( $post->ID, $taxonomy);
         $taxonomy_labels = get_taxonomy_labels( get_taxonomy($taxonomy) );
 
