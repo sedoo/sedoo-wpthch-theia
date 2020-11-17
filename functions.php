@@ -2,7 +2,7 @@
 
 add_action( 'wp_enqueue_scripts', 'theia_wpthchild_enqueue_styles' );
 function theia_wpthchild_enqueue_styles() {
-    wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
+    wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css', array(), filemtime(get_template_directory() . '/style.css'), false );
 
 
 }
