@@ -251,7 +251,7 @@ h2,h3 {
 }
 
 /* site header for scrolling, small version */
-.site-header.small {
+/* .site-header.small {
     padding: 5px 20px;
 }
 
@@ -262,7 +262,7 @@ h2,h3 {
 
 .site-header.small #primary-menu li a {
     padding: 10px 10px;
-}
+} */
 
 
 /* Fix the header and show it devant the toc menu */
