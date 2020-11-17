@@ -2,7 +2,7 @@
 
 add_action( 'wp_enqueue_scripts', 'theia_wpthchild_enqueue_styles' );
 function theia_wpthchild_enqueue_styles() {
-    wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
+    wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css', array(), filemtime(get_template_directory() . '/style.css'), false );
 
 
 }
@@ -699,11 +699,11 @@ acf_add_local_field_group(array(
 ));
 
 // Insert a js file to reduce height of the header on scroll
-function sedoo_theia_load_js() {
-    wp_enqueue_script('js-file', get_stylesheet_directory_uri().'/js/main.js', array('jquery'), '', false);
-}
+// function sedoo_theia_load_js() {
+//     wp_enqueue_script('js-file', get_stylesheet_directory_uri().'/js/main.js', array('jquery'), '', false);
+// }
   
-add_action('wp_enqueue_scripts', 'sedoo_theia_load_js');
+// add_action('wp_enqueue_scripts', 'sedoo_theia_load_js');
 
 //require 'inc/theia-acf-config.php';
 //require 'inc/theia-acf-block.php';
