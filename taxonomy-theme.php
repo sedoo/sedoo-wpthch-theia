@@ -114,30 +114,29 @@ while ( $the_query->have_posts() ) {
 				),
 			);
 			$the_query = new WP_Query( $args );
-
 			// The Loop
 			if ( $the_query->have_posts() ) { ?>
-
+	<main id="main" class="site-main" style="margin-left: 0px;">
 				<section role="listNews" class="posts">
-					
+					<div class="post-container themefix">
 				<?php
 					while ( $the_query->have_posts() ) {
 						$the_query->the_post();
 					?>
-					<div class="post-container">
 					<?php
-						get_template_part( 'template-parts/content-theme', get_post_format() );
+						get_template_part( 'template-parts/content-grid', get_post_format() );
 
 						// If comments are open or we have at least one comment, load up the comment template.
 						// if ( comments_open() || get_comments_number() ) :
 						// 	comments_template();
 						// endif;
 						?>
-					</div>
 					<?php
 					} // End of the loop.
-					?>				
+					?>		
+					</div>	
 				</section>
+				</main>
 				<?php 
 				the_posts_navigation();
 				// next_posts_link( 'Older Entries', $the_query->max_num_pages );
