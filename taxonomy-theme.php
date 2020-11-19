@@ -117,8 +117,7 @@ while ( $the_query->have_posts() ) {
 			// The Loop
 			if ( $the_query->have_posts() ) { ?>
 	<main id="main" class="site-main" style="margin-left: 0px;">
-				<section role="listNews" class="posts">
-					<div class="post-container themefix">
+				<section role="listNews" class="post-wrapper">
 				<?php
 					while ( $the_query->have_posts() ) {
 						$the_query->the_post();
@@ -133,8 +132,7 @@ while ( $the_query->have_posts() ) {
 						?>
 					<?php
 					} // End of the loop.
-					?>		
-					</div>	
+					?>			
 				</section>
 				</main>
 				<?php 
