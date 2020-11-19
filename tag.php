@@ -30,10 +30,10 @@ $term = get_queried_object();
 
 			<section role="listNews" class="posts">
 				
+			<div class="post-container">
 			<?php
 				while ( have_posts() ) : the_post();
 				?>
-				<div class="post-container">
 				<?php
 					get_template_part( 'template-parts/content', get_post_format() );
 
@@ -42,10 +42,10 @@ $term = get_queried_object();
 						comments_template();
 					endif;
 					?>
-				</div>
 				<?php
 				endwhile; // End of the loop.
-				?>				
+				?>		
+				</div>		
 			</section>
 			<?php 
 				the_posts_navigation();
