@@ -274,14 +274,13 @@ h2,h3 {
     border-bottom: 0px;
 }
 
-.themefix, 
 .tag-archive .post-container{
     display:flex;
     flex-wrap:wrap;
     justify-content:space-evenly;
 }
 
-.themefix article, .tag-archive article {
+.tag-archive article {
     flex-basis: 380px;
     flex-grow: 0;
     margin-bottom: 2em;
