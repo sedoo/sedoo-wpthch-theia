@@ -15,7 +15,7 @@ $term = get_queried_object();
 // var_dump($term);
 ?>
 
-	<div id="content-area" class="wrapper archives">
+	<div id="content-area" class="wrapper archives tag-archive">
 		<main id="main" class="site-main" role="main">
 		<?php
 			if (get_the_archive_description()) {
