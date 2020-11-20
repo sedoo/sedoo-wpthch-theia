@@ -16,9 +16,9 @@ $term = get_queried_object();
  * WP_Query pour lister la page Theme correspondante
 */
 $args = array(
-	'post_type' => array('page'),
+	'post_type' => array('any'),
 	'post_status'           => array( 'publish' ),
-	'posts_per_page'        => 1,            // -1 pour liste sans limite
+	'posts_per_page'        => -1,            // -1 pour liste sans limite
 	// 'post__not_in'          => array($postID),    //exclu le post courant
 	'tax_query' => array(
 		array(
@@ -28,101 +28,28 @@ $args = array(
 		),
 	),
 );
-$the_query = new WP_Query( $args );
-while ( $the_query->have_posts() ) {
-	$the_query->the_post();
-	?>
-	<div id="content-area" class="wrapper archives">
-		<main id="main" class="site-main" role="main">
+?>
+
+<div id="content-area" class="wrapper archives">
+	<main id="main" class="site-main" role="main">
+		<h1 class="page-title">
 			<?php
-			if (get_the_archive_description()) {
-				the_archive_description( '<div class="archive-description">', '</div>' );
-			}
+			single_cat_title('', true);
 			?>
-			<section role="theme-embed-page">
-				<?php
-				$tax_slug = get_query_var( 'theme' );
-				$svgID=theia_wpthchild_svg_id($tax_slug);
-				?>
-				<article  id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-					<section>
-						<div>
-							<svg>
-								<use xlink:href="#<?php echo $svgID;?>">
-							</svg>			
-						
-							<?php if($post->post_content != "") : ?>			
-							<div class="post-excerpt">	    		            			            	                                                                                            
-								<?php the_excerpt();?>
-								<p><a href="<?php the_permalink(); ?>" title="<?php echo __( 'More information about ', 'sedoo-wpthch-theia' )?><?php the_title();?>"><?php echo __( 'More information about ', 'sedoo-wpthch-theia' )?><?php the_title();?></a></p>
-							</div>
-							
-							<?php endif; ?>
-						</div>
-					</section>
-				</article>
-				<?php
-				} // End of the loop.
-				?>				
-			</section>
-			<?php 
-			/* Restore original Post Data */
-			wp_reset_postdata();
-			/**
-			 * WP_Query pour lister les posts ET les CTP
-
-				*/
-			$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-			$args = array(
-				'post_type' => array('post', 'ces', 'products'),
-				'post_status'           => array( 'publish' ),
-				'posts_per_page'        => 9,            // -1 pour liste sans limite
-				'paged'					=> $paged,
-				// 'post__not_in'          => array($postID),    //exclu le post courant
-				'tax_query' => array(
-					array(
-						'taxonomy' => 'theme',
-						'field'    => 'slug',
-						'terms'    => $term->slug,
-					),
-				),
-			);
-			$the_query = new WP_Query( $args );
-			// The Loop
-			if ( $the_query->have_posts() ) { ?>
-				<main id="main" class="site-main" style="margin-left: 0px;">
-					<section role="listNews" class="post-wrapper">
-					<?php
-						while ( $the_query->have_posts() ) {
-							$the_query->the_post();
-						?>
-						<?php
-							get_template_part( 'template-parts/content-grid', get_post_format() );
-
-							// If comments are open or we have at least one comment, load up the comment template.
-							// if ( comments_open() || get_comments_number() ) :
-							// 	comments_template();
-							// endif;
-							?>
-						<?php
-						} // End of the loop.
-						?>			
-					</section>
-				</main>
-				<?php 
-				the_posts_navigation();
-				// next_posts_link( 'Older Entries', $the_query->max_num_pages );
-				// previous_posts_link( 'Next Entries &raquo;' ); 
-				/* Restore original Post Data */
-				wp_reset_postdata();
-			} else {
-				get_template_part( 'template-parts/content', 'none' );
-			} 
-			?>
-		
-		</main><!-- #main -->
-	</div><!-- #content-area -->
+		</h1>
+		<?php
+		if (get_the_archive_description()) {
+			the_archive_description( '<div class="archive-description">', '</div>' );
+		}
+		/**
+		 * WP_Query pour lister tous les types de posts
+		 */
+		$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+		/* sedoo_wpth_labs_get_queried_content_arguments(post_types, taxonomy, slug, display, paged) */
+		sedoo_wpth_labs_get_queried_content_arguments(array('post', 'page'), 'theme', $term->slug, 'grid', '1');	
+		?>
+	</main><!-- #main -->
+</div><!-- #content-area -->
 <?php
-
 get_footer();
 ?>
