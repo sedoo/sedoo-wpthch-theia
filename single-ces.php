@@ -61,39 +61,37 @@ while ( have_posts() ) : the_post();
                            $image_url_fr = array('incubating' => '/svgces/fr/ces-en-incubation.svg', 'prototyping' => '/svgces/fr/ces-en-prototypage.svg', 'producing' => '/svgces/fr/ces-en-production.svg');
 
                             // if incubating (fr) 
-                            if(has_category(704)) {
+                            if(has_category('ces-en-incubation')) {
                                echo '<a href="'.get_category_link(704).'"><figure><img src="'.get_stylesheet_directory_uri().$image_url_fr['incubating'].'"></figure></a>';
                             }
 
                             // if incubating (en)
-                            if(has_category(706)) {
+                            if(has_category('incubating-sec')) {
                                echo '<a href="'.get_category_link(706).'"><figure><img src="'.get_stylesheet_directory_uri().$image_url_en['incubating'].'"></figure></a>';
                             }
 
                             // if prototyping (fr)
-                            if(has_category(702)) {
+                            if(has_category('prototyping-sec')) {
                                echo'<a href="'.get_category_link(702).'"><figure><img src="'.get_stylesheet_directory_uri().$image_url_fr['prototyping'].'"></figure></a>'; 
                             }
 
                             // if prototyping (en)
-                            if(has_category(708)) { 
+                            if(has_category('ces-en-prototypage')) { 
                                echo '<a href="'.get_category_link(708).'"><figure><img src="'.get_stylesheet_directory_uri().$image_url_en['prototyping'].'"></figure></a>';
                             }
 
                             // if producing (fr)
-                            if(has_category(700)) {
+                            if(has_category('ces-en-production')) {
                                echo '<a href="'.get_category_link(700).'"><figure><img src="'.get_stylesheet_directory_uri().$image_url_fr['producing'].'"></figure></a>';
                             }
 
                             // if producing (en)
-                            if(has_category(710)) {
+                            if(has_category('producing-sec')) {
                                echo '<a href="'.get_category_link(710).'"><figure><img src="'.get_stylesheet_directory_uri().$image_url_en['producing'].'"></figure></a>';
                             }
 
 
                             ?>
-                        <div>
-                        </div>
                     </header>
                      <div id="content-area" class="cestoc wrapper sidebar toc-left">
                         <?php

@@ -32,32 +32,6 @@ $the_query = new WP_Query( $args );
 while ( $the_query->have_posts() ) {
 	$the_query->the_post();
 	?>
-	<div id="breadcrumbs">
-		<div class="wrapper">
-			<?php 
-			// Show breadcrumb if checked in customizer
-			if ( get_theme_mod( 'theme_aeris_breadcrumb' ) == "true") {
-				if (function_exists('the_breadcrumb')) the_breadcrumb(); 
-			}
-			?>		
-		</div>
-	</div>
-	<div class="site-branding" 
-		<?php 
-		if (get_the_post_thumbnail_url()) {
-			?>
-			style="background-image:url(
-			<?php the_post_thumbnail_url( 'full' ); ?>
-			);">
-			<?php 
-		}
-		?>
-		<div>    
-			<h1 class="site-title" rel="bookmark" style="<?php ?>"><span><?php  the_archive_title(); ?></span></h1>
-		</div>
-	</div><!-- .site-branding -->
-
-
 	<div id="content-area" class="wrapper archives">
 		<main id="main" class="site-main" role="main">
 			<?php
@@ -116,24 +90,24 @@ while ( $the_query->have_posts() ) {
 			$the_query = new WP_Query( $args );
 			// The Loop
 			if ( $the_query->have_posts() ) { ?>
-	<main id="main" class="site-main" style="margin-left: 0px;">
-				<section role="listNews" class="post-wrapper">
-				<?php
-					while ( $the_query->have_posts() ) {
-						$the_query->the_post();
-					?>
+				<main id="main" class="site-main" style="margin-left: 0px;">
+					<section role="listNews" class="post-wrapper">
 					<?php
-						get_template_part( 'template-parts/content-grid', get_post_format() );
-
-						// If comments are open or we have at least one comment, load up the comment template.
-						// if ( comments_open() || get_comments_number() ) :
-						// 	comments_template();
-						// endif;
+						while ( $the_query->have_posts() ) {
+							$the_query->the_post();
 						?>
-					<?php
-					} // End of the loop.
-					?>			
-				</section>
+						<?php
+							get_template_part( 'template-parts/content-grid', get_post_format() );
+
+							// If comments are open or we have at least one comment, load up the comment template.
+							// if ( comments_open() || get_comments_number() ) :
+							// 	comments_template();
+							// endif;
+							?>
+						<?php
+						} // End of the loop.
+						?>			
+					</section>
 				</main>
 				<?php 
 				the_posts_navigation();
