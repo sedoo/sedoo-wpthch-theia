@@ -4,7 +4,7 @@ Theme URI:    https://github.com/aeris-data/theia-wpth-child
 Description:  Theia, Aeris Child Theme
 Author:       Pierre VERT , Nicolas Gruwe - SEDOO DATA CENTER
 Template:     sedoo-wpth-labs
-Version:      0.10.7
+Version:      0.10.8
 License: Creative Commons, CC-by-nc-sa
 License URI: https://creativecommons.org/licenses/by-nc-sa/4.0/
 Text Domain: sedoo-wpthch-theia
@@ -242,8 +242,11 @@ h2,h3 {
 .ces_header {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
     align-items: center;
+}
+
+.ces_header > div {
+    flex: 1 1 auto;
 }
 
 .ces_header img {
