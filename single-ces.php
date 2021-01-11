@@ -37,10 +37,9 @@ while ( have_posts() ) : the_post();
         <?php 
         }
         ?>
-        <div class="wrapper-layout">
             <main id="main" class="site-main">
                 <article id="post-<?php the_ID();?>">	
-                    <header class="ces_header">
+                    <header class="ces_header wrapper">
                         <div>
                            <h1><?php the_title(); ?></h1>
                            <?php 
@@ -156,7 +155,6 @@ while ( have_posts() ) : the_post();
                      </div><!-- #content-area -->
                   </article>              
             </main>
-                        </div>
 
 <?php
 endwhile; // End of the loop.
