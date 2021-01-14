@@ -70,13 +70,13 @@ while ( have_posts() ) : the_post();
                             }
 
                             // if prototyping (fr)
-                            if(has_category('prototyping-sec')) {
-                               echo'<a href="'.get_category_link(702).'"><figure><img src="'.get_stylesheet_directory_uri().$image_url_fr['prototyping'].'"></figure></a>'; 
+                            if(has_category('ces-en-prototypage')) { 
+                              echo '<a href="'.get_category_link(708).'"><figure><img src="'.get_stylesheet_directory_uri().$image_url_fr['prototyping'].'"></figure></a>';
                             }
 
                             // if prototyping (en)
-                            if(has_category('ces-en-prototypage')) { 
-                               echo '<a href="'.get_category_link(708).'"><figure><img src="'.get_stylesheet_directory_uri().$image_url_en['prototyping'].'"></figure></a>';
+                            if(has_category('prototyping-sec')) {
+                              echo'<a href="'.get_category_link(702).'"><figure><img src="'.get_stylesheet_directory_uri().$image_url_en['prototyping'].'"></figure></a>'; 
                             }
 
                             // if producing (fr)
