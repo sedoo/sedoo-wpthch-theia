@@ -10,7 +10,7 @@ get_header();
 
 while ( have_posts() ) : the_post();
    $postID=get_the_id();
-   $categories = get_the_terms( get_the_id(), 'theme');  // recup des terms de la taxonomie $parameters['category']
+   $categories = get_the_terms( get_the_id(), 'theme_theia');  // recup des terms de la taxonomie $parameters['category']
    $terms=array();
    foreach ($categories as $term_slug) {        
        array_push($terms, $term_slug->slug);
@@ -45,7 +45,7 @@ while ( have_posts() ) : the_post();
               'lang'                  => pll_current_language(),    // use language slug in the query
               'tax_query'             => array(
                                       array(
-                                         'taxonomy' => 'theme',
+                                         'taxonomy' => 'theme_theia',
                                          'field'    => 'slug',
                                          'terms'    => $terms,
                                       ),
@@ -73,7 +73,7 @@ while ( have_posts() ) : the_post();
               'lang'                  => pll_current_language(),    // use language slug in the query
               'tax_query'             => array(
                                       array(
-                                         'taxonomy' => 'theme',
+                                         'taxonomy' => 'theme_theia',
                                          'field'    => 'slug',
                                          'terms'    => $terms,
                                       ),
@@ -103,7 +103,7 @@ while ( have_posts() ) : the_post();
                'tax_query'             => array(
                                        'relation' => 'AND',
                                        array(
-                                          'taxonomy' => 'theme',
+                                          'taxonomy' => 'theme_theia',
                                           'field'    => 'slug',
                                           'terms'    => $terms,
                                        ),

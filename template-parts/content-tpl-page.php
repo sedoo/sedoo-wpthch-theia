@@ -5,8 +5,8 @@
         } ?>
     <main id="main" class="site-main" role="main">
         <?php
-        $themes = get_the_terms( $post->ID, 'theme');  
-        $themeSlugRewrite = "theme";
+        $themes = get_the_terms( $post->ID, 'theme_theia');  
+        $themeSlugRewrite = "theme_theia";
         
         $products = get_the_terms( $post->ID, 'typeproduct');  
         $productsSlugRewrite = "typeofproduct";

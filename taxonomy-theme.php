@@ -22,7 +22,7 @@ $args = array(
 	// 'post__not_in'          => array($postID),    //exclu le post courant
 	'tax_query' => array(
 		array(
-			'taxonomy' => 'theme',
+			'taxonomy' => 'theme_theia',
 			'field'    => 'slug',
 			'terms'    => $term->slug,
 		),
@@ -46,7 +46,7 @@ $args = array(
 		 */
 		$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 		/* sedoo_wpth_labs_get_queried_content_arguments(post_types, taxonomy, slug, display, paged) */
-		sedoo_wpth_labs_get_queried_content_arguments(array('post', 'page'), 'theme', $term->slug, 'grid', '1');	
+		sedoo_wpth_labs_get_queried_content_arguments(array('post', 'page'), 'theme_theia', $term->slug, 'grid', '1');	
 		?>
 	</main><!-- #main -->
 </div><!-- #content-area -->
