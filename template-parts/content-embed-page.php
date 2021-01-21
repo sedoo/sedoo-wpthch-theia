@@ -4,8 +4,8 @@
  *
  */
 $categories = get_the_terms( $post->ID, 'category');  
-$themes = get_the_terms( $post->ID, 'theme');  
-$slugRewrite = "theme";
+$themes = get_the_terms( $post->ID, 'theme_theia');  
+$slugRewrite = "theme_theia";
 ?>
 
 <article role="embed-post">

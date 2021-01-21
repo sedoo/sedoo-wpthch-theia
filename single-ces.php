@@ -7,7 +7,7 @@ get_header();
 
 while ( have_posts() ) : the_post();
 
-   $categories = get_the_terms( get_the_id(), 'theme');  // recup des terms de la taxonomie $parameters['category']
+   $categories = get_the_terms( get_the_id(), 'theme_theia');  // recup des terms de la taxonomie $parameters['category']
    $terms=array();
    if (is_array($categories) || is_object($categories))
    {
