@@ -63,28 +63,29 @@ while ( have_posts() ) : the_post();
                         <aside>
                           <!-- NEWS --> 
                            <?php
-                           $parameters = array(
-                              'sectionTitle'    => "News",
-                           );            
-                           $args = array(
-                           'post_type'             => 'post',
-                           'post_status'           => array( 'publish' ),
-                           'posts_per_page'        => '7',            // -1 pour liste sans limite
-                           'post__not_in'          => array(get_the_id()),    //exclu le post courant
-                           'orderby'               => 'date',
-                           'order'                 => 'DESC',
-                           'lang'                  => pll_current_language(),    // use language slug in the query
-                           'tax_query'             => array(
-                                                   array(
-                                                      'taxonomy' => 'cestag',
-                                                      'field'    => 'slug',
-                                                      'terms'    => $cesTerms,
-                                                   ),
-                                                ),
-                           // 'meta_key'              => '_wp_page_template',
-                           // 'meta_value'            => '', // template-name.php
-                        );            
-                        theia_wpthchild_get_associate_content($parameters, $args);
+                           $id=get_the_id();
+                           echo "<h1>".$id."</h1>";
+                           theia_aside_content($id, 'News', 'cestag', $cesTerms);
+                        //    $parameters = array(
+                        //       'sectionTitle'    => "News",
+                        //    );            
+                        //    $args = array(
+                        //    'post_type'             => 'post',
+                        //    'post_status'           => array( 'publish' ),
+                        //    'posts_per_page'        => '7',            // -1 pour liste sans limite
+                        //    'post__not_in'          => array(get_the_id()),    //exclu le post courant
+                        //    'orderby'               => 'date',
+                        //    'order'                 => 'DESC',
+                        //    'lang'                  => pll_current_language(),    // use language slug in the query
+                        //    'tax_query'             => array(
+                        //                            array(
+                        //                               'taxonomy' => 'cestag',
+                        //                               'field'    => 'slug',
+                        //                               'terms'    => $cesTerms,
+                        //                            ),
+                        //                         ),
+                        // );            
+                        // theia_wpthchild_get_associate_content($parameters, $args);
                         
                         ?>
                         <!-- SEC --> 
