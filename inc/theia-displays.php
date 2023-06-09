@@ -168,31 +168,6 @@ function theia_get_associate_content($parameters, $args, $type_of_content, $layo
     }
 }
 
-/**
- * Show aside associate content
- */
 
-function theia_aside_content($id,$sectionTitle,$taxQueryTaxonomy,$taxQueryTerms) {
-    $parameters = array(
-        'sectionTitle'    => $sectionTitle,
-     );            
-     $args = array(
-     'post_type'             => 'post',
-     'post_status'           => array( 'publish' ),
-     'posts_per_page'        => '7',            // -1 pour liste sans limite
-     'post__not_in'          => array($id),    //exclu le post courant
-     'orderby'               => 'date',
-     'order'                 => 'DESC',
-     'lang'                  => pll_current_language(),    // use language slug in the query
-     'tax_query'             => array(
-                             array(
-                                'taxonomy' => $taxQueryTaxonomy,
-                                'field'    => 'slug',
-                                'terms'    => $taxQueryTerms,
-                             ),
-                          ),
-    );            
-    theia_wpthchild_get_associate_content($parameters, $args);
-}
 
 ?>

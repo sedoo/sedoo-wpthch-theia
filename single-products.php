@@ -42,17 +42,6 @@ while ( have_posts() ) : the_post();
                     <header class="wrapper">
                         <h1><?php the_title(); ?></h1>
                         <div>
-                            <?php 
-                            // $categories = get_the_category();
-                            //     if ( ! empty( $categories ) ) {
-                            //     echo esc_html( $categories[0]->name );   
-                            // }; 
-                            ?>
-                            <?php 
-                            if( function_exists('sedoo_show_categories') ){
-                                sedoo_show_categories($themes, $themeSlugRewrite);
-                            }
-                            ?>
                         </div>
                     </header>
                      <div id="content-area" class="wrapper sidebar toc-left">
@@ -63,58 +52,13 @@ while ( have_posts() ) : the_post();
                         <aside>
                           <!-- NEWS --> 
                            <?php
-                           $id=get_the_id();
-                           echo "<h1>".$id."</h1>";
-                           theia_aside_content($id, 'News', 'cestag', $cesTerms);
-                        //    $parameters = array(
-                        //       'sectionTitle'    => "News",
-                        //    );            
-                        //    $args = array(
-                        //    'post_type'             => 'post',
-                        //    'post_status'           => array( 'publish' ),
-                        //    'posts_per_page'        => '7',            // -1 pour liste sans limite
-                        //    'post__not_in'          => array(get_the_id()),    //exclu le post courant
-                        //    'orderby'               => 'date',
-                        //    'order'                 => 'DESC',
-                        //    'lang'                  => pll_current_language(),    // use language slug in the query
-                        //    'tax_query'             => array(
-                        //                            array(
-                        //                               'taxonomy' => 'cestag',
-                        //                               'field'    => 'slug',
-                        //                               'terms'    => $cesTerms,
-                        //                            ),
-                        //                         ),
-                        // );            
-                        // theia_wpthchild_get_associate_content($parameters, $args);
+                           theia_aside_content('News','post', '7', 'date', 'DESC', 'cestag', $cesTerms);
                         
                         ?>
                         <!-- SEC --> 
                            <?php
-                           $parameters = array(
-                              'sectionTitle'    => "Scientific Expertise Centres",
-                           );
-                           
-                           $args = array(
-                           'post_type'             => 'ces',
-                           'post_status'           => array( 'publish' ),
-                           'posts_per_page'        => '-1',                    // -1 pour liste sans limite
-                           'post__not_in'          => array(get_the_id()),    //exclu le post courant
-                           'orderby'               => 'title',
-                           'order'                 => 'ASC',
-                           'lang'                  => pll_current_language(),    // use language slug in the query
-                           'tax_query'             => array(
-                                                   array(
-                                                      'taxonomy' => 'cestag',
-                                                      'field'    => 'slug',
-                                                      'terms'    => $cesTerms,
-                                                   ),
-                                                ),
-                           // 'meta_key'              => '_wp_page_template',
-                           // 'meta_value'            => '', // template-name.php
-                        );
-                           
-                        theia_wpthchild_get_associate_content($parameters, $args);
-
+                           theia_aside_content('Scientific Expertise Centres','ces','-1','title', 'ASC', 'cestag', $cesTerms);
+                        
                            ?>
                         <!-- Products --> 
                            <?php
@@ -130,7 +74,8 @@ while ( have_posts() ) : the_post();
                                  array_push($typeproductTerms, $typeproductTerm_slug->slug);
                               }
                            }
-                           
+                           // theia_aside_content('products', 'Products', 'cestag', $cesTerms);
+
                            $args = array(
                               'post_type'             => 'products',
                               'post_status'           => array( 'publish' ),
