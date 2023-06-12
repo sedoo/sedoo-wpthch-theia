@@ -61,12 +61,12 @@ while ( have_posts() ) : the_post();
          }
    }
 ?>
-    <?php 
-    // Show title first on mobile
-    if (( function_exists( 'get_field' ) ) && (get_field( 'table_content' ))) {
-        sedoo_wpth_labs_display_title_on_top_on_mobile();
-    }
-    ?>
+<?php 
+// Show title first on mobile
+if (( function_exists( 'get_field' ) ) && (get_field( 'table_content' ))) {
+   sedoo_wpth_labs_display_title_on_top_on_mobile();
+}
+?>
 	<div id="primary" class="content-area wrapper <?php echo esc_html( $categories[0]->slug );?> <?php if (( function_exists( 'get_field' ) ) && (get_field( 'table_content' ))) {echo " tocActive";}?>">
       <?php // table_content ( value ) 
       if (( function_exists( 'get_field' ) ) && (get_field( 'table_content' ))) {

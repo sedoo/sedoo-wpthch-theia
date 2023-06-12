@@ -34,7 +34,7 @@ body > svg {
 [class*="single-products"] [id="primary"] main aside,
 [class*="single-ces"] [id="primary"] main aside,
 [class*="single-art"] [id="primary"] main aside { 
-    flex:0 1 290px;
+    flex:0 1 200px;
 }
 
 @media (min-width:768px) {
@@ -42,83 +42,55 @@ body > svg {
     [class*="single-ces"] [id="primary"] main article,
     [class*="single-art"] [id="primary"] main article { 
         flex:1 1 500px;
-        margin-right: 20px;
+        margin-right: 40px;
     }
 
     [class*="single-products"] [id="primary"] main aside,
     [class*="single-ces"] [id="primary"] main aside,
     [class*="single-art"] [id="primary"] main aside { 
-        flex:0 1 200px;
+        flex:0 1 290px;
     }
 }
+
+main aside section a {
+    color: var(--theme-color);
+}
+
 
 body .site-branding h1 a, body .site-branding h1 span {
     color: #333;
     background: rgba(255,255,255,0.8);
 }
 
-[class*="single-products"] main ~ aside > section > h3,
+/* [class*="single-products"] main ~ aside > section > h3,
 [class*="single-ces"] main ~ aside > section > h3,
 [class*="single-art"] main ~ aside > section > h3 {
     font-size:1.1rem;
-}
+} */
 
-[role="theme-embed-page"] > article > section > div {
-    display:flex;
-    justify-content: center;
-    align-items: center;
+/** CES ***/
+[class*="single-ces"] [id="primary"] main article .entry-header {
+    display: flex;
+    justify-content: space-between;
 }
-
-@media (max-width:1023px) {
-    [role="theme-embed-page"] > article > section > div {
-        flex-wrap: wrap;
-    }
-}
-
-[role="theme-embed-page"] svg {
-    display: block;
-    max-width: 170px;
-    height: 170px;
-}
-
-[role="theme-embed-page"] .post-excerpt {
-    font-family: 'Open Sans',Arial,sans-serif;
-    font-size:1.5rem;
-}
-
-[role="theme-embed-page"] .post-excerpt > p + p {
-    font-size: 1.3rem;
+[class*="single-ces"] [id="primary"] main article .entry-header > a {
+    width:130px;
 }
 
 /***************************************    OVERRIDE ************************/
-
-[id="masterhead"] {
-    background: #FFF;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 15;
-}
 
 .site-branding h1 a, .site-branding h1 span, #cookie-notice .button:hover {
     color: #333;
     background: rgba(255,255,255,0.9);
 }
-[role="theme-embed-page"] .post-excerpt {
-    font-family: 'Open Sans',Arial,sans-serif;
-    font-size: 1.5rem;
-    flex: 0 1 1000px;
-}
 
 h2,
 h2.widget-title,
-.sidebar main ~ aside section h3{
+main > aside section h3{
 	border:none;
 }
 h2::after,
-h2.widget-title::after,
-.sidebar main ~ aside section h3::after{
+h2.widget-title::after{
 	content:"";
 	display:block;
 	width:50px;
@@ -127,9 +99,9 @@ h2.widget-title::after,
 	background:#666;
 }
 
-.sidebar main ~ aside section h3::after{
+/* main > aside section h3::after{
 	height:2px;
-}
+} */
 
 aside .widget-title::after,
 .tag-paroles-de-theia h2::after {
@@ -250,14 +222,14 @@ h2,h3 {
     flex-shrink: 0;
 }
 
-.sidebar > aside ul {
+main > aside ul {
     list-style: disc;
     padding-left: 40px;
 }
-.sidebar > aside ul li {
+main > aside ul li {
     margin-bottom: 10px;           
 }
 
-.sidebar > aside ul li:last-child{
+main > aside ul li:last-child{
     margin-bottom: 30px;
 }
