@@ -5,6 +5,11 @@
  */
 
 get_header(); 
+$query_object = get_queried_object();
+// if ($query_object->post_type) {
+    $page_id = get_queried_object_id();
+// }
+$title = get_the_title($page_id);
 
 while ( have_posts() ) : the_post();
 
@@ -26,7 +31,43 @@ while ( have_posts() ) : the_post();
     }
 ?>
 
-<div id="primary" class="content-area <?php echo esc_html( $categories[0]->slug );?>">
+<?php 
+   if(get_field('sedoo_img_defaut_yesno', 'option') == true) { // if default cover is in option
+         ?><header id="cover">
+            <figure class="fast-zoom-in">
+            <?php
+            if (get_the_post_thumbnail()) {// if default cover but cover special for this page
+               the_post_thumbnail('cover'); 
+            }
+            else {
+               echo '<img src="'.get_field('sedoo_labs_default_cover_url', 'option').'" class="attachment-cover size-cover wp-post-image">';
+            }
+            ?>
+               <figcaption><?php the_post_thumbnail_caption();?></figcaption>
+            </figure>
+         </header>
+         <?php
+   } else { // if no default
+         if (get_the_post_thumbnail()) {  // if no default cover but special cover for this one
+            ?><header id="cover">
+               <figure class="fast-zoom-in">
+                     <?php
+                     the_post_thumbnail('cover'); 
+                     ?>
+                     <figcaption><?php the_post_thumbnail_caption();?></figcaption>
+               </figure>
+            </header>
+            <?php
+         }
+   }
+?>
+<?php 
+// Show title first on mobile
+if (( function_exists( 'get_field' ) ) && (get_field( 'table_content' ))) {
+   sedoo_wpth_labs_display_title_on_top_on_mobile();
+}
+?>
+<div id="primary" class="content-area <?php echo esc_html( $categories[0]->slug );?> wrapper <?php if (get_field( 'table_content' )) {echo " tocActive";}?>">
         <?php
             if ( has_post_thumbnail() ) {
         ?>
@@ -42,17 +83,7 @@ while ( have_posts() ) : the_post();
                     <header>
                         <h1><?php the_title(); ?></h1>
                         <div>
-                            <?php 
-                            // $categories = get_the_category();
-                            //     if ( ! empty( $categories ) ) {
-                            //     echo esc_html( $categories[0]->name );   
-                            // }; 
-                            ?>
-                            <?php 
-                            if( function_exists('sedoo_show_categories') ){
-                                sedoo_show_categories($themes, $themeSlugRewrite);
-                            }
-                            ?>
+                            
                         </div>
                     </header>
                      <div id="content-area" class="wrapper sidebar toc-left">
@@ -63,30 +94,12 @@ while ( have_posts() ) : the_post();
                         <aside>
                            <!-- NEWS --> 
                               <?php
-                              $parameters = array(
-                                 'sectionTitle'    => "News",
-                              );
-                              $args = array(
-                              'post_type'             => 'post',
-                              'post_status'           => array( 'publish' ),
-                              'posts_per_page'        => '7',            // -1 pour liste sans limite
-                              'post__not_in'          => array(get_the_id()),    //exclu le post courant
-                              'orderby'               => 'date',
-                              'order'                 => 'DESC',
-                              'lang'                  => pll_current_language(),    // use language slug in the query
-                              'tax_query'             => array(
-                                                      array(
-                                                         'taxonomy' => 'arttag',
-                                                         'field'    => 'slug',
-                                                         'terms'    => $artTerms,
-                                                      ),
-                                                   ),
-                           );            
-                           theia_wpthchild_get_associate_content($parameters, $args);
+                              theia_aside_content('News','post', '7', 'date', 'DESC', 'cestag', $artTerms);
                            
                            ?>
                            <!-- ART --> 
                               <?php
+                              
                               $parameters = array(
                                  'sectionTitle'    => "Regional Animation Networks",
                               );
@@ -99,15 +112,6 @@ while ( have_posts() ) : the_post();
                               'orderby'               => 'title',
                               'order'                 => 'ASC',
                               'lang'                  => pll_current_language(),    // use language slug in the query
-                              //   'tax_query'             => array(
-                              //                           array(
-                              //                              'taxonomy' => 'cestag',
-                              //                              'field'    => 'slug',
-                              //                              'terms'    => $cesTerms,
-                              //                           ),
-                              //                        ),
-                              // 'meta_key'              => '_wp_page_template',
-                              // 'meta_value'            => '', // template-name.php
                            );
                               
                            theia_wpthchild_get_associate_content($parameters, $args);
