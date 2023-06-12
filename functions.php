@@ -53,6 +53,31 @@ add_action( 'init', 'theia_wpthchild_add_taxonomies_to_pages' );
  * 
  */
 
+// Show aside associate content
+
+function theia_aside_content($sectionTitle,$posttype,$postperpage,$orderby,$order,$taxQueryTaxonomy,$taxQueryTerms) {
+    $parameters = array(
+        'sectionTitle'    => $sectionTitle,
+     );            
+     $args = array(
+     'post_type'             => $posttype,
+     'post_status'           => array( 'publish' ),
+     'posts_per_page'        => '7',            // -1 pour liste sans limite
+     'post__not_in'          => array(get_the_id()),    //exclu le post courant
+     'orderby'               => 'date',
+     'order'                 => 'DESC',
+     'lang'                  => pll_current_language(),    // use language slug in the query
+     'tax_query'             => array(
+                             array(
+                                'taxonomy' => $taxQueryTaxonomy,
+                                'field'    => 'slug',
+                                'terms'    => $taxQueryTerms,
+                             ),
+                          ),
+    );            
+    theia_wpthchild_get_associate_content($parameters, $args);
+}
+
 function theia_wpthchild_get_associate_content($parameters, $args) {
    
     $the_query = new WP_Query( $args );
