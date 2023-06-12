@@ -26,7 +26,7 @@ while ( have_posts() ) : the_post();
     }
 ?>
 
-<div id="primary" class="content-area <?php echo esc_html( $categories[0]->slug );?>">
+<div id="primary" class="content-area <?php echo esc_html( $categories[0]->slug );?> wrapper <?php if (get_field( 'table_content' )) {echo " tocActive";}?>">
         <?php
             if ( has_post_thumbnail() ) {
         ?>

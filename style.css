@@ -1,10 +1,10 @@
 /*
 Theme Name:   Theia 2 child
-Theme URI:    https://github.com/aeris-data/theia-wpth-child
+Theme URI:    https://github.com/sedoo/sedoo-wpthch-theia
 Description:  Theia, Aeris Child Theme
 Author:       Pierre VERT , Nicolas Gruwe - SEDOO DATA CENTER
 Template:     sedoo-wpth-labs
-Version:      1.0.4
+Version:      1.0.5
 License: Creative Commons, CC-by-nc-sa
 License URI: https://creativecommons.org/licenses/by-nc-sa/4.0/
 Text Domain: sedoo-wpthch-theia
@@ -23,70 +23,33 @@ body > svg {
     margin:0 auto;
 }
 
-[class*="page-template-template-thema"] [id="breadcrumbs"] > div,
-[class*="page-template-template-produits"] [id="breadcrumbs"] > div,
-[class*="page-template-template-ces"] [id="breadcrumbs"] > div,
-[class*="single-products"] [id="breadcrumbs"] > div,
-[class*="single-ces"] [id="breadcrumbs"] > div {
-    justify-content: flex-end;
+[class*="single-products"] [id="primary"] main,
+[class*="single-ces"] [id="primary"] main,
+[class*="single-art"] [id="primary"] main { 
+    display: flex;
+    flex-wrap: wrap;
+    padding:0 20px;
 }
 
-[class*="page-template-template-thema"] [id="breadcrumbs"] > div::before,
-[class*="page-template-template-produits"] [id="breadcrumbs"] > div::before,
-[class*="page-template-template-ces"] [id="breadcrumbs"] > div::before,
-[class*="single-products"] [id="breadcrumbs"] > div::before,
-[class*="single-ces"] [id="breadcrumbs"] > div::before,
-[class*="single-art"] [id="breadcrumbs"] > div::before,
-[class*="page-template-template-thema"] [id="breadcrumbs"] > div::after,
-[class*="page-template-template-produits"] [id="breadcrumbs"] > div::after,
-[class*="page-template-template-ces"] [id="breadcrumbs"] > div::after,
-[class*="single-products"] [id="breadcrumbs"] > div::after,
-[class*="single-ces"] [id="breadcrumbs"] > div::after,
-[class*="single-art"] [id="breadcrumbs"] > div::after { 
-    display: none;
-}
-
-
-[class*="page-template-template-thema"] [id="content-area"].sidebar main,
-[class*="page-template-template-produits"] [id="content-area"].sidebar main,
-[class*="page-template-template-ces"] [id="content-area"].sidebar main,
-[class*="single-products"] [id="content-area"].sidebar main,
-[class*="single-ces"] [id="content-area"].sidebar main,
-[class*="single-art"] [id="content-area"].sidebar main  { 
-    width: 100%;    
-    margin-right:0;
+[class*="single-products"] [id="primary"] main aside,
+[class*="single-ces"] [id="primary"] main aside,
+[class*="single-art"] [id="primary"] main aside { 
+    flex:0 1 290px;
 }
 
 @media (min-width:768px) {
-    [class*="page-template-template-thema"] [id="content-area"].sidebar main,
-    [class*="page-template-template-produits"] [id="content-area"].sidebar main,
-    [class*="page-template-template-ces"] [id="content-area"].sidebar main,
-    [class*="single-products"] [id="content-area"].sidebar main,
-    [class*="single-ces"] [id="content-area"].sidebar main,
-    [class*="single-art"] [id="content-area"].sidebar main { 
+    [class*="single-products"] [id="primary"] main article,
+    [class*="single-ces"] [id="primary"] main article,
+    [class*="single-art"] [id="primary"] main article { 
         flex:1 1 500px;
-        /* order:1; */
+        margin-right: 20px;
     }
-}
 
-[class*="page-template-template-thema"] [id="content-area"].toc-left > div[id="stickyMenu-sticky-wrapper"],
-[class*="page-template-template-produits"] [id="content-area"].toc-left > div[id="stickyMenu-sticky-wrapper"],
-[class*="page-template-template-ces"] [id="content-area"].toc-left > div[id="stickyMenu-sticky-wrapper"],
-[class*="single-products"] [id="content-area"].toc-left > div[id="stickyMenu-sticky-wrapper"],
-[class*="single-ces"] [id="content-area"].toc-left > div[id="stickyMenu-sticky-wrapper"],
-[class*="single-art"] [id="content-area"].toc-left > div[id="stickyMenu-sticky-wrapper"] { 
-    flex:0 1 170px;
-    /* order:0; */
-}
-
-[class*="page-template-template-thema"] [id="content-area"].sidebar aside,
-[class*="page-template-template-produits"] [id="content-area"].sidebar aside,
-[class*="page-template-template-ces"] [id="content-area"].sidebar aside,
-[class*="single-products"] [id="content-area"].sidebar aside,
-[class*="single-ces"] [id="content-area"].sidebar aside,
-[class*="single-art"] [id="content-area"].sidebar aside { 
-    flex:0 1 290px;
-    /* order:2; */
+    [class*="single-products"] [id="primary"] main aside,
+    [class*="single-ces"] [id="primary"] main aside,
+    [class*="single-art"] [id="primary"] main aside { 
+        flex:0 1 200px;
+    }
 }
 
 body .site-branding h1 a, body .site-branding h1 span {
@@ -94,9 +57,6 @@ body .site-branding h1 a, body .site-branding h1 span {
     background: rgba(255,255,255,0.8);
 }
 
-[class*="page-template-template-thema"] main ~ aside > section > h3,
-[class*="page-template-template-produits"] main ~ aside > section > h3,
-[class*="page-template-template-ces"] main ~ aside > section > h3,
 [class*="single-products"] main ~ aside > section > h3,
 [class*="single-ces"] main ~ aside > section > h3,
 [class*="single-art"] main ~ aside > section > h3 {

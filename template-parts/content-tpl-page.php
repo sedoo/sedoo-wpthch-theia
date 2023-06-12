@@ -1,36 +1,31 @@
-<div id="primary" class="content-area wrapper <?php if (get_field( 'table_content' )) {echo " tocActive";}?>">
-        <?php // table_content ( value ) 
-        if (get_field( 'table_content' )) {
-            sedoo_wpth_labs_display_sommaire('Sommaire');
-        } ?>
-    <main id="main" class="site-main" role="main">
-        <?php
-        $themes = get_the_terms( $post->ID, 'theme_theia');  
-        $themeSlugRewrite = "theme_theia";
-        
-        $products = get_the_terms( $post->ID, 'typeproduct');  
-        $productsSlugRewrite = "typeofproduct";
-        
-        $cestags = get_the_terms( $post->ID, 'cestag');  
-        $cestagsSlugRewrite = "ces";
-        
-        ?>
-        
-        <article id="post-<?php the_ID(); ?>">
-            <div class="wrapper-content">
-            <?php //theia_wpthchild_show_categories($themes, $themeSlugRewrite);?>
-            <?php //theia_wpthchild_show_categories($cestags, $cestagsSlugRewrite);?>
-            <?php //theia_wpthchild_show_categories($products, $productsSlugRewrite);?>
-            <?php
-                the_content();
-        
-                wp_link_pages( array(
-                    'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'theme-aeris' ),
-                    'after'  => '</div>',
-                ) );
-            ?>
-        
-            </div>
-        </article>	
-    </main>
-	</div><!-- #primary -->
+
+	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+		<header class="entry-header">
+			
+			<h1 class="entry-title"><?php the_title(); ?></h1>
+			<?php 
+			if ( (function_exists('sedoo_labtools_show_categories')) && ($themes)){
+			?>
+			<div>
+				<?php
+					sedoo_labtools_show_categories($themes, $themeSlugRewrite);				
+				?>
+			</div>
+			<?php
+			}
+			?>
+		</header><!-- .entry-header -->
+		
+		<div class="entry-content">
+			
+			
+			<?php
+			the_content();
+
+			wp_link_pages( array(
+				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'labs-by-sedoo' ),
+				'after'  => '</div>',
+			) );
+			?>
+		</div><!-- .entry-content -->
+    </article>	
