@@ -67,62 +67,45 @@ if (( function_exists( 'get_field' ) ) && (get_field( 'table_content' ))) {
    sedoo_wpth_labs_display_title_on_top_on_mobile();
 }
 ?>
-<div id="primary" class="content-area <?php echo esc_html( $categories[0]->slug );?> wrapper <?php if (get_field( 'table_content' )) {echo " tocActive";}?>">
-        <?php
-            if ( has_post_thumbnail() ) {
-        ?>
-            <header id="cover">
-                <?php the_post_thumbnail('cover'); ?>
-            </header>
-        <?php 
-        }
-        ?>
-        <div class="wrapper-layout">
-            <main id="main" class="site-main">
-                <article id="post-<?php the_ID();?>">	
-                    <header>
-                        <h1><?php the_title(); ?></h1>
-                        <div>
-                            
-                        </div>
-                    </header>
-                     <div id="content-area" class="wrapper sidebar toc-left">
-                        <?php
-                        get_template_part( 'template-parts/content', 'tpl-page' );
-                        ?>
-                        
-                        <aside>
-                           <!-- NEWS --> 
-                              <?php
-                              theia_aside_content('News','post', '7', 'date', 'DESC', 'cestag', $artTerms);
-                           
-                           ?>
-                           <!-- ART --> 
-                              <?php
-                              
-                              $parameters = array(
-                                 'sectionTitle'    => "Regional Animation Networks",
-                              );
-                              
-                              $args = array(
-                              'post_type'             => 'art',
-                              'post_status'           => array( 'publish' ),
-                              'posts_per_page'        => '-1',            // -1 pour liste sans limite
-                              'post__not_in'          => array(get_the_id()),    //exclu le post courant
-                              'orderby'               => 'title',
-                              'order'                 => 'ASC',
-                              'lang'                  => pll_current_language(),    // use language slug in the query
-                           );
-                              
-                           theia_wpthchild_get_associate_content($parameters, $args);
+	<div id="primary" class="content-area wrapper <?php if (( function_exists( 'get_field' ) ) && (get_field( 'table_content' ))) {echo " tocActive";}?> ">
+   <?php // table_content ( value ) 
+   if (( function_exists( 'get_field' ) ) && (get_field( 'table_content' ))) {
+      sedoo_wpth_labs_display_sommaire('Sommaire');
+   } ?>
+   <main id="main" class="site-main">
+      <?php
+      get_template_part( 'template-parts/content', 'tpl-page' );
+      ?>
+      <aside>
+         <!-- NEWS --> 
+            <?php
+            theia_aside_content('News','post', '7', 'date', 'DESC', 'cestag', $artTerms);
+         
+         ?>
+         <!-- ART --> 
+            <?php
+            
+            $parameters = array(
+               'sectionTitle'    => "Regional Animation Networks",
+            );
+            
+            $args = array(
+            'post_type'             => 'art',
+            'post_status'           => array( 'publish' ),
+            'posts_per_page'        => '-1',            // -1 pour liste sans limite
+            'post__not_in'          => array(get_the_id()),    //exclu le post courant
+            'orderby'               => 'title',
+            'order'                 => 'ASC',
+            'lang'                  => pll_current_language(),    // use language slug in the query
+         );
+            
+         theia_wpthchild_get_associate_content($parameters, $args);
 
-                              ?>
+            ?>
 
-                        </aside>
-                     </div><!-- #content-area -->
-                  </article>              
-            </main>
-                        </div>
+      </aside>         
+   </main>
+</div>
 <?php
 endwhile; // End of the loop.
 // get_sidebar();
