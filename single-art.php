@@ -79,7 +79,7 @@ if (( function_exists( 'get_field' ) ) && (get_field( 'table_content' ))) {
       <aside>
          <!-- NEWS --> 
             <?php
-            theia_aside_content('News','post', '7', 'date', 'DESC', 'cestag', $artTerms);
+            theia_aside_content('News','post', '7', 'date', 'DESC', 'arttag', $artTerms);
          
          ?>
          <!-- ART --> 
