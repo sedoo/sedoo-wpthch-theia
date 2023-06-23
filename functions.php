@@ -301,36 +301,6 @@ add_action( 'init', 'theia_wpthchild_custom_taxonomy', 0 );
 
 }
 
-/******************************************************************
- * Afficher les archives des custom taxonomies
- * $categories = get_the_terms( $post->ID, 'category');  
- */
-
-function theia_wpthchild_show_categories($categories, $slugRewrite) {
- 
-    if( $categories ) {
-    ?>
-    <div class="tag">
-    <?php
-        foreach( $categories as $categorie ) { 
-            if ($categorie->slug !== "non-classe") {
-                if ( "en" == pll_current_language()) {
-                    echo '<a href="'.site_url().'/'.pll_current_language().'/'.$slugRewrite.'/'.$categorie->slug.'" class="'.$categorie->slug.'">';
-                } else {
-                    echo '<a href="'.site_url().'/'.$slugRewrite.'/'.$categorie->slug.'" class="'.$categorie->slug.'">';
-                }
-                echo $categorie->name; 
-                ?>                    
-            </a>
-    <?php 
-            }
-        }
-    ?>
-    </div>
-  <?php
-      } 
-  }
-
 /* ------------------------------------------------------------------------------------------------- */
 /**
  * CUSTOM POSTS
