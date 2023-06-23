@@ -164,8 +164,7 @@ function theia_wpthchild_custom_taxonomy() {
         'rewrite'                    => $rewriteTheme,
         'show_in_rest'               => true,
     );
-    register_taxonomy( 'theme_theia', array( 'page' ), $argsTheme );
-    register_taxonomy_for_object_type( 'theme_theia', 'post' );
+    register_taxonomy( 'theme_theia', array( 'page', 'post', 'tribe_events' ), $argsTheme );
 
     /**
      * CES
@@ -209,10 +208,7 @@ function theia_wpthchild_custom_taxonomy() {
         'rewrite'                    => $rewriteCESTag,
         'show_in_rest'               => true,
     );
-    register_taxonomy( 'cestag', array( 'page' ), $argsCESTag );
-    register_taxonomy_for_object_type( 'cestag', 'post' );
-    register_taxonomy_for_object_type( 'cestag', 'ces' );
-    register_taxonomy_for_object_type( 'cestag', 'products' );
+    register_taxonomy( 'cestag', array( 'page', 'post', 'ces', 'products', 'tribe_events' ), $argsCESTag );
 
     /**
      * ART
@@ -255,9 +251,7 @@ function theia_wpthchild_custom_taxonomy() {
         'rewrite'                    => $rewriteART,
         'show_in_rest'               => true,
     );
-    register_taxonomy( 'arttag', array( 'art' ), $argsART );
-    register_taxonomy_for_object_type( 'arttag', 'post' );
-    register_taxonomy_for_object_type( 'arttag', 'page' );
+    register_taxonomy( 'arttag', array( 'page', 'post', 'art', 'tribe_events' ), $argsART );
     
     /**
      * Type de produit
@@ -300,8 +294,7 @@ function theia_wpthchild_custom_taxonomy() {
         'rewrite'                    => $rewriteProducts,
         'show_in_rest'               => true,
     );
-    register_taxonomy( 'typeproduct', array( 'products' ), $argsProducts );
-    register_taxonomy_for_object_type( 'typeproduct', 'page' );
+    register_taxonomy( 'typeproduct', array( 'page', 'products', 'tribe_events' ), $argsProducts );
 
 }
 add_action( 'init', 'theia_wpthchild_custom_taxonomy', 0 );
