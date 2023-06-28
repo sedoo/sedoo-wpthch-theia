@@ -151,7 +151,7 @@ function theia_get_associate_content($parameters, $args, $type_of_content, $layo
 
     // The Loop
     if ( $the_query->have_posts() ) {
-		echo '<h2>'.__( $parameters['sectionTitle'], 'sedoo-wppl-labtools' ).'</h2>';
+		echo '<h2>'.__( $parameters['sectionTitle'], 'labs-by-sedoo' ).'</h2>';
 		echo '<section role="listNews" class="'.$listingClass.'">';
         while ( $the_query->have_posts() ) {
 			$the_query->the_post();
