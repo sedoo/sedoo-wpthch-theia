@@ -10,11 +10,11 @@
                 if ( get_post_type( get_the_ID() ) == 'ces' ) {
                     $themes = get_the_terms( $post->ID, 'category');  
                     $themeSlugRewrite = "category";
-                    if ( (function_exists('sedoo_labtools_show_categories')) && ($themes)){
+                    if ( (function_exists('sedoo_show_categories')) && ($themes)){
                     ?>
                     <div>
                         <?php
-                            sedoo_labtools_show_categories($themes, $themeSlugRewrite);				
+                            sedoo_show_categories($themes, $themeSlugRewrite);				
                         ?>
                     </div>
                     <?php

@@ -13,7 +13,7 @@
     }  
     
 
-    if( function_exists('sedoo_labtools_show_categories') ){
+    if( function_exists('sedoo_show_categories') ){
         $taxonomy = 'theme_theia';
         $themes = get_the_terms( $post->ID, $taxonomy);
         $taxonomy_labels = get_taxonomy_labels( get_taxonomy($taxonomy) );
@@ -26,7 +26,7 @@
             ?>
             </h2>                    
             <?php
-            sedoo_labtools_show_categories($themes, $taxonomy);
+            sedoo_show_categories($themes, $taxonomy);
         }
     }   
     ?>  
